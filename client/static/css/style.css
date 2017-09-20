@@ -1,0 +1,1001 @@
+.mainBackground{
+  /*background-image: url('../assets/mochaGrunge_@2X.png');*/
+
+  background-image: url('../assets/backgroundImage.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.pageWrapper{
+  /*margin: 2%;
+  padding: 0;*/
+  background-color: rgba(225, 225, 225, 0.85);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  /*height: 80vw;*/
+}
+
+.header a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.testing {
+  color: white;
+}
+
+.titleLogo a{
+  font-size: 1.3em;
+}
+
+a{
+  color: black;
+}
+
+.myNav :hover{
+  text-shadow: 12px 12px 10px #5A5858;
+  color: #ffffff;
+  font-size: 1.2em;
+  cursor: grab;
+}
+
+.myNav a:hover{
+  cursor: pointer;
+}
+
+.errorMessage{
+  color: #e04141;
+  width: 100%;
+  text-align: center;
+  margin: 1%;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+/*===========================================================================*/
+/*=============================== Home Page =================================*/
+/*===========================================================================*/
+
+
+
+#myMap{
+  height: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.mapDiv {
+  height: 500px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 2px rgba(112, 112, 112, .3);
+}
+
+.homePage{
+  padding: 5px;
+}
+
+.home-title {
+  text-align: center;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 1px;
+}
+
+.home-title h4, .home-title h1{
+  margin: 2px;
+}
+
+.bigBox {
+  height: 500px;
+}
+
+#testme{
+  border-bottom: 2px solid #607D8B;
+  color: black;
+}
+
+#testme:hover{
+  color: #607D8B
+}
+
+#testme::after, #testme::before{
+  background-color: #607D8B;
+}
+
+.orgList {
+  height: 89%;
+  overflow-y: auto;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
+}
+
+.orgList {
+  padding-right: 2%;
+  padding-left: 2%;
+  /*background-color: red;*/
+}
+
+.orgList h5 span{
+  font-size: .6em;
+  padding-left: 5%;
+}
+
+.orgList li{
+  font-size: 1.2em;
+  list-style: none;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  text-align: center;
+}
+
+.orgList li :hover{
+  text-shadow: 12px 12px 15px #5A5858;
+  color: #2a6884;
+  font-size: 1.05em;
+}
+
+.orgList a{
+  text-decoration: none;
+}
+
+.orgList span{
+  font-weight: bold;
+}
+
+.orgList h2{
+  margin: 0;
+  margin-bottom: 1%;
+  text-align: center;
+}
+
+.orgList h5{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.orgList .centerMe {
+  margin-top: calc(25% - 15px);
+  margin-left: calc(50% - 15px);
+}
+
+#searchbar {
+  padding-left: 10%;
+  height: 10%;;
+  width: 100%;
+  margin-left: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
+}
+
+#searchbar label{
+  color: #777777;
+  font-size: .8em;
+}
+
+#homeSearchInputs{
+  padding-top: 20px;
+  margin-right: 2%;
+  width: 30%;
+  height: 65px;
+  vertical-align: middle;
+}
+
+#homeSearchInputsBtn{
+  margin-left: 1%;
+  margin-bottom: 2%;
+}
+
+.searchResults a {
+  text-decoration: none;
+}
+
+.searchResults li {
+  list-style: none;
+  text-align: center;
+}
+
+.searchResults li :hover{
+  text-shadow: 12px 12px 10px #5A5858;
+  color: #E8E8E8;
+  font-size: 1.1em;
+}
+
+.searchResults{
+  text-align: center;
+  height: 120px;
+  overflow-y: auto;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
+}
+
+.searchResults span {
+  font-weight: bold;
+}
+
+
+.searchResults a, .searchResults p {
+  margin: 5px;
+  display: inline-block;
+}
+
+#website {
+  color: blue;
+}
+
+.homeTable{
+  font-size: 1.5em;
+  border-collapse: collapse;
+  position: relative;
+}
+
+.homeTable td {
+  padding: 5px;
+}
+
+.homeTable tr:nth-child(even) {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /*background-color: rgba(112, 112, 112, .6);*/
+  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
+}
+
+.homeName{
+  width: 30%;
+}
+
+
+
+/*===========================================================================*/
+/*=============================== Log Reg  ==================================*/
+/*===========================================================================*/
+
+.logRegHeader {
+  text-align: center;
+}
+
+.logRegContent{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60vh;
+  /*height: 65%;*/
+}
+
+.logRegContent button{
+  margin-left: 85%;
+  width: 85%;
+  background-color: lightgrey;
+  margin-bottom: 5px;
+}
+
+.Login, .Register {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  width: 35%;
+  min-height: 75%;
+}
+
+
+.Login label, .Register label{
+  color: black;
+}
+
+
+.Login form, .Register form{
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  text-align: center;
+  width: 40%;
+}
+
+
+.Login label, .Register label, .Login input, .Register input {
+  text-align: center;
+  margin-left: 75%;
+}
+
+
+.Login h3, .Register h3 {
+  display: block;
+  text-align: center;
+}
+
+.Login button{
+  margin-top: 66px;
+}
+
+.css-form input.ng-invalid.ng-touched {
+  background-color: #bc0909;
+}
+
+.css-form input.ng-valid.ng-touched {
+  background-color: #43e02f;
+}
+
+.DisplayMask{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8)
+}
+
+.passwordDiv, .multiLocations, .orgName{
+  width: 500px;
+  height: 400px;
+  background: white;
+  position: absolute;
+  top: 25%;
+  left: calc(50% - 250px);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.passwordDiv, .orgName{
+  text-align: center;
+}
+
+.passwordDiv, .orgName h3{
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+
+.passwordFrom{
+  margin-top: 15%;
+  text-align: center;
+}
+
+.passwordFrom input, .passwordFrom label{
+  text-align: center;
+}
+
+.passwordBTN{
+  margin-top: 3%;
+}
+
+.orgName h3{
+  text-align: center;
+}
+
+.orgName input, .orgName label{
+  text-align: center;
+}
+
+/*.logRegBTN {
+  position: relative;
+  bottom: -55px;
+}*/
+
+/*===========================================================================*/
+/*============================ Show Page 2.0 ================================*/
+/*===========================================================================*/
+
+.newShowPageHeader{
+  /*background-color: green;*/
+  padding: 0;
+}
+
+.newShowPageHeader h1{
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.newMidSection{
+  /*background-color: red;*/
+  min-height: 350px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.newServingDays {
+  /*background-color: blue;*/
+}
+
+.newServingDays h4, .newServingDays p {
+  text-align: center;
+}
+
+.newMidMidSection {
+  /*background-color: white;*/
+}
+
+.newHOP {
+  /*background-color: purple;*/
+  list-style: none;
+}
+
+.newHOP h4, .newHOP p{
+  text-align: center;
+}
+
+.newHOP h4, .newServingDays h4{
+  margin-top: 2px;
+}
+
+.newHOP p, .newServingDays p{
+  margin-bottom: 5px;
+}
+
+.newMidContact{
+  /*backgroundv-color: yellow;*/
+  min-height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.newMidContact p{
+  margin-bottom: 0;
+}
+
+.linkWebsite:hover{
+  text-shadow: 12px 12px 10px #5A5858;
+  color: #E8E8E8;
+  font-size: 1.1em;
+}
+
+.pSpacer{
+  min-width: 30%;
+}
+
+.mapHolder{
+  padding-bottom: 0;
+}
+
+.newMidMap{
+  /*background-color: grey;*/
+  min-height: 300px;
+  width: 100%;
+  margin: 0;
+}
+
+.newMidAddress{
+  /*background-color: pink;*/
+  min-height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.newMidAddress p{
+  font-size: .8em;
+  margin-bottom: 10px;
+}
+
+.newShowDesc{
+  text-align: center;
+}
+
+.showPageServices2 h4{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.showServicesGrid{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.servicesDiv{
+  margin: 0 auto;
+}
+
+.servicesCol{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-top: 2px;
+  /*text-align: center;*/
+}
+
+.newOtherServices{
+  margin: 0;
+}
+
+
+/*.newShowPageServices h4{
+  text-align: center;
+}
+
+.newShowPageServices table{
+}
+
+.newShowPageServices tr{
+  display: flex;
+  justify-content: space-around;
+}
+
+.newShowPageServices td{
+  width: 20%;
+}
+
+*/
+
+
+
+/*===========================================================================*/
+/*============================== Show Page ==================================*/
+/*===========================================================================*/
+
+.showPageHeader{
+  padding: 0 16px;
+}
+
+.showPageHeader h1{
+  margin-bottom: 12px;
+}
+
+.showPageHeaderLeft{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*background-color: blue;*/
+
+}
+
+.showPageHeaderLeft a{
+  font-size: .3em;
+}
+
+.showPageHeaderLeft a:hover{
+  color: blue;
+  font-size: .35em;
+  text-shadow: 5px 5px 10px #5A5858;
+}
+
+.showPageHeaderRight{
+  /*padding-left: calc(15% - 120px);*/
+  /*text-align: right;*/
+  /*background-color: red;*/
+
+}
+
+.showPageHeaderRight li{
+  list-style: none;
+  font-size: .8em;
+}
+
+/*.HopLI :hover{
+  font-size: 1.2em;
+  text-shadow: 5px 5px 10px #5A5858;
+}*/
+
+.showPageHeaderRight p{
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.showPageHeaderRight .hopHeader{
+  text-decoration: underline;
+  font-size: 1.3em;
+}
+
+.showPageMidSection {
+  min-height: 350px;
+  padding-top: 0;
+  padding-bottom: 0;
+
+}
+
+.showPageMidLeft{
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.midLeft p, .midRight p{
+  margin-bottom: 2%;
+}
+
+.midLeft, .midRight{
+  padding-bottom: 2%;
+}
+
+.showMap {
+  height: 100%;
+  min-height: 250px;
+}
+
+.showPageServices table{
+  width: 100%;
+  margin-bottom: 8.5%;
+}
+
+.showPageServices td {
+  padding-right: 2%;
+}
+
+.showPageServices tr{
+  height: 45px;
+}
+
+.showPageDays tr:nth-child(even) {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(112, 112, 112, .3);
+  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .3);
+}
+
+.showPageServices h4{
+  margin: 0;
+}
+
+.showPageServing h4{
+  margin: 0;
+}
+
+.showPageServing p{
+  display: inline-block;
+  margin-right: 2%;
+  margin-bottom: 2%;
+}
+
+.showPageServing span{
+  /*font-weight: bold;*/
+  /*width: 80px;*/
+  margin-right: 3px;
+}
+
+/*.showPageServing p:hover{
+  font-size: 1.05em;
+  text-shadow: 5px 5px 10px #5A5858;
+}*/
+
+
+
+/*.showPageOrgInfo{
+outline: 1px solid blue;
+}*/
+
+
+/*.showPageDays{
+border-collapse: collapse;
+}
+
+.showPageDays tr {
+height: 2%;
+}*/
+
+/*.showPageDays td {
+text-align: center;
+padding: 3px;
+}*/
+
+/*#removeBtn {
+  color: #cc0000;
+}*/
+
+/*#addSpace td{
+  padding-top: 20px;
+}*/
+
+/*.otherServices p{
+display: inline-block;
+font-size: 1.3em;
+list-style: none;
+margin-bottom: 10px;
+text-align: center;
+}
+
+.otherServices li :hover{
+text-shadow: 12px 12px 10px #5A5858;
+color: #E8E8E8;
+font-size: 1.1em;
+}
+
+.otherServices li{
+font-size: 1.3em;
+list-style: none;
+margin-bottom: 10px;
+text-align: center;
+}*/
+
+/*.showPageInfo p, .showPageInfo h4 {
+  display: inline-block;
+}
+
+.showPageInfo {
+  height: 50px;
+}*/
+
+/*===========================================================================*/
+/*============================== Services Page ==============================*/
+/*===========================================================================*/
+.pageMargin{
+  margin: 2%;
+}
+
+.servicesTopSection{
+  min-height: 160px;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.servicesHeader{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.servicesHeader h6{
+  margin-bottom: 1px;
+}
+
+
+.servicesMidSection{
+  min-height: 300px;
+  padding-bottom: 0;
+  padding-top: 0;
+
+}
+
+.servicesMidSection h5{
+  text-align: center;
+  font-weight: normal;
+  /*text-decoration: underline;*/
+  margin: 0;
+}
+
+.servicesMidSection label{
+  color: #777777;
+}
+
+.orgName{
+  padding-top: 15px;
+  font-size: 1.7em;
+}
+
+.orgName label{
+  color: #6b6b6b;
+}
+
+.inputSection{
+  height: 10px;
+}
+
+.inputSection label{
+  color: #6b6b6b;
+}
+
+.descTextArea{
+  height: 36px;
+}
+
+.addNewWrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.addNew button{
+  margin-left: 10px;
+  height: 25px;
+  line-height: 25px;
+}
+
+.addNew p{
+  margin: 0;
+  margin-right: 10px;
+  line-height: 30px;
+}
+
+.displayDays li{
+  list-style: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 25px;
+  margin-bottom: 2%;
+}
+
+.displayDays h6{
+  display: inline-block;
+  width: 110px;
+  margin: 0;
+  padding: .5%;
+  line-height: 25px;
+  height: 25px;
+}
+
+.displayDays p{
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  margin-right: 1%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.displayDays button{
+  margin-right: 0;
+  height: 25px;
+  line-height: 25px;
+}
+
+.displayDays button :hover{
+  margin-right: 0;
+  height: 25px;
+  line-height: 25px;
+  font-weight: bold;
+  color: red;
+}
+
+.displayDays span{
+  width: 80px;
+  text-align: right;
+  margin-right: 8%;
+}
+
+.displayDays :hover{
+  text-shadow: 5px 5px 10px #5A5858;
+  /*color: #E8E8E8;*/
+  color: #0832cc;
+}
+
+.servicesBottomSection{
+  padding-top: 0;
+}
+
+.servicesBottomSection h4{
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.servicesCheckbox{
+  margin: 0 8px;
+}
+
+.servicesCheckbox td{
+  width: 18%;
+}
+
+.servicesCheckbox tr{
+  height: 55px;
+}
+
+.servicesBottomRight div{
+  /*padding-bottom: 10px;*/
+}
+
+.servicesBottomRight button{
+  width: 120px;
+  margin-left: calc(50% - 80px);
+}
+
+
+
+/*
+.hopDays{
+  display: flex;
+  justify-content: space-between;
+}
+
+.hopDays h6 {
+  line-height: 60px;
+  height: 60px;
+  margin: 0 10px;
+}
+
+.hopDays label, .hopDays select{
+  text-align: center;
+  font-size: .8em;
+}
+
+.hopDayDiv {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 60px;
+}*/
+
+/*
+#updateServices{
+  padding: 0 5%;
+  width: 100%;
+}
+
+#updateServices h4{
+  text-align: center;
+  margin: 0;
+}
+
+#myServiceTable td{
+  width: 10%;
+  height: 35px;
+}*/
+
+
+/*
+#addDayInputs{
+  display: flex;
+  justify-content: space-around;
+}
+#addDayInputs label{
+  font-size: .75em
+}
+
+#timeInputs {
+  width: 75%;
+  display: flex;
+}
+
+#timeInputs button{
+  height: 25px;
+  line-height: 25px;
+}*/
+
+
+
+/*===========================================================================*/
+/*================================= Snackbar ================================*/
+/*===========================================================================*/
+.mdl-snackbar__text {
+  margin-left: 25%;
+}
+
+
+
+
+
+
+
+
+
+/*===========================================================================*/
+/*================================= Un-Used =================================*/
+/*===========================================================================*/
+
+
+/*.datesOpen h5{
+  width: 55px;
+  font-size: 1.1em;
+  text-align: right;
+  margin: 10px;
+  margin-right: 15px;
+}*/
+
+/*.datesOpen td {
+  margin: 1px;
+  padding: 5px;
+}*/
+
+/*.datesOpen-Input{
+  margin-left: 15px;
+  padding: 0;
+}*/

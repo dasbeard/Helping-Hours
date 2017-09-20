@@ -1,0 +1,26 @@
+{
+  "name": "template",
+  "authors": [
+    "Bryan Jones <thebeard@me.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+  ],
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-route": "^1.6.1",
+    "angular-cookies": "^1.6.1",
+    "ngmap": "^1.18.4",
+    "angular-animate": "^1.6.4",
+    "v-accordion": "^1.6.0"
+  },
+  "resolutions": {
+    "angular": "^1.6.1"
+  }
+}
