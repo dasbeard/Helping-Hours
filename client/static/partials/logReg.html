@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div ng-if=error class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">Error</h1>
+      <p class="lead">{{error}}</p>
+    </div>
+  </div>
+
+  <div class="row justify-content-around">
+
+    <div class="col-sm-4 logRegContainers greyContainer">
+      <h3 class="centerText">Login</h3>
+      <form>
+        <div class="form-group">
+          <label for="loginEmail" class="sr-only">Login Email</label>
+          <input class="form-control" type="text" placeholder="Email" id="loginEmail" ng-model='login.email'>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword" class="sr-only">Login Password</label>
+          <input class="form-control" type="text" placeholder="Password" id="loginPassword" ng-model='login.password'>
+        </div>
+
+        <div class="row justify-content-center">
+          <button class="btn btn-secondary stickToBottom" type="button" ng-click="loginUser()">Log In</button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="col-sm-4 logRegContainers greyContainer">
+      <h3 class="centerText">Register</h3>
+        <form>
+          <div class="form-group">
+            <label for="registerEmail" class="sr-only">Register Email</label>
+            <input class="form-control" type="text" placeholder="Email" id="registerEmail" ng-model='reg.email'>
+          </div>
+
+          <div class="form-group">
+            <label for="registerStreet" class="sr-only">Register Street</label>
+            <input class="form-control" type="text" placeholder="Address" id="registerStreet" ng-model='reg.street'>
+          </div>
+
+          <div class="form-group">
+            <label for="registerCity" class="sr-only">Register City</label>
+            <input class="form-control" type="text" placeholder="City" id="registerCity" ng-model='reg.city'>
+          </div>
+
+          <div class="row justify-content-center">
+            <button class="btn btn-secondary" type="button" ng-click="register()">Register</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
