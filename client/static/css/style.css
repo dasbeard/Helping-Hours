@@ -1,7 +1,7 @@
 /*=======================================================*/
 /*===================== Tools Classes ===================*/
 /*=======================================================*/
-.yelowOutline{
+.yellowOutline{
   outline: 1px solid yellow;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .tall{
-  height: 400px;
+  height: 500px;
 }
 
 /*=======================================================*/
@@ -25,6 +25,19 @@
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
+}
+
+.DisplayMaskBackground{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8)
+}
+
+.centerText{
+  text-align: center;
 }
 
 /*=======================================================*/
@@ -63,7 +76,7 @@
 .logRegContainers{
   margin-top: 10%;
   margin-bottom: 5%;
-  min-height: 300px;
+  min-height: 250px;
 }
 
 .logRegContainers h3{
@@ -80,12 +93,7 @@
   position:absolute;bottom:0;
 }
 
-.centerText{
-  text-align: center;
-}
-
-
-.jumbotron{
+.jumbotronError{
   padding: 5px;
   margin-bottom: 10px;
   text-align: center;
@@ -96,4 +104,36 @@
   -moz-border-radius-bottomleft: 15px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
+}
+
+
+.locationPicker{
+  margin-top: 15%;
+  background-color: white;
+  padding: 5% 5% 0 5%;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.locationPicker h3{
+  margin-bottom: 6%;
+}
+
+.addressNotFound{
+  font-size: .7em;
+  padding: 5%;
+}
+
+
+
+.passwordDiv{
+margin-top: 15%;
+  background-color: white;
+  padding: 5%;
+
+
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
 }
