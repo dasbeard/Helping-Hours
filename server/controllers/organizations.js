@@ -35,9 +35,11 @@ module.exports = (function(){
     },
 
 
+
     verifyAddress: function(req,res){
       console.log(req.body);
-      res.json('back from server')
+       // End OrgFindOne
+      // res.json('back from server')
     }, // End verifyAddress
 
 

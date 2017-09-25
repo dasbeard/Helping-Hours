@@ -6,55 +6,91 @@ app.controller('logRegController', ['$scope', 'logRegFactory', '$location', '$co
   $scope.user = {};
 
 // Register New User Method
-  $scope.register = function(){
+// Check if valid first -=-==-=-=-=-=-=-=-=-=
+  $scope.register = function(isValid){
+    if(isValid){
     // ===== Front End Validation ====
-    if(!$scope.reg){
-      $scope.error = 'Please enter your information to register';
-    // } else if(!$scope.reg.email){
-    //   $scope.error = 'Please enter an Email Address';
-    } else if (!$scope.reg.street){
-      $scope.error = 'Please enter the street of the organization to be registered';
-    } else if (!$scope.reg.city){
-      $scope.error = 'Please enter the city of the organization to be registered';
-    // } else if(!$scope.reg.zip){
-    //   $scope.error = 'Please enter a Zip code';
-    } else {
-      $scope.error = '';
-      console.log('Sending to backend');
-      logRegFactory.findLocation($scope.reg, function(output){
-        // console.log(output);
-        if(output.data.error){
-          $scope.error = output.data.error;
-        } else {
-          $scope.foundLocations = output.data;
-          $scope.showLocationPicker = true;
-          if(output.data.length > 1){
-            $scope.locationHeading = 'Please Select Your Address';
-            $scope.locationButton = 'Select';
+      if(!$scope.reg){
+        $scope.error = 'Please enter your information to register';
+      } else if (!$scope.reg.street){
+        $scope.error = 'Please enter the street of the organization to be registered';
+      } else if (!$scope.reg.city){
+        $scope.error = 'Please enter the city of the organization to be registered';
+      // } else if(!$scope.reg.zip){
+      //   $scope.error = 'Please enter a Zip code';
+      } else {
+        $scope.error = '';
+        console.log('Sending to backend');
+        logRegFactory.findLocation($scope.reg, function(output){
+          // console.log(output);
+          if(output.data.error){
+            $scope.error = output.data.error;
           } else {
-            $scope.locationHeading = 'Is This Your Address?';
-            $scope.locationButton = 'Yes';
+            $scope.foundLocations = output.data;
+            $scope.showLocationPicker = true;
+            if(output.data.length > 1){
+              $scope.locationHeading = 'Please Select Your Address';
+              $scope.locationButton = 'Select';
+            } else {
+              $scope.locationHeading = 'Is This Your Address?';
+              $scope.locationButton = 'Yes';
+            }
           }
-        }
-      })
+        })
+      }
+    } else {
+      console.log('not valid');
     }
   };
 
 
 
   $scope.selectedAddress = function(address){
-    console.log(address.formattedAddress);
-    $scope.addressHolder = address;
-    //-=-=-=-==-==-=-=-=-=-=-=-=-=-===-=-=-=-=-==-=-
+    // console.log(address.formattedAddress);
+    $scope.newUser = {address: address};
+//-=-=-=-==-==-=-=-=-=-=-=-=-=-===-=-=-=-=-==-=-
     // Use this button to check if location is registered
     // If not, then prompt for Org name, email and password
     // Check email is not in system as well
-    logRegFactory.verifyAddress($scope.addressHolder, function(output){
-      console.log(output);
-    })
+    // logRegFactory.verifyAddress($scope.addressHolder, function(output){
+    //   console.log(output);
+    // })
+//-=-=-=-==-==-=-=-=-=-=-=-=-=-===-=-=-=-=-==-=-
+    $scope.OrgNamePrompt = true;
+  };
 
 
-  }
+  $scope.confirmPassword = function(isValid){
+    if(isValid){
+      console.log(isValid);
+
+      if($scope.reg2){
+        if(!$scope.reg2.orgName){
+          $scope.error2 = 'An Organization Name is Required';
+        } else if(!$scope.reg2.email){
+          $scope.error2 = 'An E-Mail Address is Required';
+        } else if(!$scope.reg2.password){
+          $scope.error2 = 'A Password is Required';
+        } else if(!$scope.reg2.passwordConf){
+          $scope.error2 = 'Please Verify your Password';
+        }  else if($scope.reg2.password != $scope.reg2.passwordConf){
+          $scope.error2 = 'Passwords do not match!';
+        } else {
+  //-=-=-=-==-==-=-=-=-=-=-=-=-=-===-=-=-=-=-==-=-
+  // Continue Registration to backend
+          $scope.error2 = '';
+          $scope.newUser.orgName = $scope.reg2.orgName;
+          $scope.newUser.email = $scope.reg2.email;
+          $scope.newUser.password = $scope.reg2.password;
+          console.log($scope.newUser);
+        }
+      } else {
+        $scope.error2 = 'Please Enter Information';
+      }
+    }
+  }; //End confirmPassword
+
+
 
 
 

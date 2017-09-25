@@ -76,7 +76,7 @@
 .logRegContainers{
   margin-top: 10%;
   margin-bottom: 5%;
-  min-height: 250px;
+  min-height: 285px;
 }
 
 .logRegContainers h3{
@@ -84,8 +84,14 @@
 }
 
 .logRegContainers button{
-  margin-bottom: 5%;
+  margin-bottom: 8%;
 }
+
+.logRegContainers p{
+  font-size: .85em;
+}
+
+
 
 .stickToBottom{
   margin-top: 120px;
@@ -107,7 +113,7 @@
 }
 
 
-.locationPicker{
+.locationMask{
   margin-top: 15%;
   background-color: white;
   padding: 5% 5% 0 5%;
@@ -116,8 +122,15 @@
   border-radius: 8px;
 }
 
-.locationPicker h3{
+/*.locationPicker h3{
   margin-bottom: 6%;
+}*/
+
+.passwordHelp{
+  font-size: .8em;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-weight: lighter;
 }
 
 .addressNotFound{
@@ -125,15 +138,23 @@
   padding: 5%;
 }
 
-
-
-.passwordDiv{
-margin-top: 15%;
+.OrgNameMask{
+  margin-top: 15%;
   background-color: white;
-  padding: 5%;
-
-
+  padding: 4% 5% 2% 5%;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
+}
+
+.OrgNameMask h3, .OrgNameMask h4{
+  margin-bottom: 15px;
+}
+
+.logRegError{
+  color: red;
+  margin-bottom: 10px;
+  font-size: 1.9em;
+  font-weight: bolder;
+  text-decoration: underline;
 }
