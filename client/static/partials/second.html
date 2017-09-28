@@ -1,11 +1,36 @@
-<h2 class=".hidden-md-down">Second Page</h2>
-<div class="container-fluid myBox">
-  <div class="row">
-    <div class="col-sm willBeMap tall">
-      map
+
+<div class="DisplayMaskBackground container-fluid">
+  <div class="row justify-content-around">
+    <div class="col-sm-5 col-lg-4 latLngContainer greyContainer">
+        <h3 class="centerText">How to find your Latitude and Longitude:</h3>
+        <ol>
+          <li>Open Google maps in another tab or window and find your location. </li>
+          <li>On the map, right click on the correct location and select 'Whats here?'.</li>
+          <li>A window should appear at the bottom of the map with the address as well as the Latitude and Longitude (i.e. 34.184450, -118.448286).</li>
+        </ol>
     </div>
-    <div class="col-sm willBeAccordian tall">
-      accordian
+
+    <div class="col-sm-5 col-lg-4 latLngContainer greyContainer">
+      <h3 class="centerText ">Your Latitude and Longitude</h3>
+      <form name="latLngForm" ng-submit='latLng(latLngForm.$valid)' novalidate>
+        <div class="row">
+          <div class="col-6 form-group" ng-class="{ 'has-error' : latLngForm.lat.$invalid && !latLngForm.lat.$pristine }">
+            <label for="latitude" class="sr-only">Latitude</label>
+            <input required class="form-control" type="number" placeholder="Latitude" id="latitude" ng-model='latLnd.lat' name="lat">
+            <p ng-show="latLngForm.lat.$invalid && !latLngForm.lat.$pristine" class="form-text text-muted centerText">Latitude is required</p>
+          </div>
+
+          <div class="col-6 form-group" ng-class="{ 'has-error' : latLngForm.lng.$invalid && !latLngForm.lng.$pristine }">
+            <label for="longitude" class="sr-only">Longitude</label>
+            <input required class="form-control" type="number" placeholder="Longitude" id="longitude" ng-model='latlng.lng' name="lng">
+            <p ng-show="latLngForm.lng.$invalid && !latLngForm.lng.$pristine" class="form-text text-muted centerText">Longitude is required</p>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <button class="btn btn-secondary stickToBottom" type="submit">Register</button>
+        </div>
+      </form>
     </div>
 
   </div>

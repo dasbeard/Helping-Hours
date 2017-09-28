@@ -12,27 +12,29 @@ module.exports = function(app){
     organizations.findLocation(req,res)
   });
 
-  app.post('/verifyAddress', function(req,res){
-    organizations.verifyAddress(req,res)
+  app.post('/findLatLng', function(req,res){
+    organizations.findLatLng(req,res)
   });
 
+  app.post('/newRegistration', function(req,res){
+    organizations.newRegistration(req,res)
+  });
 
+  app.post('/login', function(req,res){
+    organizations.login(req,res)
+  });
+
+  app.post('/getOrgInfo', function(req,res){
+    organizations.getOrgInfo(req,res)
+  });
 
 
   // app.post('/reg', function(req,res){
   //   organizations.reg(req,res)
   // });
   //
-  // app.post('/newRegistration', function(req,res){
-  //   organizations.newRegistration(req,res)
-  // });
-  //
   // app.post('/confirmRegistration', function (req,res){
   //   organizations.confirmRegistration(req,res)
-  // });
-  //
-  // app.post('/login', function(req,res){
-  //   organizations.login(req,res)
   // });
   //
   // app.post('/newRegCheck', function(req,res){

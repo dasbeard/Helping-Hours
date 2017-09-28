@@ -1,0 +1,139 @@
+<div class="container-fluid servicesContainer">
+
+  <form name="editOrgForm" ng-submit="editOrganization()">
+    <div class="row justify-content-around">
+
+      <div class="col-sm-3 order-12 order-md-5 ">
+
+        <div class="form-group" ng-class="{ 'has-danger' : editOrgForm.website.$invalid && !editOrgForm.$pristine }">
+          <label for="website" class="sr-only">Organizations Website</label>
+          <input type="text" name="website" class="form-control" placeholder="Website" id="website" ng-model="editOrg.website">
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-danger' : editOrgForm.email.$invalid && !editOrgForm.email.$pristine }">
+          <label for="orgEmail" class="sr-only" >Contact Email</label>
+          <input type="email" class="form-control" placeholder="Contact E-Mail" id="orgEmail" ng-model='editOrg.email' name="email">
+          <p ng-show="editOrgForm.email.$invalid && !editOrgForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-danger' : editOrgForm.phone.$invalid && !editOrgForm.phone.$pristine }">
+          <label for="orgPhone" class="sr-only">Contact Phone Number</label>
+          <input type="tel" class="form-control" placeholder="Phone Number" id="orgPhone" ng-model='editOrg.phone' name="phone">
+          <p ng-show="editOrgForm.phone.$invalid && !editOrgForm.phone.$pristine" class="form-text text-muted">Please enter a vaild Phone Number</p>
+        </div>
+
+      </div>
+
+
+      <div class="col-sm-5 order-5 order-md-12 centerText">
+        <div class="editOrgName">
+          <h2>{{editOrg.orgName}}</h2>
+        </div>
+        <div class="centerBottom centerText">
+          <p>{{editOrg.formattedAddress}}</p>
+        </div>
+      </div>
+
+      <div class="col-sm-4 order-12 ">
+        <div class="form-group centerText" ng-class="{ 'has-error' : editOrgForm.description.$invalid && !editOrgForm.description.$pristine }">
+          <label class="" for="description">Tell us about your Organization</label>
+          <textarea class="form-control" id="description" rows="5" name="description" ng-model="editOrg.description"></textarea>
+          <p ng-show="editOrgForm.description.$invalid && !editOrgForm.description.$pristine">Description must be at least 3 characters long.</p>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="container-fluid servicesContainer">
+    <div class="row justify-content-around tall">
+      <div class="col-sm-6 ">
+        <div class="row">
+          <div class="col medium redOutline">
+            Hours of Operation
+          </div>
+        </div>
+        <div class="row">
+          <div class="col medium blueOutline">
+            Days serving Food
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-6 servicesPadding">
+        <div class="row small align-items-center">
+          <div class="col">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" ng-model='editOrg.beds' ng-true-value="true" ng-false-value="false">
+              Beds available
+            </label>
+          </div>
+          <div class="col">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" ng-model='editOrg.cloths' ng-true-value="true" ng-false-value="false">
+              Clothing available
+            </label>
+          </div>
+        </div>
+        <div class="row small align-items-center ">
+          <div class="col">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" ng-model='editOrg.childCare' ng-true-value="true" ng-false-value="false">
+              Childcare available
+            </label>
+          </div>
+          <div class="col">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" ng-model='editOrg.recActivites' ng-true-value="true" ng-false-value="false">
+              Recreational Activities available
+            </label>
+          </div>
+        </div>
+        <div class="row align-items-center small">
+          <div class="col">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" ng-model='editOrg.donations' ng-true-value="true" ng-false-value="false">
+              Takes Donations
+            </label>
+          </div>
+          <div class="col">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" ng-model='editOrg.education' ng-true-value="true" ng-false-value="false">
+              Educational Help
+            </label>
+          </div>
+        </div>
+        <div class="row align-items-center small">
+          <div class="col">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" ng-model='editOrg.job' ng-true-value="true" ng-false-value="false">
+              Job Placement Help
+            </label>
+          </div>
+          <div class="col">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" ng-model='editOrg.interview' ng-true-value="true" ng-false-value="false">
+              Interview Help
+            </label>
+          </div>
+        </div>
+        <div class="row align-items-center small">
+          <div class="col">
+            <div class="form-group">
+              <label class="" for="otherServices">Other services available</label>
+              <textarea class="form-control" id="otherServices" rows="3" name="otherServices" ng-model="editOrg.otherServices"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row small ">
+          <div class="col centerText align-self-center">
+            <button class="btn btn-secondary" type="submit">Save Changes</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+
+
+</div>

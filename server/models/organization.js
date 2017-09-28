@@ -32,10 +32,20 @@ var OrganizationSchema = new mongoose.Schema({
           error: "{ VALUE } is not a valid email"
         }]
       },
+  contactEmail:{
+        type: String,
+        validate: [{
+          validator: function (email){
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+          },
+          error: "{ VALUE } is not a valid email"
+        }]
+      },
   password: {type: String, required: true, minlength: 5, trim: true},
   // county: {type: String, required: true, trim: true},
   services: {},
-  days: [{}],
+  daysServingFood: [{}],
 
 }, {timestamps: true});
 

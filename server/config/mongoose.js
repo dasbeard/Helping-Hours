@@ -4,17 +4,16 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const fs = require('fs');
-// const database_name = 'HelpingHours'; // Replace with new Database name
-const database_name = 'ChowTemp'; // Replace with new Database name
+const database_name = 'HelpingHours'; // Replace with new Database name
 
 // =========================================================================
 // ============================ Connection =================================
 // =========================================================================
-var uri = 'mongodb://localhost/' + database_name;
-mongoose.createConnection(uri, { server: { poolSize: 4 }});
 
-
-// mongoose.connect('mongodb://localhost/'+ database_name);
+var promise = mongoose.connect('mongodb://localhost/' + database_name, {
+  useMongoClient: true,
+  /* other options */
+});
 
 
 // =========================================================================

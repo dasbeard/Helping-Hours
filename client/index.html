@@ -27,15 +27,19 @@
 
   <script type="text/javascript" src='js/controllers/homeController.js'></script>
   <script type="text/javascript" src='js/controllers/logRegController.js'></script>
+  <script type="text/javascript" src='js/controllers/editController.js'></script>
+
 
   <script type="text/javascript" src='js/factories/logRegFactory.js'></script>
+  <script type="text/javascript" src='js/factories/editFactory.js'></script>
+
 
 </head>
 
 
 <body>
 
-  <nav class="navbar navbar-light navBarColor">
+  <nav class="navbar navbar-light navBarColor" ng-controller="logRegController">
     <a class="navbar-brand" ui-sref="/">
       <img src="/assets/clock.png" width="30" height="30" class="d-inline-block align-top" alt="">
       Helping Hours
@@ -48,14 +52,14 @@
         <a class="nav-link" ui-sref="second">Second</a>
       </li> -->
       <li class="nav-item">
-        <a class="nav-link" ui-sref="logReg">Login</a>
+        <a ng-show='!loggedInUser' class="nav-link" ui-sref="logReg">Login</a>
+        <a ng-show='loggedInUser' class="nav-link" href="" ng-click='logoutUser()'>Logout</a>
       </li>
     </ul>
   </nav>
 
 
-
-  <ui-view></ui-view>
+    <ui-view></ui-view>
 
 
 </body>

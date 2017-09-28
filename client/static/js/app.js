@@ -19,17 +19,24 @@ app.config(function($stateProvider, $urlRouterProvider){
   // })
   // ==========  ==========  ==========
 
-  .state('second', {
-    url: "/second",
-    templateUrl: "../partials/second.html",
-    controller:"homeController"
-  })
+
   .state('logReg', {
     url: "/logReg",
     templateUrl: "../partials/logReg.html",
     controller:"logRegController"
   })
+  .state('edit', {
+    url: "/edit",
+    templateUrl: "../partials/edit.html",
+    controller:"editController"
+  })
 
+  // ========== for development ==========
+  .state('second', {
+    url: "/second",
+    templateUrl: "../partials/second.html",
+    controller:"homeController"
+  })
 });
 
 

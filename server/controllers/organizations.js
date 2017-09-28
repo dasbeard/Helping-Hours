@@ -32,59 +32,119 @@ module.exports = (function(){
           res.json(output);
         }
       });
-    },
+    }, // End findLocation method
 
 
 
-    verifyAddress: function(req,res){
+    findLatLng: function(req,res){
+      // console.log(req.body);
+      geocoder.reverse({lat:req.body.lat, lon:req.body.lng}, function(err, output) {
+        console.log(res);
+        if (err){
+          console.log('===== ERROR ====='.red);
+          console.log(err);
+        } else {
+          res.json(output);
+        }
+      });
+    }, // End findLatLng method
+
+
+
+    newRegistration: function (req,res){
       console.log(req.body);
-       // End OrgFindOne
-      // res.json('back from server')
-    }, // End verifyAddress
+      // check if email is already registered
+      Organization.findOne({email: req.body.email}, function(err, oneUser){
+        if (err){
+          console.log('===== ERROR ====='.red);
+          console.log(err);
+        } else {
+          if (oneUser){
+            var temp = oneUser.organization
+            res.json({error: 'Email is already registered to "' + temp + '"'})
+          }
+          else {
+            // Create new Organization
+            var myEmail = req.body.email.toLowerCase();
+            var pw = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
+            var newOrganization = new Organization({
+              organization: req.body.orgName, formattedAddress: req.body.address.formattedAddress, streetNumber: req.body.address.streetNumber, streetName: req.body.address.streetName, city: req.body.address.city, state: req.body.address.administrativeLevels.level1short, zip: req.body.address.zipcode, latitude: req.body.address.latitude, longitude: req.body.address.longitude, email: myEmail, password: pw,
+            })
+            // Save new Organization
+            newOrganization.save(function(err){
+              if (err){
+                console.log('==== Error When saving new organization ===='.red);
+                console.log(err);
+              } else {
+                console.log('==== Successfuly Registered ===='.yellow);
+                var toSendBack = {id: newOrganization._id,
+                  formattedAddress: newOrganization.formattedAddress,
+                  organization: newOrganization.organization,
+                };
+                res.json({success: true, sentback: toSendBack})
+              }
+            });
+          }
+        }
+      });
+    }, // End newRegistration method
+
+
+
+
+    login: function(req,res){
+      var myEmail = req.body.email.toLowerCase();
+      // Find user by email
+      Organization.findOne({email: myEmail}, function(err, oneUser){
+        if(err){
+          console.log('====== Error ======'.red);
+          console.log(err);
+        } else {
+          if(!oneUser){
+            // console.log('====== user NOT Found ======'.yellow);
+            res.json({error: "Email not in the system. Please Register"});
+
+          } else {
+            // console.log('====== Checking password ======'.yellow);
+            // Authenticate password
+            if(bcrypt.compareSync(req.body.password, oneUser.password)){
+              // console.log('====== Successfuly Logged In ======');
+              var toSendBack = {id: oneUser._id,
+                formattedAddress: oneUser.formattedAddress,
+                organization: oneUser.organization,
+              };
+              res.json(toSendBack)
+            } else {
+              res.json({error: "Email or Password do not match"});
+            }
+          }
+        }
+      });
+    }, // End Login Method
+
+
+
+    getOrgInfo: function(req,res){
+      Organization.findOne({_id: req.body.id}, function(err, oneUser){
+        if(err){
+          console.log('====== Error ======'.red);
+          console.log(err);
+          res.json({error: err});
+        } else {
+          var toSendBack = {
+                            orgName: oneUser.organization, website: oneUser.website, formattedAddress: oneUser.formattedAddress, contactEmail: oneUser.contactEmail, phone: oneUser.phone, description: oneUser.description, hoursOfOperation: oneUser.hoursOfOperation, daysServingFood: oneUser.daysServingFood, services: oneUser.services
+                            };
+          res.json(toSendBack);
+        }
+      });
+
+
+    }, // End getOrgInfo method
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // verifyAddress: function(req,res){
-    //   console.log(req.body.formattedAddress .cyan);
-    //   Organization.find({formattedAddress: req.body.formattedAddress}, function(err, response){
-    //     console.log('adfgadfg');
-    //     if(err){
-    //       console.log('===== ERROR ====='.red);
-    //       console.log(err);
-    //     } else if(response){
-    //         console.log('===== This is the true response ====='.yellow);
-    //         console.log(response);
-    //         // Organization is already registered at this location
-    //         var registedOrg = response.organization;
-    //
-    //         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    //         // -=-=-=-=-=-=-=-=-=-= Needs Testing =-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    //         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    //         res.json('The organization "' + registedOrg + '" is already registered at this location');
-    //         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    //
-    //     } else if(!response) {
-    //       console.log('not in DB'.yellow);
-    //       // No organization located at this address
-    //       res.json('something');
-    //     }
-    //   });
-    // }, // End Verify Address
 
 
 

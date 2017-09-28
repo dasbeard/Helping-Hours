@@ -13,7 +13,6 @@ app.controller('homeController', ['$scope', '$location', '$cookies', '$window', 
 
 
 
-
 }]); // End Controller
 
 

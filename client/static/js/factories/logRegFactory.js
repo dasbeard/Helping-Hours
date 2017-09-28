@@ -3,32 +3,36 @@
 // =========================================================================
 app.factory('logRegFactory', ['$http', function ($http){
   var factory = {};
-  var nearbyLocations = {};
+  // var nearbyLocations = {};
 
 
-    factory.findLocation = function(input, callback){
-      $http.post('/findLocation', input).then(function(output){
-        callback(output)
-      });
-    } // End Find Location
+  factory.findLocation = function(input, callback){
+    $http.post('/findLocation', input).then(function(output){
+      callback(output)
+    });
+  } // End Find Location
 
 
-    factory.verifyAddress = function(input, callback){
-      $http.post('/verifyAddress', input).then(function(output){
-        callback(output)
-      });
-    } // End Verify Address
+  factory.findLatLng = function(input, callback){
+    $http.post('/findLatLng', input).then(function(output){
+      callback(output)
+    });
+  } // End Verify Address
+
+  factory.newRegistration = function (input, callback){
+    $http.post('/newRegistration', input).then(function(output){
+      callback(output)
+    });
+  } // End newRegistration
+
+  factory.login = function(input, callback){
+    $http.post('/login', input).then(function(output){
+      callback(output);
+    });
+  } // End login method
 
 
 
-
-
-
-//   factory.newRegistration = function (input, callback){
-//     $http.post('/newRegistration', input).then(function(output){
-//       callback(output)
-//     });
-//   } // End newRegistration
 //
 //   factory.confirmRegistration = function (input, callback){
 //     $http.post('/confirmRegistration', input).then(function(output){
