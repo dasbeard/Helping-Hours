@@ -1,10 +1,10 @@
 // =========================================================================
 // =========================== LogReg Controller ===========================
 // =========================================================================
-app.controller('logRegController', ['$scope', 'logRegFactory', '$location', '$cookies', '$window', function($scope, logRegFactory, $location, $cookies, $window){
+app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$location', '$cookies', '$window', function($scope, $rootScope, logRegFactory, $location, $cookies, $window){
 
 
-  $scope.loggedInUser = $cookies.getObject('loggedUser')
+  $rootScope.loggedInUser = $cookies.getObject('loggedUser')
 
 
 
@@ -81,8 +81,9 @@ app.controller('logRegController', ['$scope', 'logRegFactory', '$location', '$co
             if(output.data.error){
               $scope.error2 = output.data.error;
             } else {
-              $cookies.putObject("loggedUser", output.data);
-              $scope.loggedInUser = $cookies.getObject('loggedUser');
+              $cookies.putObject("loggedUser", output.data.sentback);
+              $rootScope.loggedInUser = $cookies.getObject('loggedUser');
+              console.log($rootScope.loggedInUser);
               window.location.replace('/#!/edit');
             }
           });
@@ -154,6 +155,8 @@ app.controller('logRegController', ['$scope', 'logRegFactory', '$location', '$co
   // Login Method
   $scope.loginUser = function(){
     // console.log($scope.login);
+    $scope.error = '';
+    
     // ===== Front End Validation ====
     if (!$scope.login){
       $scope.error = 'Please Enter in Email and Password';
@@ -170,13 +173,13 @@ app.controller('logRegController', ['$scope', 'logRegFactory', '$location', '$co
         if(output.data.error){
           $scope.error = output.data.error;
         } else {
+          // console.log(output.data);
           $cookies.putObject("loggedUser", output.data);
-          $scope.loggedInUser = $cookies.getObject('loggedUser');
+          $rootScope.loggedInUser = $cookies.getObject('loggedUser');
           window.location.replace('/#!/edit');
         }
-      })
-    $location.url('/logReg');
-    $scope.login = {};
+      });
+    // $scope.login = {};
 
     }
   }; // End Login Method

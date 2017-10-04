@@ -1,5 +1,8 @@
 //==================== Creating Angular App ====================
-var app = angular.module('myApp', ['ui.router', 'ngCookies', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('myApp', ['ui.router', 'ngCookies', 'ngAnimate', 'ui.bootstrap', 'ui.mask']);
+
+
+
 
 //==================== Angular Routes ====================
 app.config(function($stateProvider, $urlRouterProvider){
@@ -35,7 +38,7 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('second', {
     url: "/second",
     templateUrl: "../partials/second.html",
-    controller:"homeController"
+    controller:"editController"
   })
 });
 

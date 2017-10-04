@@ -28,6 +28,21 @@ module.exports = function(app){
     organizations.getOrgInfo(req,res)
   });
 
+  app.post('/addDay', function(req,res){
+    organizations.addDay(req,res)
+  });
+
+  app.post('/removeDay', function(req,res){
+    organizations.removeDay(req,res)
+  });
+
+  app.post('/updateServices', function(req,res){
+    organizations.updateServices(req,res)
+  });
+
+
+
+
 
   // app.post('/reg', function(req,res){
   //   organizations.reg(req,res)

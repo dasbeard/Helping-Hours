@@ -56,6 +56,10 @@
   text-align: center;
 }
 
+.redBackground{
+  background: rgba(241, 221, 222,1)
+}
+
 /*=======================================================*/
 /*==================== Nav Bar Classes ==================*/
 /*=======================================================*/
@@ -87,7 +91,7 @@
 }
 
 /*=======================================================*/
-/*==================== Log/Reg Classes ==================*/
+/*================= Log/Reg Page Classes ================*/
 /*=======================================================*/
 .logRegContainers{
   margin-top: 10%;
@@ -199,16 +203,55 @@
 
 
 /*=======================================================*/
-/*===================== Edit Classes ====================*/
+/*================== Edit Page Classes ==================*/
 /*=======================================================*/
 .servicesContainer{
   margin-top: 1%;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.servicesContainer li{
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.servicesContainer button{
+}
+
+.smallerBtn {
+  line-height: 10px;
+  height: 25px;
+}
+
+.hoursContainer{
+  display: flex;
+  justify-content: space-around;
+}
+
+.hoursContainer p{
+  margin-bottom: 0px;
+  margin-top: 8px;
+  font-size: smaller;
+  padding-left: 50px;
+}
+
+.servicesContainer td, .servicesContainer th{
+  padding: 1px;
+}
+
+.servicesContainer th{
+  /*text-align: center;*/
+  width: 25px;
+}
+
+.editTableTo{
+  width: 25px;
 }
 
 .centerBottom{
   margin-top: 60px;
   position: relative;
-  /*position:absolute;*/
   bottom:0;
 }
 
@@ -219,5 +262,46 @@
 .servicesPadding{
   padding-left: 5%;
   padding-right: 5%;
-  border:1px solid green;
+  /*border:1px solid green;*/
+}
+
+.editPageMask{
+  z-index: 3;
+  margin-top: 15%;
+  background-color: white;
+  /*padding: 5% 5% 0 5%;*/
+  padding: 5%;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.editPageMask h3{
+  margin-bottom: 25px;
+}
+
+.lowerZ{
+  z-index: 0;
+}
+
+.saveMask{
+  -webkit-animation-name: slideUp; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 2.2s; /* Safari 4.0 - 8.0 */
+  animation-name: slideUp;
+  animation-duration: 2.2s;
+  position: relative;
+  visibility: hidden;
+  /*height: 10px;*/
+ }
+
+@-webkit-keyframes slideUp {
+  0% {bottom:0px;background-color: blue; visibility: visible;}
+  50% {bottom:200px; background-color: red; visibility: hidden;}
+  100% {bottom:0px;background-color: blue; visibility: visible;}
+}
+
+@keyframes slideUp {
+  0% {bottom:0px;background-color: blue; visibility: visible;}
+  50% {bottom:200px; background-color: red; visibility: hidden;}
+  100% {bottom:0px;background-color: blue; visibility: visible;}
 }

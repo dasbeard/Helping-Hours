@@ -15,7 +15,6 @@ var options = {
 };
 var geocoder = NodeGeocoder(options)
 
-
 var Organization = mongoose.model('Organization');
 
 module.exports = (function(){
@@ -102,7 +101,7 @@ module.exports = (function(){
         } else {
           if(!oneUser){
             // console.log('====== user NOT Found ======'.yellow);
-            res.json({error: "Email not in the system. Please Register"});
+            res.json({error: "Email or Password Incorrect"});
 
           } else {
             // console.log('====== Checking password ======'.yellow);
@@ -125,32 +124,159 @@ module.exports = (function(){
 
 
     getOrgInfo: function(req,res){
+      // console.log(req.body);
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
+        // console.log(oneUser + 'Line 129'.yellow);
+
         if(err){
           console.log('====== Error ======'.red);
           console.log(err);
           res.json({error: err});
-        } else {
+        }
+        else {
           var toSendBack = {
                             orgName: oneUser.organization, website: oneUser.website, formattedAddress: oneUser.formattedAddress, contactEmail: oneUser.contactEmail, phone: oneUser.phone, description: oneUser.description, hoursOfOperation: oneUser.hoursOfOperation, daysServingFood: oneUser.daysServingFood, services: oneUser.services
                             };
           res.json(toSendBack);
         }
       });
-
-
     }, // End getOrgInfo method
 
 
 
+    addDay: function(req,res){
+      console.log(req.body);
+      Organization.findOne({_id: req.body.id}, function(err, oneUser){
+        if (err){
+          console.log('===== Error ====='.red);
+          console.log(err);
+          res.json({error: 'Problem Finding Record'})
+        } else {
+          var newDay = {day: req.body.day, open: req.body.open, openPeriod: req.body.openPeriod, closed: req.body.closed, closedPeriod: req.body.closedPeriod};
+          // console.log(newDay);
+          if(req.body.service == 'hoursOfOperation'){
+            oneUser.hoursOfOperation.push(newDay);
+            oneUser.save(function(err){
+              if (err){
+                console.log('==== Error When saving new day ===='.red);
+                console.log(err);
+                res.json({error: 'Problem Saving Day'})
+              } else {
+                res.json(true);
+              }
+            })
+          } else if (req.body.service == 'daysServingFood') {
+            oneUser.daysServingFood.push(newDay);
+            oneUser.save(function(err){
+              if (err){
+                console.log('==== Error When saving new day ===='.red);
+                console.log(err);
+                res.json({error: 'Problem Saving Day'})
+              } else {
+                res.json(true);
+              }
+            })
+          }
+        }
+      })
+    },
 
 
 
+    removeDay: function(req,res){
+      console.log(req.body);
+      Organization.findOne({_id: req.body.id}, function(err, oneUser){
+        if (err){
+          console.log('==== Error When finding user ===='.red);
+          console.log(err);
+        } else {
+          if(req.body.service == 'hoursOfOperation'){
+            oneUser.hoursOfOperation.splice(req.body.index,1);
+            oneUser.save(function(err){
+              if (err){
+                console.log('==== Error When removing day ===='.red);
+                console.log(err);
+              } else {
+                res.json(true);
+              }
+            })
+          } else if(req.body.service == 'daysServingFood'){
+            oneUser.daysServingFood.splice(req.body.index,1);
+            oneUser.save(function(err){
+              if (err){
+                console.log('==== Error When removing day ===='.red);
+                console.log(err);
+              } else {
+                res.json(true);
+              }
+            })
+          }
+        }
+      })
+    },
 
 
+    updateServices: function(req,res){
+      // console.log(req.body);
+      Organization.findOne({_id: req.body.id}, function(err, oneOrg){
+        if (err){
+          console.log('==== Error updating services ===='.red);
+          console.log(err);
+        } else {
+          oneOrg.services = req.body.checkboxes;
+
+          // if(req.body.contactEmail){
+            oneOrg.contactEmail = req.body.contactEmail;
+          // };
+          // if(req.body.description){
+            oneOrg.description = req.body.description;
+          // };
+          // if(req.body.phone){
+            oneOrg.phone = req.body.phone;
+          // };
+          // if(req.body.website){
+            oneOrg.website = req.body.website;
+          // };
+          oneOrg.save(function(err){
+            if(err){
+              console.log('===== Error ====='.red);
+              console.log(err);
+            } else {
+              res.json(true);
+            }
+          })
+        }
+      })
+    }, // End updateServices
 
 
-
+    //
+    // updateServices2: function(req,res){
+    //   // console.log(req.body);
+    //   Organization.findOne({_id: req.body.id}, function(err, oneUser){
+    //     if (err){
+    //       console.log('==== Error updating services ===='.red);
+    //       console.log(err);
+    //     } else {
+    //
+    //       oneUser.services = req.body.services;
+    //       oneUser.website = req.body.info.website;
+    //       oneUser.phone = req.body.info.phone;
+    //       oneUser.description = req.body.info.description;
+    //
+    //       // console.log(oneUser);
+    //       oneUser.save(function(err){
+    //         if (err){
+    //           console.log('==== Error saving services ===='.red);
+    //           console.log(err);
+    //         } else {
+    //           res.json({message: 'Services Saved'});
+    //         }
+    //       })
+    //     }
+    //   })
+    //
+    // }, // End updateServices2
 
 
 

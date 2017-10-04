@@ -15,12 +15,15 @@ var OrganizationSchema = new mongoose.Schema({
   city: {type: String, required: true, minlength: 1, trim: true},
   state: {type: String, required: true, minlength: 1, trim: true},
   zip: {type: String, required: true, minlength: 5, trim: true},
-  phone: {type: String, trim: true},
-  website: {type: String, minlength: 3, trim: true},
-  description: {type: String, minlength: 3, maxlength: 150, trim: true},
   latitude:{type: Number, required: true, trim: true},
   longitude:{type: Number, required: true, trim: true},
+
+  phone: {type: String, trim: true},
+  website: {type: String, trim: true},
+  description: {type: String, maxlength: 150, trim: true},
   hoursOfOperation: [{}],
+  services: {},
+  daysServingFood: [{}],
   email:{
         type: String,
         required: true,
@@ -44,8 +47,6 @@ var OrganizationSchema = new mongoose.Schema({
       },
   password: {type: String, required: true, minlength: 5, trim: true},
   // county: {type: String, required: true, trim: true},
-  services: {},
-  daysServingFood: [{}],
 
 }, {timestamps: true});
 
