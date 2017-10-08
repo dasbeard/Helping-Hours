@@ -65,6 +65,7 @@
 /*=======================================================*/
 .navBarColor{
   background-color: #7ea4b7;
+  border-bottom: 1px solid black;
 }
 
 .navBarColor a{

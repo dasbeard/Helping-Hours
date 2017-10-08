@@ -38,7 +38,7 @@ module.exports = (function(){
     findLatLng: function(req,res){
       // console.log(req.body);
       geocoder.reverse({lat:req.body.lat, lon:req.body.lng}, function(err, output) {
-        console.log(res);
+        // console.log(res);
         if (err){
           console.log('===== ERROR ====='.red);
           console.log(err);
@@ -51,7 +51,7 @@ module.exports = (function(){
 
 
     newRegistration: function (req,res){
-      console.log(req.body);
+      // console.log(req.body);
       // check if email is already registered
       Organization.findOne({email: req.body.email}, function(err, oneUser){
         if (err){
@@ -75,7 +75,7 @@ module.exports = (function(){
                 console.log('==== Error When saving new organization ===='.red);
                 console.log(err);
               } else {
-                console.log('==== Successfuly Registered ===='.yellow);
+                // console.log('==== Successfuly Registered ===='.yellow);
                 var toSendBack = {id: newOrganization._id,
                   formattedAddress: newOrganization.formattedAddress,
                   organization: newOrganization.organization,
@@ -145,7 +145,7 @@ module.exports = (function(){
 
 
     addDay: function(req,res){
-      console.log(req.body);
+      // console.log(req.body);
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
         if (err){
           console.log('===== Error ====='.red);
@@ -184,7 +184,7 @@ module.exports = (function(){
 
 
     removeDay: function(req,res){
-      console.log(req.body);
+      // console.log(req.body);
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
         if (err){
           console.log('==== Error When finding user ===='.red);
@@ -250,33 +250,6 @@ module.exports = (function(){
     }, // End updateServices
 
 
-    //
-    // updateServices2: function(req,res){
-    //   // console.log(req.body);
-    //   Organization.findOne({_id: req.body.id}, function(err, oneUser){
-    //     if (err){
-    //       console.log('==== Error updating services ===='.red);
-    //       console.log(err);
-    //     } else {
-    //
-    //       oneUser.services = req.body.services;
-    //       oneUser.website = req.body.info.website;
-    //       oneUser.phone = req.body.info.phone;
-    //       oneUser.description = req.body.info.description;
-    //
-    //       // console.log(oneUser);
-    //       oneUser.save(function(err){
-    //         if (err){
-    //           console.log('==== Error saving services ===='.red);
-    //           console.log(err);
-    //         } else {
-    //           res.json({message: 'Services Saved'});
-    //         }
-    //       })
-    //     }
-    //   })
-    //
-    // }, // End updateServices2
 
 
 
