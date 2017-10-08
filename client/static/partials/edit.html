@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        <div class="col-sm-4 order-12 ">
+        <div class="col-sm-3 order-12 ">
           <div class="form-group centerText" ng-class="{ 'has-error' : editOrgForm.description.$invalid && !editOrgForm.description.$pristine }">
             <label class="" for="description">Tell us about your Organization</label>
             <textarea class="form-control" id="description" rows="5" name="description" ng-model="editOrg.description"></textarea>
@@ -439,10 +439,10 @@
 
 <!-- ========== Save  Mask ========== -->
 <div class="container-fluid saveMask" ng-show='savedMask'>
-<!-- <div class="DisplayMaskBackground container-fluid "> -->
+<!-- <div class="container-fluid saveMask"> -->
 
     <div class="row justify-content-center">
-      <div class="col-sm-1 ">
+      <div class="col centerText">
         Saved
       </div>
     </div>

@@ -107,7 +107,7 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
             $scope.$apply(function () {
                 $scope.savedMask = false;
             });
-        }, 2000);
+        }, 2100);
         // window.location.replace('/#!/edit');
 
       }
