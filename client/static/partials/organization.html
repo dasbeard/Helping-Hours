@@ -1,0 +1,174 @@
+<div class="container-fluid servicesContainer">
+
+    <div class="row justify-content-around">
+
+      <div class="col-sm-3 order-12 order-md-5 ">
+
+        <div class="">
+          <a href='' ng-click="openWebsite()">{{org.website}}</a>
+        </div>
+
+        <div class="">
+          <p>{{org.contactEmail}}</p>
+        </div>
+
+        <div class="">
+          <p>{{org.phone}}</p>
+        </div>
+
+
+
+
+
+
+      </div>
+
+
+      <div class="col-sm-5 order-5 order-md-12 centerText">
+        <div class="editOrgName">
+          <h2>{{org.orgName}}</h2>
+        </div>
+        <div class="centerBottom centerText">
+          <p>{{org.formattedAddress}}</p>
+        </div>
+      </div>
+
+      <div class="col-sm-3 order-12 ">
+        <div class="">
+          <label class="" for="description">About Us</label>
+          <textarea disabled class="form-control" id="description" rows="5" name="description" ng-model="org.description"></textarea>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="container-fluid servicesContainer">
+    <div class="row justify-content-around tall">
+      <div class="col-sm-6 ">
+        <div class="row">
+          <div class="col medium centerText ">
+            <div class="hoursContainer">
+              <h3 class="">Hours of Operation</h3>
+            </div>
+
+            <table class="table table-sm table-hover">
+              <tbody>
+                <tr ng-repeat="d in org.hoursOfOperation">
+                  <th scope="row">{{d.day}}</th>
+                  <td>{{d.open}} {{d.openPeriod}}</td>
+                  <td class="editTableTo">to</td>
+                  <td>{{d.closed}} {{d.closedPeriod}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col medium centerText ">
+            <div class="hoursContainer">
+              <h3 class="">Days Serving Food</h3>
+            </div>
+            <table class="table table-sm table-hover">
+              <tbody>
+                <tr ng-repeat="d in org.daysServingFood">
+                  <th scope="row">{{d.day}}</th>
+                  <td>{{d.open}} {{d.openPeriod}}</td>
+                  <td class="editTableTo">to</td>
+                  <td>{{d.closed}} {{d.closedPeriod}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 servicesPadding">
+        <div class="row mySmall align-items-center">
+          <div class="col">
+            <label class="form-check-label">
+              <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.beds' ng-true-value="true" ng-false-value="false">
+              Beds available
+            </label>
+          </div>
+          <div class="col">
+            <label class="form-check-label">
+              <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.cloths' ng-true-value="true" ng-false-value="false">
+              Clothing available
+            </label>
+          </div>
+        </div>
+        <div class="row mySmall align-items-center">
+          <div class="col">
+            <label class="form-check-label">
+              <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.childCare' ng-true-value="true" ng-false-value="false">
+              Childcare available
+            </label>
+          </div>
+          <div class="col">
+            <label class="form-check-label">
+              <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.recActivites' ng-true-value="true" ng-false-value="false">
+              Recreational Activities
+            </label>
+          </div>
+        </div>
+        <div class="row align-items-center mySmall">
+          <div class="col">
+            <label class="form-check-label">
+              <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.donations' ng-true-value="true" ng-false-value="false">
+              Takes Donations
+            </label>
+          </div>
+          <div class="col">
+            <label class="form-check-label">
+              <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.education' ng-true-value="true" ng-false-value="false">
+              Educational Help
+            </label>
+          </div>
+        </div>
+        <div class="row align-items-center mySmall">
+          <div class="col">
+            <label class="form-check-label">
+              <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.job' ng-true-value="true" ng-false-value="false">
+              Job Placement Help
+            </label>
+          </div>
+          <div class="col">
+            <label class="form-check-label">
+              <input disabled class="form-check-input " type="checkbox" ng-model='orgServices.interview' ng-true-value="true" ng-false-value="false">
+              Interview Help
+            </label>
+          </div>
+        </div>
+        <div class="row align-items-center mySmall">
+          <div class="col">
+            <div class="form-group">
+              <label class="" for="otherServices">Other services you have available</label>
+              <textarea disabled class="form-control" id="otherServices" rows="3" name="otherServices" ng-model="orgServices.otherServices"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- ========== Save  Mask ========== -->
+<div class="DisplayMaskBackground container-fluid" ng-show='saved'>
+<!-- <div class="container-fluid saveMask"> -->
+
+    <div class="row justify-content-center copiedMask">
+      <div class="col centerText">
+        copied to clipboard
+      </div>
+    </div>
+
+</div>
+<!-- ========== End Save  Mask ========== -->

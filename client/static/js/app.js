@@ -33,6 +33,11 @@ app.config(function($stateProvider, $urlRouterProvider){
     templateUrl: "../partials/edit.html",
     controller:"editController"
   })
+  .state('organization', {
+    url: "/organization/:id",
+    templateUrl: "../partials/organization.html",
+    controller:"organizationController"
+  })
 
   // ========== for development ==========
   .state('second', {
