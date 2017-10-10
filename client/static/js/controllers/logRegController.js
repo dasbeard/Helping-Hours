@@ -84,7 +84,7 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
               $cookies.putObject("loggedUser", output.data.sentback);
               $rootScope.loggedInUser = $cookies.getObject('loggedUser');
               console.log($rootScope.loggedInUser);
-              window.location.replace('/#!/edit');
+              window.location.replace('/#!/organization/' + $rootScope.loggedInUser.id);
             }
           });
         }
@@ -156,7 +156,7 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
   $scope.loginUser = function(){
     // console.log($scope.login);
     $scope.error = '';
-    
+
     // ===== Front End Validation ====
     if (!$scope.login){
       $scope.error = 'Please Enter in Email and Password';
@@ -176,7 +176,7 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
           // console.log(output.data);
           $cookies.putObject("loggedUser", output.data);
           $rootScope.loggedInUser = $cookies.getObject('loggedUser');
-          window.location.replace('/#!/edit');
+          window.location.replace('/#!/organization/' + $rootScope.loggedInUser.id);
         }
       });
     // $scope.login = {};

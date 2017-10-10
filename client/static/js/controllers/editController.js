@@ -4,9 +4,14 @@
 app.controller('editController', ['$scope', 'editFactory', '$location', '$cookies', '$window', '$uibModal', '$log', '$document', function($scope, editFactory, $location, $cookies, $window, $uibModal, $log, $document){
 
 
-  $scope.loggedInUser = $cookies.getObject('loggedUser');
+  // console.log($scope.loggedInUser);
+  if ($cookies.getObject('loggedUser')){
+    $scope.loggedInUser = $cookies.getObject('loggedUser');
+    getOrganizationInfo();
+  } else{
+    window.location.replace('/');
+  };
 
-  getOrganizationInfo();
 
   // console.log($scope.loggedInUser);
 
@@ -101,15 +106,16 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
               // Error message containing response
 // =-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-
       } else if(output.data == true) {
-        getOrganizationInfo();
-        $scope.savedMask = true;
-        setTimeout(function () {
-            $scope.$apply(function () {
-                $scope.savedMask = false;
-            });
-        }, 2100);
-        // window.location.replace('/#!/edit');
-
+        // getOrganizationInfo();
+        // $scope.savedMask = true;
+        // setTimeout(function () {
+        //     $scope.$apply(function () {
+        //         $scope.savedMask = false;
+        //     });
+        //     window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
+        // }, 3050);
+        window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
+        
       }
     })
   }; // End editOrganization
@@ -235,14 +241,14 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
 
 
 
-  $scope.open = function () {
-    $scope.savedMask = true;
-    setTimeout(function () {
-        $scope.$apply(function () {
-            $scope.savedMask = false;
-        });
-    }, 2000);
-  }
+  // $scope.open = function () {
+  //   $scope.savedMask = true;
+  //   setTimeout(function () {
+  //       $scope.$apply(function () {
+  //           $scope.savedMask = false;
+  //       });
+  //   }, 2000);
+  // }
 
 
 

@@ -4,40 +4,36 @@
 
       <div class="col-sm-3 order-12 order-md-5 ">
 
-        <div class="">
+        <div class="orgInfo">
           <a href='' ng-click="openWebsite()">{{org.website}}</a>
         </div>
 
-        <div class="">
+        <div class="orgInfo">
           <p>{{org.contactEmail}}</p>
         </div>
 
-        <div class="">
+        <div class="orgInfo">
           <p>{{org.phone}}</p>
         </div>
-
-
-
-
-
 
       </div>
 
 
       <div class="col-sm-5 order-5 order-md-12 centerText">
-        <div class="editOrgName">
-          <h2>{{org.orgName}}</h2>
+        <div class="OrgName">
+
+            <a ui-sref="edit" ng-show='loggedInUser'>edit</a>
+            <h2>{{org.orgName}}</h2>
+
         </div>
-        <div class="centerBottom centerText">
+        <div class="centerBottomAddress centerText">
           <p>{{org.formattedAddress}}</p>
         </div>
       </div>
 
-      <div class="col-sm-3 order-12 ">
-        <div class="">
-          <label class="" for="description">About Us</label>
-          <textarea disabled class="form-control" id="description" rows="5" name="description" ng-model="org.description"></textarea>
-        </div>
+      <div class="col-sm-3 order-12 centerText">
+        <h4>About Us</h4>
+        <p class="descriptionBox">{{org.description}}</p>
       </div>
     </div>
 </div>
@@ -142,9 +138,9 @@
         </div>
         <div class="row align-items-center mySmall">
           <div class="col">
-            <div class="form-group">
-              <label class="" for="otherServices">Other services you have available</label>
-              <textarea disabled class="form-control" id="otherServices" rows="3" name="otherServices" ng-model="orgServices.otherServices"></textarea>
+            <div>
+              <h4>Other services we have available</h4>
+              <p class="otherServicesBox">{{orgServices.otherServices}}</p>
             </div>
           </div>
         </div>

@@ -1,11 +1,15 @@
 .backgroundImage{
   /*background-image: url('../assets/mochaGrunge_@2X.png');*/
-
   background-image: url('../assets/backgroundImage.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
+
 
 /*=======================================================*/
 /*===================== Tools Classes ===================*/
@@ -262,12 +266,12 @@
 
 .editOrgName{
   padding-top: 20px;
+  display: inline-flex;
 }
 
 .servicesPadding{
   padding-left: 5%;
   padding-right: 5%;
-  /*border:1px solid green;*/
 }
 
 .editPageMask{
@@ -290,8 +294,8 @@
 }
 
 .saveMask{
-  background-color: cyan;
-  width: 125px;
+  /*background-color: cyan;*/
+  width: 100px;
   position: relative;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -334,14 +338,62 @@
   background-color: blue;
 }
 
-
-.copiedMask{
-  z-index: 3;
-  margin-top: 15%;
-  background-color: white;
-  /*padding: 5% 5% 0 5%;*/
-  padding: 5%;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;  
+.OrgName{
+  padding-top: 2px;
+  display: inline-flex;
 }
+
+.centerBottomAddress{
+  margin-top: 60px;
+  position: relative;
+  bottom:0;
+  padding-bottom: 2px;
+}
+
+.orgInfo{
+  margin-bottom: 15px;
+}
+
+
+.OrgName a{
+  line-height: 35px;
+  padding-right: 10px;
+}
+
+.descriptionBox{
+  border: 1px solid rgba(107, 120, 142, .5);
+  background-color: rgba(107, 120, 142, .2);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  height: 70%;
+  padding: 5px 10px;
+  box-shadow:1px 1px 2px;
+}
+
+.otherServicesBox{
+  border: 1px solid rgba(107, 120, 142, .5);
+  background-color: rgba(107, 120, 142, .2);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  height: 100px;
+  padding: 5px 10px;
+  box-shadow:1px 1px 2px;
+}
+
+
+
+
+
+
+
+/*.copiedMask{
+z-index: 3;
+margin-top: 15%;
+background-color: white;
+padding: 5%;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+}*/

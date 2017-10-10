@@ -3,6 +3,9 @@
 // =========================================================================
 app.controller('organizationController', ['$scope', 'editFactory', '$location', '$cookies', '$window', '$uibModal', '$log', '$document', '$stateParams', function($scope, editFactory, $location, $cookies, $window, $uibModal, $log, $document, $stateParams){
 
+  $scope.loggedInUser = $cookies.getObject('loggedUser');
+
+
   $scope.findOrg = $stateParams;
 
   editFactory.getOrgInfo($scope.findOrg, function(output){
@@ -29,7 +32,7 @@ app.controller('organizationController', ['$scope', 'editFactory', '$location', 
 
 
 
-  
+
 
 
 

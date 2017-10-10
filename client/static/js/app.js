@@ -1,5 +1,5 @@
 //==================== Creating Angular App ====================
-var app = angular.module('myApp', ['ui.router', 'ngCookies', 'ngAnimate', 'ui.bootstrap', 'ui.mask']);
+var app = angular.module('myApp', ['ui.router', 'ngCookies', 'ngAnimate', 'ui.bootstrap', 'ui.mask', 'ngMap']);
 
 
 
@@ -46,28 +46,3 @@ app.config(function($stateProvider, $urlRouterProvider){
     controller:"editController"
   })
 });
-
-
-
-
-
-
-// ======== Used to refresh state to make CSS work properly(MDL) ========
-// app.run(function () {
-//     var mdlUpgradeDom = false;
-//     setInterval(function() {
-//       if (mdlUpgradeDom) {
-//         componentHandler.upgradeDom();
-//         mdlUpgradeDom = false;
-//       }
-//     }, 160);
-//
-//     var observer = new MutationObserver(function () {
-//       mdlUpgradeDom = true;
-//     });
-//     observer.observe(document.body, {
-//         childList: true,
-//         subtree: true
-//     });
-// });
-// =================================================
