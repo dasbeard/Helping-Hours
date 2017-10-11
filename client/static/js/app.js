@@ -1,5 +1,5 @@
 //==================== Creating Angular App ====================
-var app = angular.module('myApp', ['ui.router', 'ngCookies', 'ngAnimate', 'ui.bootstrap', 'ui.mask', 'ngMap']);
+var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'ngCookies', 'ngAnimate', 'ui.mask', 'ngMap', 'ngAccordion']);
 
 
 
@@ -15,11 +15,11 @@ app.config(function($stateProvider, $urlRouterProvider){
     controller:"homeController"
   })
   // ========== same as '/' ==========
-  // .state('home', {
-  //     url: "/home",
-  //     templateUrl: "../partials/home.html",
-  //     controller:"homeController"
-  // })
+  .state('home', {
+      url: "/home",
+      templateUrl: "../partials/home.html",
+      controller:"homeController"
+  })
   // ==========  ==========  ==========
 
 
@@ -43,6 +43,6 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('second', {
     url: "/second",
     templateUrl: "../partials/second.html",
-    controller:"editController"
+    controller:"homeController"
   })
 });

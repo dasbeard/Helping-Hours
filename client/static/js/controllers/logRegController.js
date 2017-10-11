@@ -1,7 +1,7 @@
 // =========================================================================
 // =========================== LogReg Controller ===========================
 // =========================================================================
-app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$location', '$cookies', '$window', function($scope, $rootScope, logRegFactory, $location, $cookies, $window){
+app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$location', '$cookies', '$window', '$state', function($scope, $rootScope, logRegFactory, $location, $cookies, $window, $state){
 
 
   $rootScope.loggedInUser = $cookies.getObject('loggedUser')
@@ -184,6 +184,10 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
     }
   }; // End Login Method
 
+
+  $scope.myPage = function(){
+    window.location.replace('/#!/organization/' + $rootScope.loggedInUser.id);
+  }
 
 
 

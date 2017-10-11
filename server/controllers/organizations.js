@@ -250,6 +250,66 @@ module.exports = (function(){
     }, // End updateServices
 
 
+    findAllOrgs: function(req,res){
+      Organization.find(({}), function(err, allOrgs){
+        if (err){
+          console.log('===== ERROR ====='.red);
+          console.log(err);
+          res.json({error: 'Something went wrong :('})
+        } else{
+          var sendBack = [];
+          for (var i = 0; i<allOrgs.length; i++){
+            sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
+                        website: allOrgs[i].website,
+                        address: allOrgs[i].streetNumber + ' ' + allOrgs[i].streetName + ', ' + allOrgs[i].city,
+                        organization: allOrgs[i].organization,
+                        description: allOrgs[i].description,
+                        position: [allOrgs[i].latitude,allOrgs[i].longitude],
+                        phone: phoneDisplay(allOrgs[i].phone),
+                        // latitude: allOrgs[i].latitude,
+                        // longitude: allOrgs[i].longitude,
+                        _id: allOrgs[i]._id
+                      }
+            );
+          };
+          res.json(sendBack);
+        }
+      })
+    }
+
+
+
+
+
+    //
+    //     getAll: function(req,res){
+    //       Organization.find(({}),function(err, allOrgs){
+    //         if (err){
+    //           console.log('===== ERROR ====='.red);
+            //   console.log(err);
+            // } else {
+            //   var sendBack = [];
+            //   for (var i = 0; i<allOrgs.length; i++){
+            //     sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
+            //                 website: allOrgs[i].website,
+            //                 address: allOrgs[i].streetNumber + ' ' + allOrgs[i].streetName + ', ' + allOrgs[i].city,
+            //                 organization: allOrgs[i].organization,
+            //                 description: allOrgs[i].description,
+            //                 latitude: allOrgs[i].latitude,
+            //                 longitude: allOrgs[i].longitude,
+            //                 _id: allOrgs[i]._id
+            //               }
+            //     );
+            //   }
+              // console.log(sendBack);
+              // res.json(sendBack);
+    //         };
+    //       });
+    //     },
+
+
+
+
 
 
 
@@ -903,6 +963,22 @@ module.exports = (function(){
 
 
 // ============================== Helper Functions ==============================
+function phoneDisplay(str){
+  if(!str){
+    return;
+  }
+  if (str.length == 10){
+    return '(' + str.substr(0,3) + ')' + str.substr(3,3) + '-' + str.substr(6);
+  } else {
+    return str.substr(0,1) + '(' + str.substr(1,3) + ')' + str.substr(4,3) + '-' + str.substr(7);
+  }
+};
+
+
+
+
+
+
 function intParsing(input){
   var myArr = ('' + input).split('');
   var myStr = '';

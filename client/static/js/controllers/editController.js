@@ -106,16 +106,16 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
               // Error message containing response
 // =-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-
       } else if(output.data == true) {
-        // getOrganizationInfo();
-        // $scope.savedMask = true;
-        // setTimeout(function () {
-        //     $scope.$apply(function () {
-        //         $scope.savedMask = false;
-        //     });
-        //     window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
-        // }, 3050);
-        window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
-        
+        getOrganizationInfo();
+        $scope.savedMask = true;
+        setTimeout(function () {
+            $scope.$apply(function () {
+                $scope.savedMask = false;
+            });
+            window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
+        }, 3050);
+        // window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
+
       }
     })
   }; // End editOrganization

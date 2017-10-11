@@ -80,24 +80,39 @@
   color: black;
 }
 
+#navHover:hover{
+  cursor:pointer;
+  text-decoration: underline;
+}
+
 /*=======================================================*/
 /*=================== Home Page Classes =================*/
 /*=======================================================*/
-.homePageMainDiv{
-  width: calc(100% - 20px);
-  height: 700px;
-  border: 1px solid black;
-  margin-left: 10px;
+.curvedDiv{
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  padding: 0;
 }
 
-.homePageContainer{
-  width: calc(100% - 10px);
-  height: 100%;
-  border: 1px solid black;
-  margin: 5px;
-  display: flex;
-  justify-content: space-around;
+
+#mapId{
+  height: 500px;
+  width: 100%;
 }
+
+.mapInfoBox a, .mapInfoBox p{
+  display: block;
+  margin-bottom: 5px;
+}
+
+.homePageDiv {
+  padding: 10px;
+}
+
+
 
 /*=======================================================*/
 /*================= Log/Reg Page Classes ================*/

@@ -1,119 +1,25 @@
-<!-- ========== Add Hours of Operation Display Mask ========== -->
-<!-- <div class="DisplayMaskBackground container-fluid" ng-show='hoursOfOpMask'> -->
-<div class="DisplayMaskBackground container-fluid ">
+<!-- <accordion close-others="oneAtATime">
 
+    <accordion-group is-open="true">
 
-    <div class="row justify-content-center">
-      <div class="col-8 editPageMask">
-        <h3 class="centerText">When are you Open?</h3>
+        <accordion-heading>
+            header 1 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+        </accordion-heading>
 
-        <h5 ng-show="hoursOfOpFormInvalid" class="form-text alert alert-danger centerText">All Fields are required</h5>
+        <p>
+           <strong>This</strong> content is straight in the template, and is initially expanded.
+        </p>
 
-        <form name="hoursOfOpForm" class="form-row justify-content-center" id="needs-validation" ng-submit="addHoursOfOp(hoursOfOpForm.$valid)" novalidate>
+    </accordion-group>
 
-          <div class="form-group col-auto" >
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.day.$invalid && !hoursOfOpForm.day.$pristine }" ng-model='hoursOfOp.day' name="day" required>
-              <option value="">Day</option>
-              <option value="Monday">Mon</option>
-              <option value="Tuesday">Tues</option>
-              <option value="Wednesday">Wen</option>
-              <option value="Thursday">Thurs</option>
-              <option value="Friday">Fri</option>
-              <option value="Saturday">Sat</option>
-              <option value="Sunday">Sun</option>
-            </select>
-          </div>
+    <accordion-group>
+      <accordion-heading>
+            header 1 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+        </accordion-heading>
+       <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare lobortis ipsum, vel dictum diam. Cras consectetur lorem non laoreet gravida. Aenean magna magna, accumsan et urna at, pellentesque ultrices nisi.
+      </p>
 
+    </accordion-group>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.open.$invalid && !hoursOfOpForm.open.$pristine }" ng-model='hoursOfOp.open' name="open" required>
-              <option value="">Open At</option>
-              <option value="1:00">1:00</option>
-              <option value="1:30">1:30</option>
-              <option value="2:00">2:00</option>
-              <option value="2:30">2:30</option>
-              <option value="3:00">3:00</option>
-              <option value="3:30">3:30</option>
-              <option value="4:00">4:00</option>
-              <option value="4:30">4:30</option>
-              <option value="5:00">5:00</option>
-              <option value="5:30">5:30</option>
-              <option value="6:00">6:00</option>
-              <option value="6:30">6:30</option>
-              <option value="7:00">7:00</option>
-              <option value="7:30">7:30</option>
-              <option value="8:00">8:00</option>
-              <option value="8:30">8:30</option>
-              <option value="9:00">9:00</option>
-              <option value="9:30">9:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-            </select>
-          </div>
-
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.openPeriod.$invalid && !hoursOfOpForm.openPeriod.$pristine }" name="openPeriod" ng-model='hoursOfOp.openPeriod' required>
-              <option value="">am/pm</option>
-              <option value="am">am</option>
-              <option value="pm">pm</option>
-            </select>
-          </div>
-
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.closed.$invalid && !hoursOfOpForm.closed.$pristine }" name="closed" ng-model='hoursOfOp.closed' required>
-              <option value="">Close At</option>
-              <option value="1:00">1:00</option>
-              <option value="1:30">1:30</option>
-              <option value="2:00">2:00</option>
-              <option value="2:30">2:30</option>
-              <option value="3:00">3:00</option>
-              <option value="3:30">3:30</option>
-              <option value="4:00">4:00</option>
-              <option value="4:30">4:30</option>
-              <option value="5:00">5:00</option>
-              <option value="5:30">5:30</option>
-              <option value="6:00">6:00</option>
-              <option value="6:30">6:30</option>
-              <option value="7:00">7:00</option>
-              <option value="7:30">7:30</option>
-              <option value="8:00">8:00</option>
-              <option value="8:30">8:30</option>
-              <option value="9:00">9:00</option>
-              <option value="9:30">9:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-            </select>
-          </div>
-
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.closedPeriod.$invalid && !hoursOfOpForm.closedPeriod.$pristine }" name="closedPeriod" ng-model='hoursOfOp.closedPeriod' required>
-              <option value="">am/pm</option>
-              <option value="am">am</option>
-              <option value="pm">pm</option>
-            </select>
-          </div>
-
-          <div class="row justify-content-center">
-            <div class="col-auto">
-              <button class="btn btn-secondary" type="submit">Add</button>
-            </div>
-
-            <div class="col-auto">
-              <button class="btn btn-secondary" type="button" ng-click="closeHoursOfOp()">Cancel</button>
-            </div>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
-</div>
-<!-- ========== End Add Hours of Operation  Display Mask ========== -->
+  </accordion> -->

@@ -1,7 +1,103 @@
 // =========================================================================
 // =========================== Home Controller ================================
 // =========================================================================
-app.controller('homeController', ['$scope', '$location', '$cookies', '$window', function($scope, $location, $cookies, $window){
+app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookies', '$window', 'NgMap', '$state', function($scope, homeFactory, $location, $cookies, $window, NgMap, $state){
+
+  getAllOrgs();
+
+  var vm = this;
+  NgMap.getMap({id: 'mapId'}).then(function(map) {
+       // Try HTML5 geolocation.
+  google.maps.event.trigger(map, 'resize')
+
+      if (navigator.geolocation) {
+
+
+        if($cookies.getObject('currentUserPosition')){
+          var pos = $cookies.getObject('currentUserPosition');
+          var userLocationIcon = "assets/locationPinSmall.png";
+          var userLocation = new google.maps.Marker({
+            position: pos,
+            animation: google.maps.Animation.DROP,
+            map: map,
+            icon: userLocationIcon
+          });
+          map.setCenter(pos);
+          map.setZoom(12);
+        } else if(!$cookies.getObject('currentUserPosition')){
+
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            zoom: 8
+          };
+          $cookies.putObject("currentUserPosition", pos);
+
+          var userLocationIcon = "assets/locationPinSmall.png";
+          var userLocation = new google.maps.Marker({
+            position: pos,
+            animation: google.maps.Animation.DROP,
+            map: map,
+            icon: userLocationIcon
+          });
+          map.setCenter(pos);
+          map.setZoom(10);
+
+      // Gets all orgs nearby for Accordian
+          // getNearby(pos);
+      // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+          },
+            function() {
+            handleLocationError(true, infowindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infowindow, map.getCenter());
+        }
+      }
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        map.setPosition(pos);
+        map.setContent(browserHasGeolocation ?
+          'Error: The Geolocation service failed.' :
+          'Error: Your browser doesn\'t support geolocation.');
+      };
+      // =-=-=-=-=-=-=-=-=-=~~~~~ End get Geo Location ~~~~~=-=-=-=-=-=-=-=-=-=
+
+        vm.map = map;
+  });
+
+
+
+
+
+  //
+  //
+  // $scope.oneAtATime = true;
+  //
+  //   $scope.groups = [
+  //     {
+  //       title: "Dynamic Group Header - 1",
+  //       content: "Dynamic Group Body - 1"
+  //     },
+  //     {
+  //       title: "Dynamic Group Header - 2",
+  //       content: "Dynamic Group Body - 2"
+  //     }
+  //   ];
+  //
+  //   $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+  //
+  //   $scope.addItem = function() {
+  //     var newItemNo = $scope.items.length + 1;
+  //     $scope.items.push('Item ' + newItemNo);
+  //   };
+  //
+  //   $scope.callMeWhenCompiled = function () {
+  //     console.log("----->>>>> Called");
+  //   };
 
 
 
@@ -12,8 +108,54 @@ app.controller('homeController', ['$scope', '$location', '$cookies', '$window', 
 
 
 
+
+
+
+
+
+  function getAllOrgs(){
+    homeFactory.findAllOrgs(function(output){
+      vm.shops = output.data;
+      vm.shop = vm.shops[0];
+    })
+  };
+
+
+// =-=-=-=-=-=-=-=-~~~ Map Marker Functions ~~~=-=-=-=-=-=-=-=-
+  vm.showDetail = function(e, shop) {
+    vm.shop = shop;
+    vm.map.showInfoWindow('orgInfoWindow', shop.organization);
+  };
+
+  $scope.openWebsite = function (website){
+    var site = 'http://';
+    site += website;
+    $window.open(site);
+  }
+
+  $scope.openMap = function (position){
+    var site = 'https://www.google.com/maps/dir/?api=1&destination=';
+    site += encodeURI(position);
+    $window.open(site);
+  }
+
+  vm.goToOrg = function(orgId) {
+    $state.go('organization', {id: orgId});
+
+    // alert('Clicked a link inside infoWindow');
+  };
 
 }]); // End Controller
+
+
+
+
+
+
+
+
+
+
 
 
 // ~~~~~===================~~~~~ Old Methods ~~~~~===================~~~~~

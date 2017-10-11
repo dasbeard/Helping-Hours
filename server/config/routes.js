@@ -41,6 +41,10 @@ module.exports = function(app){
   });
 
 
+  app.post('/findAllOrgs', function(req,res){
+    organizations.findAllOrgs(req,res)
+  });
+
 
 
 

@@ -1,11 +1,37 @@
-<h2 class="centerText">Home Page</h2>
+<!-- <h2 class="centerText">Home Page</h2> -->
 <div class="container-fluid ">
-  <div class="row justify-content-around">
-    <div class="col-sm-5 blueOutline tall">
-      map
+  <div class="row justify-content-around ">
+    <div class="col-sm-6 curvedDiv">
+
+      <div ng-controller="homeController as vm" class="homePageDiv">
+
+        <ng-map id="mapId" default-style="false" center="41,-93" zoom="3">
+
+          <marker id='{{shop.organization}}' position="{{shop.position}}"
+            ng-repeat="shop in vm.shops"
+            on-click="vm.showDetail(shop)">
+          </marker>
+
+          <info-window id="orgInfoWindow" >
+            <div ng-non-bindable class="mapInfoBox">
+              <h6><a href="" ng-click="vm.goToOrg(vm.shop._id)">{{vm.shop.organization}}</a></h6>
+              <a href='' ng-click="openMap(vm.shop.position)">{{vm.shop.address}}</a>
+              <a href='' ng-click="openWebsite(vm.shop.website)">{{vm.shop.website}}</a>
+              <p>{{vm.shop.phone}}</p>
+            </div>
+          </info-window>
+
+        </ng-map>
+
+      </div>
+
+
+
     </div>
-    <div class="col-sm-5 redOutline tall">
-      accordian
+    <div class="col-sm-6 redOutline homePageDiv">
+
+
+
     </div>
 
   </div>
