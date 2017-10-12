@@ -74,6 +74,7 @@
 .navBarColor{
   background-color: #7ea4b7;
   border-bottom: 1px solid black;
+  width: 100%;
 }
 
 .navBarColor a{
@@ -83,6 +84,13 @@
 #navHover:hover{
   cursor:pointer;
   text-decoration: underline;
+  background-color: inherit;
+}
+
+
+#farLeft{
+  /*width: 700px;*/
+  /*padding: 0;*/
 }
 
 /*=======================================================*/

@@ -1,25 +1,15 @@
-<!-- <accordion close-others="oneAtATime">
+<uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+      This content is straight in the template.
+    </div>
+    <div uib-accordion-group class="panel-default" heading="{{group.title}}" ng-repeat="group in groups">
+      {{group.content}}
+    </div>
 
-    <accordion-group is-open="true">
-
-        <accordion-heading>
-            header 1 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
-        </accordion-heading>
-
-        <p>
-           <strong>This</strong> content is straight in the template, and is initially expanded.
-        </p>
-
-    </accordion-group>
-
-    <accordion-group>
-      <accordion-heading>
-            header 1 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
-        </accordion-heading>
-       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare lobortis ipsum, vel dictum diam. Cras consectetur lorem non laoreet gravida. Aenean magna magna, accumsan et urna at, pellentesque ultrices nisi.
-      </p>
-
-    </accordion-group>
-
-  </accordion> -->
+    <div uib-accordion-group class="panel-default" is-open="status.open">
+      <uib-accordion-heading>
+        I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      </uib-accordion-heading>
+      This is just some content to illustrate fancy headings.
+    </div>
+  </uib-accordion>

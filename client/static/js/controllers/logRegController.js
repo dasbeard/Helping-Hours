@@ -83,8 +83,8 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
             } else {
               $cookies.putObject("loggedUser", output.data.sentback);
               $rootScope.loggedInUser = $cookies.getObject('loggedUser');
-              console.log($rootScope.loggedInUser);
-              window.location.replace('/#!/organization/' + $rootScope.loggedInUser.id);
+              // console.log($rootScope.loggedInUser);
+              window.location.replace('/#!/edit');
             }
           });
         }
