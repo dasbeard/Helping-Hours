@@ -275,40 +275,49 @@ module.exports = (function(){
           res.json(sendBack);
         }
       })
-    }
+    },
 
 
 
 
 
-    //
-    //     getAll: function(req,res){
-    //       Organization.find(({}),function(err, allOrgs){
-    //         if (err){
-    //           console.log('===== ERROR ====='.red);
-            //   console.log(err);
-            // } else {
-            //   var sendBack = [];
-            //   for (var i = 0; i<allOrgs.length; i++){
-            //     sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
-            //                 website: allOrgs[i].website,
-            //                 address: allOrgs[i].streetNumber + ' ' + allOrgs[i].streetName + ', ' + allOrgs[i].city,
-            //                 organization: allOrgs[i].organization,
-            //                 description: allOrgs[i].description,
-            //                 latitude: allOrgs[i].latitude,
-            //                 longitude: allOrgs[i].longitude,
-            //                 _id: allOrgs[i]._id
-            //               }
-            //     );
-            //   }
-              // console.log(sendBack);
-              // res.json(sendBack);
-    //         };
-    //       });
-    //     },
+    getNearbyWeb: function(req,res){
+      // console.log(req.body);
+      Organization.find(({}), function(err, allLocations){
+        if (err){
+          console.log('==== Error When finding user ===='.red);
+          console.log(err);
+          res.json({error: err});
+        } else {
+          var within2miles = [];
+          var within5miles = [];
+          var within25miles = [];
+          var lat = req.body.lat;
+          var long = req.body.lng;
+          var destinations = [];
 
+        // Need to make sure that all locations are less than 25 per google api
 
+            for (var i=0; i<allLocations.length; i++){
+              if(myDistance(lat, long, allLocations[i].latitude, allLocations[i].longitude)<=2){
+                var org = {_id: allLocations[i]._id, formattedAddress: allLocations[i].formattedAddress, organization: allLocations[i].organization, website: allLocations[i].website};
+                within2miles.push(org);
 
+                } else if (myDistance(lat, long, allLocations[i].latitude, allLocations[i].longitude)>2 && myDistance(lat, long,             allLocations[i].latitude, allLocations[i].longitude)<=5) {
+                  var org = {_id: allLocations[i]._id, formattedAddress: allLocations[i].formattedAddress, organization: allLocations[i].organization, website: allLocations[i].website};
+                within5miles.push(org);
+
+              } else if (myDistance(lat, long, allLocations[i].latitude, allLocations[i].longitude)>5 && myDistance(lat, long,             allLocations[i].latitude, allLocations[i].longitude)<=25) {
+                  var org = {_id: allLocations[i]._id, formattedAddress: allLocations[i].formattedAddress, organization: allLocations[i].organization, website: allLocations[i].website};
+                  within25miles.push(org);
+                }
+              }
+              var sendBack = {within2miles, within5miles, within25miles};
+              res.json(sendBack);
+
+          }
+      })
+    },
 
 
 
@@ -991,10 +1000,6 @@ function intParsing(input){
 return Number(myStr);
 } // End intParsing
 
-
-function emailParse(input){
-
-} // End emailParse
 
 
 

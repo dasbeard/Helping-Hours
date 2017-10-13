@@ -6,13 +6,16 @@ app.factory('homeFactory', ['$http', function ($http){
 
 
   factory.findAllOrgs = function(callback){
-    // console.log(in);
     $http.post('/findAllOrgs').then(function(output){
       callback(output)
     });
   };
 
-
+  factory.getNearBy = function(input, callback){
+    $http.post('/getNearbyWeb', input).then(function(output){
+      callback(output)
+    });
+  };
 
 
 

@@ -40,11 +40,13 @@ module.exports = function(app){
     organizations.updateServices(req,res)
   });
 
-
   app.post('/findAllOrgs', function(req,res){
     organizations.findAllOrgs(req,res)
   });
 
+  app.post('/getNearbyWeb', function(req,res){
+    organizations.getNearbyWeb(req,res)
+  });
 
 
 

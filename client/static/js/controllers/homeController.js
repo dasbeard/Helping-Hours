@@ -11,8 +11,7 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
   google.maps.event.trigger(map, 'resize')
 
       if (navigator.geolocation) {
-
-
+        // var infowindow = new google.maps.InfoWindow({map: map});
         if($cookies.getObject('currentUserPosition')){
           var pos = $cookies.getObject('currentUserPosition');
           var userLocationIcon = "assets/locationPinSmall.png";
@@ -24,6 +23,8 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
           });
           map.setCenter(pos);
           map.setZoom(12);
+          getNearBy(pos);
+
         } else if(!$cookies.getObject('currentUserPosition')){
 
 
@@ -46,7 +47,8 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
           map.setZoom(10);
 
       // Gets all orgs nearby for Accordian
-          // getNearby(pos);
+          getNearBy(pos);
+
       // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
           },
@@ -58,7 +60,7 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
           handleLocationError(false, infowindow, map.getCenter());
         }
       }
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      function handleLocationError(browserHasGeolocation, infowindow, pos) {
         map.setPosition(pos);
         map.setContent(browserHasGeolocation ?
           'Error: The Geolocation service failed.' :
@@ -72,42 +74,36 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
 
 
 
-
-
-
-
-
+  // =-=-=-=-=-=-=-=-=-=~~~~~ Accordion ~~~~~=-=-=-=-=-=-=-=-=-=
   $scope.oneAtATime = true;
 
-  $scope.groups = [
-    {
-      title: 'Dynamic Group Header - 1',
-      content: 'Dynamic Group Body - 1'
-    },
-    {
-      title: 'Dynamic Group Header - 2',
-      content: 'Dynamic Group Body - 2'
-    }
-  ];
-
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-
-
   $scope.status = {
-    isCustomHeaderOpen: false,
     isFirstOpen: true,
     isFirstDisabled: false
   };
 
 
+  function getNearBy(pos){
+    homeFactory.getNearBy(pos, function(output){
+      if(!output.error){
+        $scope.within2miles = output.data.within2miles;
+        $scope.within5miles = output.data.within5miles;
+        $scope.within25miles = output.data.within25miles;
+        // $scope.loading = false;
+      }
+    })
+  };
+
+
+  // =-=-=-=-=-=-=-=-=-=~~~~~ End Accordion ~~~~~=-=-=-=-=-=-=-=-=-=
 
 
 
 
 
-
-
+  $scope.visitOrg = function(orgId) {
+    $state.go('organization', {id: orgId});
+  };
 
 
 
@@ -115,16 +111,16 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
 
   function getAllOrgs(){
     homeFactory.findAllOrgs(function(output){
-      vm.shops = output.data;
-      vm.shop = vm.shops[0];
+      vm.orgs = output.data;
+      vm.org = vm.orgs[0];
     })
   };
 
 
 // =-=-=-=-=-=-=-=-~~~ Map Marker Functions ~~~=-=-=-=-=-=-=-=-
-  vm.showDetail = function(e, shop) {
-    vm.shop = shop;
-    vm.map.showInfoWindow('orgInfoWindow', shop.organization);
+  vm.showDetail = function(e, org) {
+    vm.org = org;
+    vm.map.showInfoWindow('orgInfoWindow', org.organization);
   };
 
   $scope.openWebsite = function (website){
@@ -141,8 +137,6 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
 
   vm.goToOrg = function(orgId) {
     $state.go('organization', {id: orgId});
-
-    // alert('Clicked a link inside infoWindow');
   };
 
 }]); // End Controller

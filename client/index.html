@@ -15,23 +15,15 @@
   <script type="text/javascript" src='angular-cookies/angular-cookies.min.js'></script>
   <script type="text/javascript" src='angular-animate/angular-animate.min.js'></script>
   <script type="text/javascript" src='angular-bootstrap/ui-bootstrap.min.js'></script>
-
   <script type="text/javascript" src='js/ui-bootstrap-tpls-2.5.0.min.js'></script>
-
 
   <script type="text/javascript" src='angular-ui-mask/dist/mask.js'></script>
   <script type="text/javascript" src="ngmap/build/scripts/ng-map.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM"></script>
 
 
-
-  <link rel="stylesheet" href="css/bootstrap-css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-
-  <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
-
-
-
+  <!-- <link rel="stylesheet" href="css/bootstrap-css/bootstrap.min.css"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
   <!--
@@ -56,22 +48,31 @@
 
 <body class="">
 
-  <nav class="navbar navbar-light navBarColor" ng-controller="logRegController">
-    <a class="navbar-brand" ui-sref="/">
-      <img src="/assets/clock.png" width="30" height="30" class="d-inline-block align-top" alt="">
-      Helping Hours
-    </a>
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a ng-show='!loggedInUser' id="navHover" class="nav-link" ui-sref="/">Home</a>
-        <a ng-show='loggedInUser' id="navHover" class="nav-link" href="" ng-click="myPage()">My Page</a>
-      </li>
-      <li class="nav-item">
-        <a ng-show='!loggedInUser' id="navHover" class="nav-link" ui-sref="logReg">Login</a>
-        <a ng-show='loggedInUser' id="navHover" class="nav-link" href="" ng-click='logoutUser()'>Logout</a>
-      </li>
-    </ul>
-  </nav>
+  <nav class="navbar navbar-default navbar-light navBarColor" role="navigation" ng-controller="logRegController">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+      <a class="navbar-brand" id="brandText" ui-sref="/">Helping Hours</a>
+		</div>
+		<div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+			<ul class="nav navbar-nav navSpacing">
+        <li class="nav-item">
+          <a ng-show='!loggedInUser' class="nav-link" ui-sref="/">Home</a>
+          <a ng-show='loggedInUser' class="nav-link" href="" ng-click="myPage()">My Page</a>
+        </li>
+        <li class="nav-item">
+          <a ng-show='!loggedInUser' class="nav-link" ui-sref="logReg">Login</a>
+          <a ng-show='loggedInUser' class="nav-link" href="" ng-click='logoutUser()'>Logout</a>
+        </li>
+			</ul>
+		</div>
+	</nav>
+
+
 
     <ui-view></ui-view>
 

@@ -7,17 +7,17 @@
 
         <ng-map id="mapId" default-style="false" center="41,-93" zoom="3">
 
-          <marker id='{{shop.organization}}' position="{{shop.position}}"
-            ng-repeat="shop in vm.shops"
-            on-click="vm.showDetail(shop)">
+          <marker id='{{org.organization}}' position="{{org.position}}"
+            ng-repeat="org in vm.orgs"
+            on-click="vm.showDetail(org)">
           </marker>
 
           <info-window id="orgInfoWindow" >
             <div ng-non-bindable class="mapInfoBox">
-              <h6><a href="" ng-click="vm.goToOrg(vm.shop._id)">{{vm.shop.organization}}</a></h6>
-              <a href='' ng-click="openMap(vm.shop.position)">{{vm.shop.address}}</a>
-              <a href='' ng-click="openWebsite(vm.shop.website)">{{vm.shop.website}}</a>
-              <p>{{vm.shop.phone}}</p>
+              <h6><a href="" ng-click="vm.goToOrg(vm.org._id)">{{vm.org.organization}}</a></h6>
+              <a href='' ng-click="openMap(vm.org.position)">{{vm.org.address}}</a>
+              <a href='' ng-click="openWebsite(vm.org.website)">{{vm.org.website}}</a>
+              <p>{{vm.org.phone}}</p>
             </div>
           </info-window>
 
@@ -28,9 +28,34 @@
 
 
     </div>
-    <div class="col-sm-6 redOutline homePageDiv">
+    <div class="col-sm-6 homePageDiv accordionDiv">
 
+      <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel-default" heading="Within 2 Miles" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+          <ul>
+            <li ng-repeat='place in within2miles'>
+              <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+            </li>
+          </ul>
+        </div>
 
+        <div uib-accordion-group class="panel-default" heading="Within 5 Miles">
+          <ul>
+            <li ng-repeat='place in within5miles'>
+              <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div uib-accordion-group class="panel-default" heading="Within 25 Miles">
+          <ul>
+            <li ng-repeat='place in within25miles'>
+              <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+            </li>
+          </ul>
+        </div>
+
+      </uib-accordion>
 
     </div>
 

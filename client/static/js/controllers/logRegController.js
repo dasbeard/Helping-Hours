@@ -201,4 +201,21 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
 
 
 
+
+
+  $scope.isNavCollapsed = true;
+  $scope.isCollapsed = false;
+  $scope.isCollapsedHorizontal = false;
+
+
+
+
+
+
+
+
+
+
+
+
 }]); // End Controller

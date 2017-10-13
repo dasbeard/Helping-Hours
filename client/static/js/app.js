@@ -15,11 +15,11 @@ app.config(function($stateProvider, $urlRouterProvider){
     controller:"homeController"
   })
   // ========== same as '/' ==========
-  .state('home', {
-      url: "/home",
-      templateUrl: "../partials/home.html",
-      controller:"homeController"
-  })
+  // .state('home', {
+  //     url: "/home",
+  //     templateUrl: "../partials/home.html",
+  //     controller:"homeController"
+  // })
   // ==========  ==========  ==========
 
 
