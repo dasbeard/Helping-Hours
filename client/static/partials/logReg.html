@@ -15,7 +15,7 @@
       <form name="loginForm" ng-submit="loginUser(loginForm.$valid)">
         <div class="form-group" ng-class="{ 'has-danger' : loginForm.email.$invalid && !loginForm.email.$pristine }">
           <label for="loginEmail" class="sr-only" >Login Email</label>
-          <input required autofocus type="email" class="form-control" placeholder="Email" id="loginEmail" ng-model='login.email' name="email">
+          <input autofocus required type="email" class="form-control" placeholder="Email" id="loginEmail" ng-model='login.email' name="email">
           <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
         </div>
 
