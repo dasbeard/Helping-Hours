@@ -69,6 +69,7 @@
 }
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
+
 /*=======================================================*/
 /*==================== Nav Bar Classes ==================*/
 /*=======================================================*/
@@ -137,29 +138,109 @@
 /*=======================================================*/
 /*================= Log/Reg Page Classes ================*/
 /*=======================================================*/
+
 .logRegContainers{
   margin-top: 10%;
+  margin-left: 5%;
+  margin-right: 2%;
+  min-height: 250px;
+  padding-top: 1px;
+}
+
+.centerButton{
+  min-width: 80px;
+  margin-left: calc(50% - 40px);
+  margin-top: 5%;
   margin-bottom: 5%;
-  min-height: 285px;
 }
 
-.logRegContainers h3{
-  margin: 20px auto;
+.locationMask{
+  margin-top: 15%;
+  background-color: white;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  min-width: 250px;
+  margin-left: 22%;
+  margin-right: 22%;
+  padding: 2% 5% 0 5%;
 }
 
-.logRegContainers button{
-  margin-bottom: 8%;
+@media only screen and (max-width: 500px) {
+  .locationMask {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
 }
 
-.logRegContainers p{
-  font-size: .85em;
+.locationMask p{
+  line-height: 30px;
 }
 
-.stickToBottom{
-  margin-top: 120px;
-  position: relative;
-  position:absolute;
-  bottom:0;
+.addressNotFound{
+  font-size: .7em;
+  padding: 5%;
+}
+
+
+.OrgNameMask{
+  margin-top: 15%;
+  background-color: white;
+  padding: 2% 5% 2% 5%;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  min-width: 250px;
+  margin-left: 22%;
+  margin-right: 22%;
+}
+
+@media only screen and (max-width: 500px) {
+  .OrgNameMask {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+.latLngContainer{
+  margin: 15%;
+}
+
+@media only screen and (max-width: 500px) {
+  .latLngContainer {
+    margin: 2%;
+  }
+}
+
+.latLngDiv{
+  background-color: white;
+  height: 350px;
+  padding: 1% 5% 2% 5%;
+  margin-bottom: 10%;
+}
+
+.latLngDiv form{
+  margin-top: 15%;
+}
+
+.latLngDiv button{
+  margin-top: 10%;
+}
+
+@media only screen and (max-width: 500px) {
+  .latLngDiv {
+    max-height: 300px;
+  }
+  .latLngDiv:nth-child(2) {
+    max-height: 210px;
+  }
+  .latLngDiv button{
+    margin-bottom: 12px;
+    margin-top: 5%;
+  }
+  .latLngDiv form{
+    margin-top: 5%;
+  }
 }
 
 .jumbotronError{
@@ -175,66 +256,6 @@
   border-bottom-left-radius: 15px;
 }
 
-.locationMask{
-  margin-top: 15%;
-  background-color: white;
-  padding: 5% 5% 0 5%;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-}
-
-.latLngContainer{
-  background-color: white;
-  min-height: 285px;
-  margin-top: 15%;
-}
-
-.latLngContainer h3{
-  margin: 20px auto;
-}
-
-.latLngContainer form{
-  margin-top: 15%;;
-}
-
-.latLngContainer li{
-  margin-top: 4%;
-}
-
-.latLngContainer button{
-  margin-bottom: 15%;
-}
-
-.latLngContainer span{
-  font-size: .7em;
-}
-
-.passwordHelp{
-  font-size: .8em;
-  margin-top: 5px;
-  margin-bottom: 0;
-  font-weight: lighter;
-}
-
-.addressNotFound{
-  font-size: .7em;
-  padding: 5%;
-}
-
-.OrgNameMask{
-  margin-top: 15%;
-  background-color: white;
-  padding: 4% 5% 2% 5%;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-}
-
-.OrgNameMask h3, .OrgNameMask h4{
-  margin-bottom: 15px;
-}
-
 .logRegError{
   color: red;
   margin-bottom: 10px;
@@ -242,8 +263,6 @@
   font-weight: bolder;
   text-decoration: underline;
 }
-
-
 
 
 /*=======================================================*/
@@ -255,53 +274,27 @@
   padding-right: 25px;
 }
 
-.servicesContainer li{
-  list-style: none;
-  margin-bottom: 5px;
+
+.mySelect div select{
+  width: auto;
 }
 
-.servicesContainer button{
-}
+@media only screen and (max-width: 500px) {
+  .editInfoAdjust{
+    padding-left: calc(50% - 80px);
+  }
+  .editPageMask{
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .Btn2{
+    margin-left: 10%;
+  }
+  .mySelect div select{
+    width: 120px;
+    margin-left: calc(50% - 60px);
+  }
 
-.smallerBtn {
-  line-height: 10px;
-  height: 25px;
-}
-
-.hoursContainer{
-  display: flex;
-  justify-content: space-around;
-}
-
-.hoursContainer p{
-  margin-bottom: 0px;
-  margin-top: 8px;
-  font-size: smaller;
-  padding-left: 50px;
-}
-
-.servicesContainer td, .servicesContainer th{
-  padding: 1px;
-}
-
-.servicesContainer th{
-  /*text-align: center;*/
-  width: 25px;
-}
-
-.editTableTo{
-  width: 25px;
-}
-
-.centerBottom{
-  margin-top: 60px;
-  position: relative;
-  bottom:0;
-}
-
-.editOrgName{
-  padding-top: 20px;
-  display: inline-flex;
 }
 
 .servicesPadding{
@@ -313,23 +306,20 @@
   z-index: 3;
   margin-top: 15%;
   background-color: white;
-  /*padding: 5% 5% 0 5%;*/
   padding: 5%;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
 
-.editPageMask h3{
-  margin-bottom: 25px;
-}
+
+
 
 .lowerZ{
   z-index: 0;
 }
 
 .saveMask{
-  /*background-color: cyan;*/
   width: 100px;
   position: relative;
   -webkit-border-radius: 10px;
@@ -362,24 +352,80 @@
 }
 
 
+/*.servicesContainer li{
+list-style: none;
+margin-bottom: 5px;
+}*/
 
+/*.smallerBtn {
+line-height: 10px;
+height: 25px;
+}*/
+
+/*.hoursContainer{
+display: flex;
+justify-content: space-around;*/
+}
+
+/*.hoursContainer p{
+margin-bottom: 0px;
+margin-top: 8px;
+font-size: smaller;
+padding-left: 50px;
+}*/
+
+/*.servicesContainer td, .servicesContainer th{
+padding: 1px;
+}*/
+
+/*.servicesContainer th{
+width: 25px;
+}*/
+
+/*.editTableTo{
+width: 25px;
+}*/
+
+/*.centerBottom{
+margin-top: 60px;
+position: relative;
+bottom:0;
+}*/
+
+/*.editOrgName{
+padding-top: 20px;
+display: inline-flex;
+}*/
+
+/*.editPageMask h3{
+  margin-bottom: 25px;
+}*/
 
 
 
 /*=======================================================*/
 /*================== Show Page Classes ==================*/
 /*=======================================================*/
-.myCheckBox {
+/*.myCheckBox {
   background-color: blue;
-}
+}*/
 
 .OrgName{
   padding-top: 2px;
   display: inline-flex;
 }
 
+.OrgName a{
+  line-height: 35px;
+  padding-right: 10px;
+}
+
+.OrgName h2{
+  margin-top: 0;
+}
+
 .centerBottomAddress{
-  margin-top: 60px;
+  margin-top: 5%;
   position: relative;
   bottom:0;
   padding-bottom: 2px;
@@ -389,11 +435,6 @@
   margin-bottom: 15px;
 }
 
-
-.OrgName a{
-  line-height: 35px;
-  padding-right: 10px;
-}
 
 .descriptionBox{
   border: 1px solid rgba(107, 120, 142, .5);

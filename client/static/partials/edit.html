@@ -1,19 +1,24 @@
 <form name="editOrgForm" ng-submit="editOrganization(editOrgForm.$valid)" >
   <div class="container-fluid servicesContainer">
 
-      <div class="row justify-content-around">
+      <div class="row">
 
-        <div class="col-sm-3 order-12 order-md-5 ">
+        <div class="col-sm-7 col-sm-push-2 centerText">
+          <div class="editOrgName">
+            <h2>{{editOrg.orgName}}</h2>
+          </div>
+          <div class="centerBottom centerText">
+            <p>{{editOrg.formattedAddress}}</p>
+          </div>
+        </div>
+
+        <div class="col-sm-2 col-sm-pull-7 editInfoAdjust">
 
           <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.website.$invalid && !editOrgForm.$pristine }">
             <label for="website" class="sr-only">Organizations Website</label>
             <input type="text" name="website" class="form-control" placeholder="Website" id="website" ng-model="editOrg.website" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/">
-            <!-- <span ng-show="isAvailable.website" class="input-group-btn">
-              <button class="btn btn-secondary">X</button>
-            </span> -->
           </div>
           <p ng-show="editOrgForm.website.$invalid && !editOrgForm.website.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
-          <!-- <p ng-show="editOrgForm.website.$invalid && !editOrgForm.website.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p> -->
 
 
 
@@ -21,9 +26,7 @@
           <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.email.$invalid && !editOrgForm.email.$pristine }">
             <label for="orgEmail" class="sr-only" >Contact Email</label>
             <input type="email" class="form-control" placeholder="Contact E-Mail" id="orgEmail" ng-model='editOrg.contactEmail' name="email" ui-mask-placeholder>
-            <!-- <span ng-show="isAvailable.email" class="input-group-btn">
-              <button class="btn btn-secondary" type="button">X</button>
-            </span> -->
+
           </div>
           <p ng-show="editOrgForm.email.$invalid && !editOrgForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
 
@@ -38,17 +41,7 @@
 
         </div>
 
-
-        <div class="col-sm-5 order-5 order-md-12 centerText">
-          <div class="editOrgName">
-            <h2>{{editOrg.orgName}}</h2>
-          </div>
-          <div class="centerBottom centerText">
-            <p>{{editOrg.formattedAddress}}</p>
-          </div>
-        </div>
-
-        <div class="col-sm-3 order-12 ">
+        <div class="col-sm-3 centerText">
           <div class="form-group centerText" ng-class="{ 'has-error' : editOrgForm.description.$invalid && !editOrgForm.description.$pristine }">
             <label class="" for="description">Tell us about your Organization</label>
             <textarea class="form-control" id="description" rows="5" name="description" ng-model="editOrg.description"></textarea>
@@ -58,15 +51,87 @@
       </div>
   </div>
   <div class="container-fluid servicesContainer">
-      <div class="row justify-content-around tall">
-        <div class="col-sm-6 ">
+      <div class="row tall">
+
+        <div class="col-sm-6 col-sm-push-6 servicesPadding">
+          <div class="row mySmall">
+            <div class="col-xs-6">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.beds' ng-true-value="true" ng-false-value="false">
+                Beds available
+              </label>
+            </div>
+            <div class="col-xs-6">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.cloths' ng-true-value="true" ng-false-value="false">
+                Clothing available
+              </label>
+            </div>
+          </div>
+          <div class="row mySmall">
+            <div class="col-xs-6">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.childCare' ng-true-value="true" ng-false-value="false">
+                Childcare available
+              </label>
+            </div>
+            <div class="col-xs-6">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.recActivites' ng-true-value="true" ng-false-value="false">
+                Recreational Activities
+              </label>
+            </div>
+          </div>
+          <div class="row mySmall">
+            <div class="col-xs-6">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.donations' ng-true-value="true" ng-false-value="false">
+                Takes Donations
+              </label>
+            </div>
+            <div class="col-xs-6">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.education' ng-true-value="true" ng-false-value="false">
+                Educational Help
+              </label>
+            </div>
+          </div>
+          <div class="row mySmall">
+            <div class="col-xs-6">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.job' ng-true-value="true" ng-false-value="false">
+                Job Placement Help
+              </label>
+            </div>
+            <div class="col-xs-6">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.interview' ng-true-value="true" ng-false-value="false">
+                Interview Help
+              </label>
+            </div>
+          </div>
+          <div class="row mySmall">
+            <div class="col">
+              <div class="form-group">
+                <label class="" for="otherServices">Other services you have available</label>
+                <textarea class="form-control" id="otherServices" rows="3" name="otherServices" ng-model="editOrgServices.otherServices"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row mySmall ">
+            <div class="col-xs-12 centerText align-self-center">
+              <button class="btn btn-secondary" type="submit">Save Changes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-5 col-sm-pull-7 col-sm-offset-1">
           <div class="row">
-            <div class="col medium centerText ">
+            <div class="col centerText ">
               <div class="hoursContainer">
                 <h3 class="">Hours of Operation</h3>
                 <p><a href="" ng-click="addDayOfOp()">Add a Day</a></p>
               </div>
-
               <table class="table table-sm table-hover">
                 <tbody>
                   <tr ng-repeat="d in editOrg.hoursOfOperation">
@@ -82,7 +147,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col medium centerText ">
+            <div class="col-sm-12 centerText ">
               <div class="hoursContainer">
                 <h3 class="">Days Serving Food</h3>
                 <p><a href="" ng-click="addServing()">Add a Day</a></p>
@@ -103,77 +168,6 @@
           </div>
         </div>
 
-        <div class="col-sm-6 servicesPadding">
-          <div class="row mySmall align-items-center">
-            <div class="col">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.beds' ng-true-value="true" ng-false-value="false">
-                Beds available
-              </label>
-            </div>
-            <div class="col">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.cloths' ng-true-value="true" ng-false-value="false">
-                Clothing available
-              </label>
-            </div>
-          </div>
-          <div class="row mySmall align-items-center">
-            <div class="col">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.childCare' ng-true-value="true" ng-false-value="false">
-                Childcare available
-              </label>
-            </div>
-            <div class="col">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.recActivites' ng-true-value="true" ng-false-value="false">
-                Recreational Activities
-              </label>
-            </div>
-          </div>
-          <div class="row align-items-center mySmall">
-            <div class="col">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.donations' ng-true-value="true" ng-false-value="false">
-                Takes Donations
-              </label>
-            </div>
-            <div class="col">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.education' ng-true-value="true" ng-false-value="false">
-                Educational Help
-              </label>
-            </div>
-          </div>
-          <div class="row align-items-center mySmall">
-            <div class="col">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.job' ng-true-value="true" ng-false-value="false">
-                Job Placement Help
-              </label>
-            </div>
-            <div class="col">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.interview' ng-true-value="true" ng-false-value="false">
-                Interview Help
-              </label>
-            </div>
-          </div>
-          <div class="row align-items-center mySmall">
-            <div class="col">
-              <div class="form-group">
-                <label class="" for="otherServices">Other services you have available</label>
-                <textarea class="form-control" id="otherServices" rows="3" name="otherServices" ng-model="editOrgServices.otherServices"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row mySmall ">
-            <div class="col centerText align-self-center">
-              <button class="btn btn-secondary" type="submit">Save Changes</button>
-            </div>
-          </div>
-        </div>
 
       </div>
   </div>
@@ -189,16 +183,16 @@
 <div class="DisplayMaskBackground container-fluid" ng-show='hoursOfOpMask'>
 <!-- <div class="DisplayMaskBackground container-fluid "> -->
 
-    <div class="row justify-content-center">
-      <div class="col-7 editPageMask">
+    <div class="row ">
+      <div class="col-sm-8 col-sm-offset-2 editPageMask">
         <h3 class="centerText">When are you Open?</h3>
         <h5 ng-show="hoursOfOpFormInvalid" class="form-text alert alert-danger centerText">All Fields are required</h5>
         <h5 ng-show="hoursOfOpFormInvalid2" class="form-text alert alert-danger centerText">You can not open after you close</h5>
 
-        <form name="hoursOfOpForm" class="form-row justify-content-center" ng-submit="addDay(hoursOfOpForm.$valid, 'hoursOfOperation')" novalidate>
+        <form name="hoursOfOpForm" class="form-row mySelect" ng-submit="addDay(hoursOfOpForm.$valid, 'hoursOfOperation')" novalidate>
 
-          <div class="form-group col-auto" >
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.day.$invalid && !hoursOfOpForm.day.$pristine }" ng-model='hoursOfOp.day' name="day" required>
+          <div class="form-group col-sm-2 col-sm-offset-1" >
+            <select class="form-control" ng-class="{ 'redBackground' : hoursOfOpForm.day.$invalid && !hoursOfOpForm.day.$pristine }" ng-model='hoursOfOp.day' name="day" required>
               <option value="">Day</option>
               <option value="Monday">Mon</option>
               <option value="Tuesday">Tues</option>
@@ -210,8 +204,8 @@
             </select>
           </div>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.open.$invalid && !hoursOfOpForm.open.$pristine }" ng-model='hoursOfOp.open' name="open" required>
+          <div class="form-group col-sm-2">
+            <select class="form-control" ng-class="{ 'redBackground' : hoursOfOpForm.open.$invalid && !hoursOfOpForm.open.$pristine }" ng-model='hoursOfOp.open' name="open" required>
               <option value="">Open At</option>
               <option value="1:00">1:00</option>
               <option value="1:30">1:30</option>
@@ -240,16 +234,16 @@
             </select>
           </div>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.openPeriod.$invalid && !hoursOfOpForm.openPeriod.$pristine }" name="openPeriod" ng-model='hoursOfOp.openPeriod' required>
+          <div class="form-group col-sm-2">
+            <select class="form-control" ng-class="{ 'redBackground' : hoursOfOpForm.openPeriod.$invalid && !hoursOfOpForm.openPeriod.$pristine }" name="openPeriod" ng-model='hoursOfOp.openPeriod' required>
               <option value="">am/pm</option>
               <option value="am">am</option>
               <option value="pm">pm</option>
             </select>
           </div>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.closed.$invalid && !hoursOfOpForm.closed.$pristine }" name="closed" ng-model='hoursOfOp.closed' required>
+          <div class="form-group col-sm-2">
+            <select class="form-control" ng-class="{ 'redBackground' : hoursOfOpForm.closed.$invalid && !hoursOfOpForm.closed.$pristine }" name="closed" ng-model='hoursOfOp.closed' required>
               <option value="">Close At</option>
               <option value="1:00">1:00</option>
               <option value="1:30">1:30</option>
@@ -278,20 +272,20 @@
             </select>
           </div>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : hoursOfOpForm.closedPeriod.$invalid && !hoursOfOpForm.closedPeriod.$pristine }" name="closedPeriod" ng-model='hoursOfOp.closedPeriod' required>
+          <div class="form-group col-sm-2">
+            <select class="form-control" ng-class="{ 'redBackground' : hoursOfOpForm.closedPeriod.$invalid && !hoursOfOpForm.closedPeriod.$pristine }" name="closedPeriod" ng-model='hoursOfOp.closedPeriod' required>
               <option value="">am/pm</option>
               <option value="am">am</option>
               <option value="pm">pm</option>
             </select>
           </div>
 
-          <div class="row justify-content-center">
-            <div class="col-auto">
+          <div class="row">
+            <div class="col-xs-offset-1 col-xs-4 col-sm-2 col-sm-offset-4">
               <button class="btn btn-secondary" type="submit">Add</button>
             </div>
 
-            <div class="col-auto">
+            <div class="col-xs-offset-1 col-xs-4 col-sm-2 Btn2">
               <button class="btn btn-secondary" type="button" ng-click="closeMask()">Cancel</button>
             </div>
           </div>
@@ -313,16 +307,16 @@
 <div class="DisplayMaskBackground container-fluid" ng-show='servingFoodMask'>
 <!-- <div class="DisplayMaskBackground container-fluid "> -->
 
-    <div class="row justify-content-center">
-      <div class="col-7 editPageMask">
+    <div class="row ">
+      <div class="col-sm-8 col-sm-offset-2 editPageMask">
         <h3 class="centerText">When are you Serving Food?</h3>
         <h5 ng-show="hoursOfOpFormInvalid" class="form-text alert alert-danger centerText">All Fields are required</h5>        <h5 ng-show="servingFoodFormInvalid2" class="form-text alert alert-danger centerText">You can not start after you stop</h5>
 
 
-        <form name="servingFoodForm" class="form-row justify-content-center" ng-submit="addDay(servingFoodForm.$valid, 'daysServingFood')" novalidate>
+        <form name="servingFoodForm" class="form-row mySelect" ng-submit="addDay(servingFoodForm.$valid, 'daysServingFood')" novalidate>
 
-          <div class="form-group col-auto" >
-            <select class="custom-select" ng-class="{ 'redBackground' : servingFoodForm.day.$invalid && !servingFoodForm.day.$pristine }" ng-model='servingFood.day' name="day" required>
+          <div class="form-group col-sm-2 col-sm-offset-1" >
+            <select class="form-control" ng-class="{ 'redBackground' : servingFoodForm.day.$invalid && !servingFoodForm.day.$pristine }" ng-model='servingFood.day' name="day" required>
               <option value="">Day</option>
               <option value="Monday">Mon</option>
               <option value="Tuesday">Tues</option>
@@ -334,8 +328,8 @@
             </select>
           </div>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : servingFoodForm.open.$invalid && !servingFoodForm.open.$pristine }" ng-model='servingFood.open' name="open" required>
+          <div class="form-group col-sm-2">
+            <select class="form-control" ng-class="{ 'redBackground' : servingFoodForm.open.$invalid && !servingFoodForm.open.$pristine }" ng-model='servingFood.open' name="open" required>
               <option value="">Open At</option>
               <option value="1:00">1:00</option>
               <option value="1:30">1:30</option>
@@ -364,16 +358,16 @@
             </select>
           </div>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : servingFoodForm.openPeriod.$invalid && !servingFoodForm.openPeriod.$pristine }" name="openPeriod" ng-model='servingFood.openPeriod' required>
+          <div class="form-group col-sm-2">
+            <select class="form-control" ng-class="{ 'redBackground' : servingFoodForm.openPeriod.$invalid && !servingFoodForm.openPeriod.$pristine }" name="openPeriod" ng-model='servingFood.openPeriod' required>
               <option value="">am/pm</option>
               <option value="am">am</option>
               <option value="pm">pm</option>
             </select>
           </div>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : servingFoodForm.closed.$invalid && !servingFoodForm.closed.$pristine }" name="closed" ng-model='servingFood.closed' required>
+          <div class="form-group col-sm-2">
+            <select class="form-control" ng-class="{ 'redBackground' : servingFoodForm.closed.$invalid && !servingFoodForm.closed.$pristine }" name="closed" ng-model='servingFood.closed' required>
               <option value="">Close At</option>
               <option value="1:00">1:00</option>
               <option value="1:30">1:30</option>
@@ -402,21 +396,26 @@
             </select>
           </div>
 
-          <div class="form-group col-auto">
-            <select class="custom-select" ng-class="{ 'redBackground' : servingFoodForm.closedPeriod.$invalid && !servingFoodForm.closedPeriod.$pristine }" name="closedPeriod" ng-model='servingFood.closedPeriod' required>
+          <div class="form-group col-sm-2">
+            <select class="form-control" ng-class="{ 'redBackground' : servingFoodForm.closedPeriod.$invalid && !servingFoodForm.closedPeriod.$pristine }" name="closedPeriod" ng-model='servingFood.closedPeriod' required>
               <option value="">am/pm</option>
               <option value="am">am</option>
               <option value="pm">pm</option>
             </select>
           </div>
 
-          <div class="col-auto">
-            <button class="btn btn-secondary" type="submit">Add</button>
+          <div class="row">
+            <div class="col-xs-offset-1 col-xs-4 col-sm-2 col-sm-offset-4">
+              <button class="btn btn-secondary" type="submit">Add</button>
+            </div>
+
+            <div class="col-xs-offset-1 col-xs-4 col-sm-2 Btn2">
+              <button class="btn btn-secondary" type="button" ng-click="closeMask()">Cancel</button>
+            </div>
           </div>
 
-          <div class="col-auto">
-            <button class="btn btn-secondary" type="button" ng-click="closeMask()">Cancel</button>
-          </div>
+
+
 
         </form>
       </div>
@@ -441,7 +440,7 @@
 <div class="container-fluid saveMask" ng-show='savedMask'>
 <!-- <div class="container-fluid saveMask"> -->
 
-    <div class="row justify-content-center">
+    <div class="row ">
       <div class="col centerText">
         Saved
       </div>

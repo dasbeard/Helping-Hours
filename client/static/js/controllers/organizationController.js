@@ -3,10 +3,19 @@
 // =========================================================================
 app.controller('organizationController', ['$scope', 'editFactory', '$location', '$cookies', '$window', '$uibModal', '$log', '$document', '$stateParams', function($scope, editFactory, $location, $cookies, $window, $uibModal, $log, $document, $stateParams){
 
-  $scope.loggedInUser = $cookies.getObject('loggedUser');
+
 
 
   $scope.findOrg = $stateParams;
+
+  if($scope.loggedInUser = $cookies.getObject('loggedUser')){
+    if($scope.loggedInUser.id == $scope.findOrg.id){
+      $scope.loggedOrg = true;
+    } else {
+      $scope.loggedOrg = false;
+    }
+  };
+
 
   editFactory.getOrgInfo($scope.findOrg, function(output){
     if(output.data.error){
