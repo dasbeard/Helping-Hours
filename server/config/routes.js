@@ -48,7 +48,9 @@ module.exports = function(app){
     organizations.getNearbyWeb(req,res)
   });
 
-
+  app.post('/citySearch', function(req,res){
+    organizations.citySearch(req,res)
+  });
 
   // app.post('/reg', function(req,res){
   //   organizations.reg(req,res)
@@ -112,10 +114,6 @@ module.exports = function(app){
   //
   // app.post('/updateHoursOfOp2', function(req,res){
   //   organizations.updateHoursOfOp2(req,res)
-  // });
-  //
-  // app.post('/citySearch', function(req,res){
-  //   organizations.citySearch(req,res)
   // });
   //
   // app.post('/getShow', function(req,res){

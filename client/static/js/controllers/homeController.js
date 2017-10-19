@@ -3,6 +3,8 @@
 // =========================================================================
 app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookies', '$window', 'NgMap', '$state', function($scope, homeFactory, $location, $cookies, $window, NgMap, $state){
 
+  $scope.loadingOrgs = true;
+
   getAllOrgs();
 
   var vm = this;
@@ -34,7 +36,8 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
             lng: position.coords.longitude,
             zoom: 8
           };
-          $cookies.putObject("currentUserPosition", pos);
+          var today = new Date;
+          today.setDate(today.getDate() + 2);          $cookies.putObject("currentUserPosition", pos, [today]);
 
           var userLocationIcon = "assets/locationPinSmall.png";
           var userLocation = new google.maps.Marker({
@@ -89,24 +92,18 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
         $scope.within2miles = output.data.within2miles;
         $scope.within5miles = output.data.within5miles;
         $scope.within25miles = output.data.within25miles;
-        // $scope.loading = false;
+        $scope.loadingOrgs = false;
       }
     })
   };
 
 
+
   // =-=-=-=-=-=-=-=-=-=~~~~~ End Accordion ~~~~~=-=-=-=-=-=-=-=-=-=
-
-
-
-
 
   $scope.visitOrg = function(orgId) {
     $state.go('organization', {id: orgId});
   };
-
-
-
 
 
   function getAllOrgs(){
@@ -139,8 +136,47 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
     $state.go('organization', {id: orgId});
   };
 
-}]); // End Controller
+  $scope.goToOrgSearch = function(orgId) {
+    // console.log(orgId);
+    $state.go('organization', {id: orgId});
+  };
 
+  // =-=-=-=-=-=-=-=-~~~ End Map Marker Functions ~~~=-=-=-=-=-=-=-=-
+
+
+
+
+
+
+
+
+
+  // =-=-=-=-=-=-=-=-~~~ City Search Functions ~~~=-=-=-=-=-=-=-=-
+
+
+
+  $scope.citySearch = function(){
+    $scope.searchBy = {city: $scope.city, state: $scope.state};
+    $scope.noLocations = '';
+    $scope.searchedCity = {};
+    homeFactory.citySearch($scope.searchBy, function(output){
+      if (output.data.error){
+        $scope.noLocations = "No Locations Found";
+      } else {
+        // console.log(output.data);
+        $scope.searchedCity = output.data;
+      }
+    });
+
+
+
+  } // End citySearch
+
+
+
+
+
+}]); // End Controller
 
 
 

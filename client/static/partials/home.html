@@ -1,7 +1,6 @@
-<!-- <h2 class="centerText">Home Page</h2> -->
-<div class="container-fluid ">
-  <div class="row justify-content-around ">
-    <div class="col-sm-6 curvedDiv">
+<div class="container-fluid homeSpacing">
+  <div class="row ">
+    <div class="col-sm-6">
 
       <div ng-controller="homeController as vm" class="homePageDiv">
 
@@ -28,10 +27,13 @@
 
 
     </div>
-    <div class="col-sm-6 homePageDiv accordionDiv">
+    <div class="col-sm-6 homePageDiv greyContainer accordionDiv">
 
-      <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="Within 2 Miles" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+      <uib-accordion close-others="oneAtATime" ng-show='!loadingOrgs'>
+        <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+          <uib-accordion-heading>
+            Within 2 Miles <span class="accordHeading">{{within2miles.length}} location(s)</span>
+          </uib-accordion-heading>
           <ul>
             <li ng-repeat='place in within2miles'>
               <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
@@ -39,7 +41,10 @@
           </ul>
         </div>
 
-        <div uib-accordion-group class="panel-default" heading="Within 5 Miles">
+        <div uib-accordion-group class="panel-default">
+          <uib-accordion-heading>
+            Within 5 Miles <span class="accordHeading">{{within5miles.length}} location(s)</span>
+          </uib-accordion-heading>
           <ul>
             <li ng-repeat='place in within5miles'>
               <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
@@ -47,7 +52,10 @@
           </ul>
         </div>
 
-        <div uib-accordion-group class="panel-default" heading="Within 25 Miles">
+        <div uib-accordion-group class="panel-default">
+          <uib-accordion-heading>
+            Within 25 Miles <span class="accordHeading">{{within25miles.length}} location(s)</span>
+          </uib-accordion-heading>
           <ul>
             <li ng-repeat='place in within25miles'>
               <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
@@ -57,7 +65,107 @@
 
       </uib-accordion>
 
+      <div class="lds-ripple" ng-show='loadingOrgs'>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+
+    <div class="row homeSpacing">
+      <div class="col-sm-6 col-sm-offset-6">
+        <div class="row citySearchDiv">
+          <form class="" name='SearchCity' ng-submit="citySearch(loginForm.$valid)">
+            <div class="form-group col-sm-5 " ng-class="{ 'has-danger' : SearchCity.city.$invalid && !SearchCity.city.$pristine }">
+              <label class="sr-only" for="searchCity">Search City.. </label>
+              <input required placeholder="City..." class='form-control' id='searchCity' type="text" name="city" ng-model='city'>
+            </div>
+
+            <div class="form-group col-sm-4">
+              <label class="sr-only" for="myselect">State..</label>
+              <select required class="form-control" name="state" ng-model='state'>
+                <option value="">State</option>
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AZ">AZ</option>
+                <option value="AR">AR</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="IA">IA</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="ME">ME</option>
+                <option value="MD">MD</option>
+                <option value="MA">MA</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MS">MS</option>
+                <option value="MO">MO</option>
+                <option value="MT">MT</option>
+                <option value="NE">NE</option>
+                <option value="NV">NV</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NY">NY</option>
+                <option value="NC">NC</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VT">VT</option>
+                <option value="VA">VA</option>
+                <option value="WA">WA</option>
+                <option value="WV">WV</option>
+                <option value="WI">WI</option>
+                <option value="WY">WY</option>
+              </select>
+            </div>
+
+            <div class="form-group col-sm-3 ">
+              <button class="btn btn-secondary" type="submit"> Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
   </div>
+
+
+  <div class="row">
+
+<!-- popover-class='popOverTip' uib-popover="Open in new tab" popover-trigger="'mouseenter'" popover-placement="top" -->
+
+    <div ng-show='searchedCity' class="greyContainer searchResults col-sm-8 col-sm-offset-2">
+      <li ng-repeat='place in searchedCity'>
+        <a href='' ng-click="goToOrgSearch(place._id)"> <span>{{place.organization}}</span> - </a> <a href='' ng-click="openMap(place.formattedAddress)">{{place.formattedAddress}}</a> <p ng-show='place.website'> - </p> <a ng-show='place.website' href='' ng-click="openWebsite(place.website)">{{place.website}}</a>
+      </li>
+
+      <h4>{{noLocations}}</h4>
+
+    </div>
+
+
+  </div>
+
+
+
+
 </div>

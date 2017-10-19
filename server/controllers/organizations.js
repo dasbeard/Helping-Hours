@@ -135,7 +135,7 @@ module.exports = (function(){
         }
         else {
           var toSendBack = {
-                            orgName: oneUser.organization, website: oneUser.website, formattedAddress: oneUser.formattedAddress, contactEmail: oneUser.contactEmail, phone: oneUser.phone, description: oneUser.description, hoursOfOperation: oneUser.hoursOfOperation, daysServingFood: oneUser.daysServingFood, services: oneUser.services
+                            orgName: oneUser.organization, website: oneUser.website, formattedAddress: oneUser.formattedAddress, contactEmail: oneUser.contactEmail, phone: oneUser.phone, description: oneUser.description, hoursOfOperation: oneUser.hoursOfOperation, daysServingFood: oneUser.daysServingFood, services: oneUser.services, lat: oneUser.latitude, lng: oneUser.longitude
                             };
           res.json(toSendBack);
         }
@@ -320,7 +320,29 @@ module.exports = (function(){
     },
 
 
+    citySearch: function(req,res){
+      var city = titleCase(req.body.city)
+      Organization.find({$and: [{state: req.body.state}, {city: city}]}, function(err, results){
+        if (err){
+          console.log('==== Error finding by state ===='.red);
+          console.log(err);
+        } else {
+          // console.log(results);
+          var sendBack = [];
 
+          for (var i=0; i<results.length; i++){
+            organization = { formattedAddress: results[i].formattedAddress, organization: results[i].organization, website: results[i].website, _id: results[i]._id}
+            sendBack.push(organization);
+          };
+
+          if (sendBack.length == 0){
+            res.json({error: 'No locations found'});
+          } else {
+            res.json(sendBack);
+          }
+        }
+      })
+    },
 
 
 
