@@ -4,11 +4,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-
-  height: 100%;
+  height: 90%;
   width: 100%;
   position: absolute;
 }
+
 
 
 /*=======================================================*/
@@ -80,17 +80,9 @@
   overflow-y: hidden;
 }
 
-.navbar-brand{
-  /*float:none;*/
-  display: flex;
-  /*align-items: flex-start;*/
-  /*left: 0;*/
-}
-
 .navBarColor{
   background-color: #7ea4b7;
-  /*border-bottom: 1px solid black;*/
-  /*line-height: 34px;*/
+  border: 2px solid black;
 }
 
 #brandText{
@@ -101,24 +93,23 @@
   float: right;
 }
 
-
-
 /*=======================================================*/
 /*=================== Home Page Classes =================*/
 /*=======================================================*/
-.curvedDiv{
+.homeSpacing{
+  margin-left: 25px;
+  margin-right: 35px;
+}
+
+#mapId{
+  height: 500px;
+  width: 100%;
+
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   -webkit-transform: translate3d(0px, 0px, 0px);
   -webkit-mask-image: -webkit-radial-gradient(white, black);
-  padding: 0;
-}
-
-
-#mapId{
-  height: 500px;
-  width: 100%;
 }
 
 .mapInfoBox a, .mapInfoBox p{
@@ -130,9 +121,170 @@
   padding: 10px;
 }
 
+.accordionDiv{
+  height: 425px;
+  margin-top: 10px;
+}
+
+.accordionDiv li{
+  list-style: none;
+}
+
 .accordionDiv li span{
   font-size: 1.2em;
 }
+
+.accordHeading{
+  float: right;
+  font-size: small;
+}
+
+.panel-title{
+  padding-left: 15px;
+}
+
+.citySearchDiv{
+  background-color: rgba(225, 225, 225, 0.85);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  height: 55px;
+  padding-top: 2%;
+  margin-top: -65px;
+  margin-right: -50px;
+  margin-left: -10px;
+}
+
+
+.searchResults a {
+  text-decoration: none;
+  color: black;
+}
+
+.searchResults a:hover {
+  color: #0986c6;
+}
+
+.searchResults li {
+  list-style: none;
+  text-align: center;
+}
+
+.searchResults{
+  text-align: center;
+  height: 135px;
+  overflow-y: auto;
+  box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
+}
+
+.searchResults span {
+  font-weight: bold;
+}
+
+
+.searchResults a, .searchResults p {
+  margin: 5px;
+  display: inline-block;
+}
+
+#website {
+  color: blue;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+  #mapId{
+    margin-left: -20px;
+
+    width: 120%;
+  }
+  .citySearchDiv{
+    margin-top: 15px;
+    margin-left: -40px;
+    margin-right: -55px;
+    height: auto;
+  }
+  .accordionDiv{
+    height: auto;
+  }
+}
+
+
+/*.curvedDiv{
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+-webkit-transform: translate3d(0px, 0px, 0px);
+-webkit-mask-image: -webkit-radial-gradient(white, black);
+padding: 0;
+}*/
+/*=======================================================*/
+/*================= Loading Ring Classes ================*/
+/*=======================================================*/
+
+@keyframes lds-ripple {
+  0% {
+    top: 94px;
+    left: 94px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 17px;
+    left: 17px;
+    width: 154px;
+    height: 154px;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes lds-ripple {
+  0% {
+    top: 94px;
+    left: 94px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 17px;
+    left: 17px;
+    width: 154px;
+    height: 154px;
+    opacity: 0;
+  }
+}
+.lds-ripple {
+  position: relative;
+}
+.lds-ripple div {
+  box-sizing: content-box;
+  position: absolute;
+  border-width: 6px;
+  border-style: solid;
+  opacity: 1;
+  border-radius: 50%;
+  -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(1) {
+  border-color: #c5523f;
+}
+.lds-ripple div:nth-child(2) {
+  border-color: #f2b736;
+  -webkit-animation-delay: -0.5s;
+  animation-delay: -0.5s;
+}
+.lds-ripple {
+  margin-left: calc(50% - 100px);
+  margin-top: 15%;
+  width: 200px !important;
+  height: 200px !important;
+  -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
 
 
 /*=======================================================*/
@@ -152,6 +304,12 @@
   margin-left: calc(50% - 40px);
   margin-top: 5%;
   margin-bottom: 5%;
+}
+
+.btn{
+  border: 1px solid rgba(107, 120, 142, .5);
+  box-shadow:1px 1px 2px;
+
 }
 
 .locationMask{
@@ -269,11 +427,29 @@
 /*================== Edit Page Classes ==================*/
 /*=======================================================*/
 .servicesContainer{
-  margin-top: 1%;
   padding-left: 25px;
   padding-right: 25px;
+  padding-top: 1%;
+
+}
+.boxBg{
+  margin: 0 5% 1% 5%;
+  background-color: rgba(225, 225, 225, 0.85);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
 }
 
+.servicesContainer h4, .servicesContainer h3{
+  margin-top: 0;
+}
+
+.form-control{
+  border: 1px solid rgba(107, 120, 142, .5);
+  background-color: rgba(225, 225, 225, .5);
+  box-shadow:1px 1px 2px;
+  color: black;
+}
 
 .mySelect div select{
   width: auto;
@@ -300,6 +476,7 @@
 .servicesPadding{
   padding-left: 5%;
   padding-right: 5%;
+  padding-top: 1%;
 }
 
 .editPageMask{
@@ -352,45 +529,35 @@
 }
 
 
-/*.servicesContainer li{
-list-style: none;
-margin-bottom: 5px;
-}*/
-
-/*.smallerBtn {
-line-height: 10px;
-height: 25px;
-}*/
-
-/*.hoursContainer{
-display: flex;
-justify-content: space-around;*/
+.smallerBtn {
+  line-height: 10px;
+  height: 25px;
 }
 
-/*.hoursContainer p{
-margin-bottom: 0px;
-margin-top: 8px;
-font-size: smaller;
-padding-left: 50px;
-}*/
+.hoursContainer{
+  display: flex;
+  justify-content: space-around;
+}
 
-/*.servicesContainer td, .servicesContainer th{
-padding: 1px;
-}*/
+.hoursContainer p{
+  margin-bottom: 0px;
+  margin-top: 8px;
+  font-size: smaller;
+  padding-left: 50px;
+}
 
-/*.servicesContainer th{
-width: 25px;
-}*/
+.servicesContainer td, .servicesContainer th{
+  padding: 1px;
+}
 
-/*.editTableTo{
-width: 25px;
-}*/
+.servicesContainer th{
+  width: 25px;
+}
 
-/*.centerBottom{
-margin-top: 60px;
-position: relative;
-bottom:0;
-}*/
+.editTableTo{
+  width: 25px;
+}
+
 
 /*.editOrgName{
 padding-top: 20px;
@@ -409,6 +576,22 @@ display: inline-flex;
 /*.myCheckBox {
   background-color: blue;
 }*/
+
+.servicesSpacing{
+  min-height: 30px;
+  margin-bottom: 25px;
+}
+
+
+.orgPushDown{
+  margin-top: 15px;
+}
+
+@media only screen and (max-width: 500px) {
+  .orgPushDown{
+    margin-top: 0;
+  }
+}
 
 .OrgName{
   padding-top: 2px;
@@ -435,10 +618,24 @@ display: inline-flex;
   margin-bottom: 15px;
 }
 
+#orgMap{
+  height: 125px;
+}
+
+.orgMapClick:hover{
+  cursor: pointer;
+}
+
+.popOverTip{
+  /*background-color: red;*/
+  margin: 0;
+  font-size: smaller;
+}
 
 .descriptionBox{
+  color: black;
   border: 1px solid rgba(107, 120, 142, .5);
-  background-color: rgba(107, 120, 142, .2);
+  background-color: rgba(225, 225, 225, .5);
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -448,8 +645,9 @@ display: inline-flex;
 }
 
 .otherServicesBox{
+  color: black;
   border: 1px solid rgba(107, 120, 142, .5);
-  background-color: rgba(107, 120, 142, .2);
+  background-color: rgba(225, 225, 225, .5);
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;

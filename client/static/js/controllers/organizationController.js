@@ -1,9 +1,10 @@
 // =========================================================================
 // =========================== Organization Controller ===========================
 // =========================================================================
-app.controller('organizationController', ['$scope', 'editFactory', '$location', '$cookies', '$window', '$uibModal', '$log', '$document', '$stateParams', function($scope, editFactory, $location, $cookies, $window, $uibModal, $log, $document, $stateParams){
+app.controller('organizationController', ['$scope', 'editFactory', '$location', '$cookies', '$window', 'NgMap', '$stateParams', function($scope, editFactory, $location, $cookies, $window, NgMap, $stateParams){
 
 
+  $scope.daysStatus = false;
 
 
   $scope.findOrg = $stateParams;
@@ -24,28 +25,30 @@ app.controller('organizationController', ['$scope', 'editFactory', '$location', 
     } else {
       $scope.org = output.data;
       $scope.orgServices = output.data.services;
-      $scope.isAvailable = {};
-      if(output.data.contactEmail){
-        $scope.isAvailable.email = true;
+      $scope.latLong = output.data.lat + ',' + output.data.lng;
+
+
+      if(($scope.org.daysServingFood.length < 1) && ($scope.org.hoursOfOperation.length < 1)){
+        $scope.daysStatus = true;
       }
-      if(output.data.website){
-        $scope.isAvailable.website = true;
-      }
+
       if(output.data.phone){
-        $scope.isAvailable.phone = true;
         $scope.org.phone = phoneDisplay(output.data.phone);
       }
       $scope.loggedInUser = $cookies.getObject('loggedUser');
+
+      NgMap.getMap().then(function(map) {
+          var marker = new google.maps.Marker({
+            position: {lat: $scope.org.lat, lng: $scope.org.lng},
+            map: map,
+            clickable: false,
+            animation: google.maps.Animation.DROP,
+          })
+      });
+
+
     }
   });
-
-
-
-
-
-
-
-
 
 
 
@@ -54,6 +57,13 @@ app.controller('organizationController', ['$scope', 'editFactory', '$location', 
   $scope.openWebsite = function (){
     var site = 'http://'
     site += $scope.org.website
+    $window.open(site);
+  }
+
+
+  $scope.openMap = function (){
+    var site = 'https://www.google.com/maps/dir/?api=1&destination=';
+    site += encodeURI($scope.org.formattedAddress);
     $window.open(site);
   }
 

@@ -1,179 +1,174 @@
-<form name="editOrgForm" ng-submit="editOrganization(editOrgForm.$valid)" >
-  <div class="container-fluid servicesContainer">
+<div class="boxBg">
 
-      <div class="row">
+  <form name="editOrgForm" ng-submit="editOrganization(editOrgForm.$valid)" >
+    <div class="container-fluid servicesContainer">
 
-        <div class="col-sm-7 col-sm-push-2 centerText">
-          <div class="editOrgName">
-            <h2>{{editOrg.orgName}}</h2>
+        <div class="row">
+
+          <div class="col-sm-6 col-sm-push-3 centerText">
+            <div class="editOrgName">
+              <h2>{{editOrg.orgName}}</h2>
+            </div>
+            <div class="centerBottomAddress centerText">
+              <p>{{editOrg.formattedAddress}}</p>
+            </div>
           </div>
-          <div class="centerBottom centerText">
-            <p>{{editOrg.formattedAddress}}</p>
+
+          <div class="col-sm-3 col-sm-pull-6 editInfoAdjust">
+
+            <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.website.$invalid && !editOrgForm.$pristine }">
+              <label for="website" class="sr-only">Organizations Website</label>
+              <input type="text" name="website" class="form-control" placeholder="Website" id="website" ng-model="editOrg.website" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/">
+            </div>
+            <p ng-show="editOrgForm.website.$invalid && !editOrgForm.website.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
+
+            <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.email.$invalid && !editOrgForm.email.$pristine }">
+              <label for="orgEmail" class="sr-only" >Contact Email</label>
+              <input type="email" class="form-control" placeholder="Contact E-Mail" id="orgEmail" ng-model='editOrg.contactEmail' name="email" ui-mask-placeholder>
+
+            </div>
+            <p ng-show="editOrgForm.email.$invalid && !editOrgForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
+
+            <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.phone.$invalid && !editOrgForm.phone.$pristine }">
+              <label for="orgPhone" class="sr-only">Contact Phone Number</label>
+              <input type="tel" class="form-control" placeholder="Phone Number" ui-mask-placeholder ui-mask-placeholder-char="_" ui-mask="(999) 999-9999" id="orgPhone" ng-model='editOrg.phone' name="phone">
+            </div>
+
+          </div>
+
+          <div class="col-sm-3 centerText">
+            <div class="form-group centerText" ng-class="{ 'has-error' : editOrgForm.description.$invalid && !editOrgForm.description.$pristine }">
+              <label class="" for="description">Tell us about your Organization</label>
+              <textarea class="form-control" id="description" rows="5" name="description" ng-model="editOrg.description"></textarea>
+              <p ng-show="editOrgForm.description.$invalid && !editOrgForm.description.$pristine">Description must be at least 3 characters long.</p>
+            </div>
           </div>
         </div>
+    </div>
+    <div class="container-fluid servicesContainer">
+        <div class="row tall">
 
-        <div class="col-sm-2 col-sm-pull-7 editInfoAdjust">
-
-          <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.website.$invalid && !editOrgForm.$pristine }">
-            <label for="website" class="sr-only">Organizations Website</label>
-            <input type="text" name="website" class="form-control" placeholder="Website" id="website" ng-model="editOrg.website" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/">
-          </div>
-          <p ng-show="editOrgForm.website.$invalid && !editOrgForm.website.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
-
-
-
-
-          <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.email.$invalid && !editOrgForm.email.$pristine }">
-            <label for="orgEmail" class="sr-only" >Contact Email</label>
-            <input type="email" class="form-control" placeholder="Contact E-Mail" id="orgEmail" ng-model='editOrg.contactEmail' name="email" ui-mask-placeholder>
-
-          </div>
-          <p ng-show="editOrgForm.email.$invalid && !editOrgForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
-
-          <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.phone.$invalid && !editOrgForm.phone.$pristine }">
-            <label for="orgPhone" class="sr-only">Contact Phone Number</label>
-            <input type="tel" class="form-control" placeholder="Phone Number" ui-mask-placeholder ui-mask-placeholder-char="_" ui-mask="(999) 999-9999" id="orgPhone" ng-model='editOrg.phone' name="phone">
-            <!-- <span ng-show="isAvailable.phone" class="input-group-btn">
-              <button class="btn btn-secondary" type="button">X</button>
-            </span> -->
-          </div>
-          <!-- <p ng-show="editOrgForm.phone.$invalid && !editOrgForm.phone.$pristine" class="form-text text-muted">Please enter a vaild Phone Number</p> -->
-
-        </div>
-
-        <div class="col-sm-3 centerText">
-          <div class="form-group centerText" ng-class="{ 'has-error' : editOrgForm.description.$invalid && !editOrgForm.description.$pristine }">
-            <label class="" for="description">Tell us about your Organization</label>
-            <textarea class="form-control" id="description" rows="5" name="description" ng-model="editOrg.description"></textarea>
-            <p ng-show="editOrgForm.description.$invalid && !editOrgForm.description.$pristine">Description must be at least 3 characters long.</p>
-          </div>
-        </div>
-      </div>
-  </div>
-  <div class="container-fluid servicesContainer">
-      <div class="row tall">
-
-        <div class="col-sm-6 col-sm-push-6 servicesPadding">
-          <div class="row mySmall">
-            <div class="col-xs-6">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.beds' ng-true-value="true" ng-false-value="false">
-                Beds available
-              </label>
+          <div class="col-sm-6 col-sm-push-6 servicesPadding">
+            <div class="row mySmall">
+              <div class="col-xs-6">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" ng-model='editOrgServices.beds' ng-true-value="true" ng-false-value="false">
+                  Beds available
+                </label>
+              </div>
+              <div class="col-xs-6">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" ng-model='editOrgServices.cloths' ng-true-value="true" ng-false-value="false">
+                  Clothing available
+                </label>
+              </div>
             </div>
-            <div class="col-xs-6">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.cloths' ng-true-value="true" ng-false-value="false">
-                Clothing available
-              </label>
+            <div class="row mySmall">
+              <div class="col-xs-6">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" ng-model='editOrgServices.childCare' ng-true-value="true" ng-false-value="false">
+                  Childcare available
+                </label>
+              </div>
+              <div class="col-xs-6">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" ng-model='editOrgServices.recActivites' ng-true-value="true" ng-false-value="false">
+                  Recreational Activities
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="row mySmall">
-            <div class="col-xs-6">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.childCare' ng-true-value="true" ng-false-value="false">
-                Childcare available
-              </label>
+            <div class="row mySmall">
+              <div class="col-xs-6">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" ng-model='editOrgServices.donations' ng-true-value="true" ng-false-value="false">
+                  Takes Donations
+                </label>
+              </div>
+              <div class="col-xs-6">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" ng-model='editOrgServices.education' ng-true-value="true" ng-false-value="false">
+                  Educational Help
+                </label>
+              </div>
             </div>
-            <div class="col-xs-6">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.recActivites' ng-true-value="true" ng-false-value="false">
-                Recreational Activities
-              </label>
+            <div class="row mySmall">
+              <div class="col-xs-6">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" ng-model='editOrgServices.job' ng-true-value="true" ng-false-value="false">
+                  Job Placement Help
+                </label>
+              </div>
+              <div class="col-xs-6">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" ng-model='editOrgServices.interview' ng-true-value="true" ng-false-value="false">
+                  Interview Help
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="row mySmall">
-            <div class="col-xs-6">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.donations' ng-true-value="true" ng-false-value="false">
-                Takes Donations
-              </label>
+            <div class="row mySmall">
+              <div class="col">
+                <div class="form-group centerText">
+                  <label class="" for="otherServices">Other services you have available</label>
+                  <textarea class="form-control" id="otherServices" rows="3" name="otherServices" ng-model="editOrgServices.otherServices"></textarea>
+                </div>
+              </div>
             </div>
-            <div class="col-xs-6">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.education' ng-true-value="true" ng-false-value="false">
-                Educational Help
-              </label>
-            </div>
-          </div>
-          <div class="row mySmall">
-            <div class="col-xs-6">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.job' ng-true-value="true" ng-false-value="false">
-                Job Placement Help
-              </label>
-            </div>
-            <div class="col-xs-6">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" ng-model='editOrgServices.interview' ng-true-value="true" ng-false-value="false">
-                Interview Help
-              </label>
-            </div>
-          </div>
-          <div class="row mySmall">
-            <div class="col">
-              <div class="form-group">
-                <label class="" for="otherServices">Other services you have available</label>
-                <textarea class="form-control" id="otherServices" rows="3" name="otherServices" ng-model="editOrgServices.otherServices"></textarea>
+            <div class="row mySmall ">
+              <div class="col-xs-12 centerText align-self-center">
+                <button class="btn btn-secondary" type="submit">Save Changes</button>
               </div>
             </div>
           </div>
-          <div class="row mySmall ">
-            <div class="col-xs-12 centerText align-self-center">
-              <button class="btn btn-secondary" type="submit">Save Changes</button>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-sm-5 col-sm-pull-7 col-sm-offset-1">
-          <div class="row">
-            <div class="col centerText ">
-              <div class="hoursContainer">
-                <h3 class="">Hours of Operation</h3>
-                <p><a href="" ng-click="addDayOfOp()">Add a Day</a></p>
+          <div class="col-sm-5 col-sm-pull-7 col-sm-offset-1">
+            <div class="row">
+              <div class="col-sm-12 centerText ">
+                <div class="hoursContainer">
+                  <h3 class="">Hours of Operation</h3>
+                  <p><a href="" ng-click="addDayOfOp()">Add a Day</a></p>
+                </div>
+                <table class="table table-sm table-hover">
+                  <tbody>
+                    <tr ng-repeat="d in editOrg.hoursOfOperation">
+                      <th scope="row">{{d.day}}</th>
+                      <td>{{d.open}} {{d.openPeriod}}</td>
+                      <td class="editTableTo">to</td>
+                      <td>{{d.closed}} {{d.closedPeriod}}</td>
+                      <td><button type="button" class="btn btn-secondary btn-sm smallerBtn" ng-click="removeDay($index, 'hoursOfOperation')">remove</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+
               </div>
-              <table class="table table-sm table-hover">
-                <tbody>
-                  <tr ng-repeat="d in editOrg.hoursOfOperation">
-                    <th scope="row">{{d.day}}</th>
-                    <td>{{d.open}} {{d.openPeriod}}</td>
-                    <td class="editTableTo">to</td>
-                    <td>{{d.closed}} {{d.closedPeriod}}</td>
-                    <td><button type="button" class="btn btn-secondary btn-sm smallerBtn" ng-click="removeDay($index, 'hoursOfOperation')">remove</button></td>
-                  </tr>
-                </tbody>
-              </table>
-
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12 centerText ">
-              <div class="hoursContainer">
-                <h3 class="">Days Serving Food</h3>
-                <p><a href="" ng-click="addServing()">Add a Day</a></p>
+            <div class="row">
+              <div class="col-sm-12 centerText ">
+                <div class="hoursContainer">
+                  <h3 class="">Days Serving Food</h3>
+                  <p><a href="" ng-click="addServing()">Add a Day</a></p>
+                </div>
+                <table class="table table-sm table-hover">
+                  <tbody>
+                    <tr ng-repeat="d in editOrg.daysServingFood">
+                      <th scope="row">{{d.day}}</th>
+                      <td>{{d.open}} {{d.openPeriod}}</td>
+                      <td class="editTableTo">to</td>
+                      <td>{{d.closed}} {{d.closedPeriod}}</td>
+                      <td><button type="button" class="btn btn-secondary btn-sm smallerBtn" ng-click="removeDay($index, 'daysServingFood')">remove</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+
               </div>
-              <table class="table table-sm table-hover">
-                <tbody>
-                  <tr ng-repeat="d in editOrg.daysServingFood">
-                    <th scope="row">{{d.day}}</th>
-                    <td>{{d.open}} {{d.openPeriod}}</td>
-                    <td class="editTableTo">to</td>
-                    <td>{{d.closed}} {{d.closedPeriod}}</td>
-                    <td><button type="button" class="btn btn-secondary btn-sm smallerBtn" ng-click="removeDay($index, 'daysServingFood')">remove</button></td>
-                  </tr>
-                </tbody>
-              </table>
-
             </div>
           </div>
+
+
         </div>
+    </div>
+  </form>
 
-
-      </div>
-  </div>
-</form>
-
-
+</div>
 
 
 
