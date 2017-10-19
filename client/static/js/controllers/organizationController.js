@@ -5,6 +5,7 @@ app.controller('organizationController', ['$scope', 'editFactory', '$location', 
 
 
   $scope.daysStatus = false;
+  $scope.noOrgInfo = false;
 
 
   $scope.findOrg = $stateParams;
@@ -30,6 +31,11 @@ app.controller('organizationController', ['$scope', 'editFactory', '$location', 
 
       if(($scope.org.daysServingFood.length < 1) && ($scope.org.hoursOfOperation.length < 1)){
         $scope.daysStatus = true;
+      }
+
+      if(!$scope.org.contactEmail && !$scope.org.phone && !$scope.org.website){
+        $scope.noOrgInfo = true;
+
       }
 
       if(output.data.phone){

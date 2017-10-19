@@ -21,8 +21,8 @@
           </div>
         </div>
 
-        <div class="col-sm-3 col-sm-pull-6 centerText orgPushDown">
-          <h4>Contact Us</h4>
+        <div class="col-sm-3 col-sm-pull-6 centerText orgPushDown" >
+          <h4 ng-if='!noOrgInfo'>Contact Us</h4>
           <div class="orgInfo">
             <a href='' ng-click="openWebsite()" popover-class='popOverTip' uib-popover="Open in new tab" popover-trigger="'mouseenter'" popover-placement="top">{{org.website}}</a>
           </div>
