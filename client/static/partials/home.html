@@ -34,33 +34,42 @@
           <uib-accordion-heading>
             Within 2 Miles <span class="accordHeading">{{within2miles.length}} location(s)</span>
           </uib-accordion-heading>
-          <ul>
-            <li ng-repeat='place in within2miles'>
-              <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
-            </li>
-          </ul>
+            <table class="table table-sm table-hover">
+              <tbody>
+                <tr ng-repeat='place in within2miles'>
+                  <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
+                  <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
 
         <div uib-accordion-group class="panel-default">
           <uib-accordion-heading>
             Within 5 Miles <span class="accordHeading">{{within5miles.length}} location(s)</span>
           </uib-accordion-heading>
-          <ul>
-            <li ng-repeat='place in within5miles'>
-              <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
-            </li>
-          </ul>
+            <table class="table table-sm table-hover">
+              <tbody>
+                <tr ng-repeat='place in within5miles'>
+                  <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
+                  <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
 
         <div uib-accordion-group class="panel-default">
           <uib-accordion-heading>
             Within 25 Miles <span class="accordHeading">{{within25miles.length}} location(s)</span>
           </uib-accordion-heading>
-          <ul>
-            <li ng-repeat='place in within25miles'>
-              <a href="" ng-click="visitOrg(place._id)"><span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
-            </li>
-          </ul>
+          <table class="table table-sm table-hover">
+            <tbody>
+              <tr ng-repeat='place in within25miles'>
+                <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
+                <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
       </uib-accordion>

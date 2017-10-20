@@ -81,9 +81,9 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
             if(output.data.error){
               $scope.error2 = output.data.error;
             } else {
-              $cookies.putObject("loggedUser", output.data.sentback);
-              $rootScope.loggedInUser = $cookies.getObject('loggedUser');
-              // console.log($rootScope.loggedInUser);
+              setCookie(output.data.sentback);
+              // $cookies.putObject("loggedUser", output.data.sentback);
+              // $rootScope.loggedInUser = $cookies.getObject('loggedUser');
               window.location.replace('/#!/edit');
             }
           });
@@ -97,9 +97,6 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
 
 
   $scope.latLngSubmit = function(isValid){
-    // console.log('clicked');
-    // console.log(isValid);
-    // console.log($scope.latLng);
     if(isValid){
       if($scope.latLng){
         if(!$scope.latLng.lat){
@@ -174,8 +171,9 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
           $scope.error = output.data.error;
         } else {
           // console.log(output.data);
-          $cookies.putObject("loggedUser", output.data);
-          $rootScope.loggedInUser = $cookies.getObject('loggedUser');
+          setCookie(output.data);
+          // $cookies.putObject("loggedUser", output.data);
+          // $rootScope.loggedInUser = $cookies.getObject('loggedUser');
           window.location.replace('/#!/organization/' + $rootScope.loggedInUser.id);
         }
       });
@@ -208,9 +206,12 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
   $scope.isCollapsedHorizontal = false;
 
 
-
-
-
+  function setCookie(input){
+    var expireAt = new Date();
+    expireAt.setDate(expireAt.getDate() + .5);
+    $cookies.putObject("loggedUser", input, {expires: expireAt});
+    $rootScope.loggedInUser = $cookies.getObject('loggedUser');
+  }
 
 
 

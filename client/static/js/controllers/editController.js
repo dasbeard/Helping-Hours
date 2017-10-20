@@ -113,7 +113,7 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
                 $scope.savedMask = false;
             });
             window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
-        }, 3050);
+        }, 700);
         // window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
 
       }

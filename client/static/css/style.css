@@ -73,9 +73,9 @@
 /*=======================================================*/
 /*==================== Nav Bar Classes ==================*/
 /*=======================================================*/
-.horizontal-collapse {
+/*.horizontal-collapse {
   height: 70px;
-}
+}*/
 .navbar-collapse.in {
   overflow-y: hidden;
 }
@@ -126,13 +126,29 @@
   margin-top: 10px;
 }
 
-.accordionDiv li{
+.accordionDiv td:hover{
+  cursor: pointer;
+}
+
+.accordionDiv td:nth-child(1){
+  font-size: 1.2em;
+}
+
+.panel-body{
+  padding-top: 2px;
+}
+
+/*.accordionDiv tr{
+  border-top: 0px;
+}*/
+
+/*.accordionDiv li{
   list-style: none;
 }
 
 .accordionDiv li span{
   font-size: 1.2em;
-}
+}*/
 
 .accordHeading{
   float: right;
@@ -199,14 +215,20 @@
 
     width: 120%;
   }
+  .accordionDiv{
+    height: auto;
+    padding: 0;
+  }
   .citySearchDiv{
     margin-top: 15px;
     margin-left: -40px;
     margin-right: -55px;
+    margin-bottom: 25px;
     height: auto;
+    padding-top: 25px;
   }
-  .accordionDiv{
-    height: auto;
+  .citySearchDiv form div:nth-child(3){
+    padding-left: calc(50% - 35px);
   }
 }
 
@@ -324,12 +346,6 @@ padding: 0;
   padding: 2% 5% 0 5%;
 }
 
-@media only screen and (max-width: 500px) {
-  .locationMask {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-}
 
 .locationMask p{
   line-height: 30px;
@@ -353,21 +369,8 @@ padding: 0;
   margin-right: 22%;
 }
 
-@media only screen and (max-width: 500px) {
-  .OrgNameMask {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-}
-
 .latLngContainer{
   margin: 15%;
-}
-
-@media only screen and (max-width: 500px) {
-  .latLngContainer {
-    margin: 2%;
-  }
 }
 
 .latLngDiv{
@@ -383,22 +386,6 @@ padding: 0;
 
 .latLngDiv button{
   margin-top: 10%;
-}
-
-@media only screen and (max-width: 500px) {
-  .latLngDiv {
-    max-height: 300px;
-  }
-  .latLngDiv:nth-child(2) {
-    max-height: 210px;
-  }
-  .latLngDiv button{
-    margin-bottom: 12px;
-    margin-top: 5%;
-  }
-  .latLngDiv form{
-    margin-top: 5%;
-  }
 }
 
 .jumbotronError{
@@ -421,6 +408,40 @@ padding: 0;
   font-weight: bolder;
   text-decoration: underline;
 }
+
+@media only screen and (max-width: 500px) {
+  .logRegContainers:nth-child(1){
+    margin-top: 5px;
+  }
+  .logRegContainers:nth-child(2){
+    margin-bottom: 25px;
+  }
+  .OrgNameMask {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .locationMask {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .latLngContainer {
+    margin: 2%;
+  }
+  .latLngDiv {
+    max-height: 300px;
+  }
+  .latLngDiv:nth-child(2) {
+    max-height: 210px;
+  }
+  .latLngDiv button{
+    margin-bottom: 12px;
+    margin-top: 5%;
+  }
+  .latLngDiv form{
+    margin-top: 5%;
+  }
+}
+
 
 
 /*=======================================================*/
@@ -496,7 +517,43 @@ padding: 0;
   z-index: 0;
 }
 
+
 .saveMask{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255,1);
+  visibility: hidden;
+  -webkit-animation: fadeinout 1s linear forwards;
+  animation: fadeinout 1s linear forwards;
+}
+
+.saveMask h3{
+  margin-top: 25%;
+}
+
+@-webkit-keyframes fadeinout {
+  0% { opacity: 0; visibility: visible;;}
+  55% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden;}
+
+}
+
+@keyframes fadeinout {
+  0% { opacity: 0; visibility: visible;;}
+  55% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden;}
+}
+
+
+
+
+
+/*.saveMask{
   width: 100px;
   position: relative;
   -webkit-border-radius: 10px;
@@ -512,8 +569,8 @@ padding: 0;
   animation-timing-function: ease;
   -webkit-animation-timing-function: ease;
   visibility: hidden;
- }
-
+ }*/
+/*
 @-webkit-keyframes slideUp {
   0% {bottom: 2px; background-color: #7ea4b7; visibility: visible; opacity: .7; color: #7ea4b7; }
   45% {bottom: 250px; background-color: #6fa2bc; opacity: 1; }
@@ -526,7 +583,7 @@ padding: 0;
   45% {bottom: 250px; background-color: #6fa2bc; opacity: 1; }
   52% {bottom: 250px; background-color: #6fa2bc; opacity: 1; }
   100% {bottom: 2px; background-color: grey; visibility: visible;opacity: 0; }
-}
+}*/
 
 
 .smallerBtn {

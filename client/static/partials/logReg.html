@@ -39,21 +39,21 @@
 
         <div class="form-group" ng-class="{ 'has-danger' : regForm.street.$invalid && !regForm.street.$pristine }">
           <label for="registerStreet" class="sr-only">Register Street</label>
-          <input required class="form-control" type="text" placeholder="Address" id="registerStreet" ng-model='reg.street' name="street">
+          <input required class="form-control" type="text" placeholder="Address" id="registerStreet" ng-model='reg.street' name="street" minlength='1'>
           <p ng-show="regForm.street.$invalid && !regForm.street.$pristine" class="form-text text-muted centerText">Street Address is Required</p>
         </div>
 
         <div class="row">
           <div class="col-sm-7 form-group" ng-class="{ 'has-danger' : regForm.city.$invalid && !regForm.city.$pristine }">
             <label for="registerCity" class="sr-only">Register City</label>
-            <input required class="form-control" type="text" placeholder="City" id="registerCity" ng-model='reg.city' name="city">
+            <input required class="form-control" type="text" placeholder="City" id="registerCity" ng-model='reg.city' name="city" minlength='1'>
             <p ng-show="regForm.city.$invalid && !regForm.city.$pristine" class="form-text text-muted centerText">City is required</p>
           </div>
 
           <div class="col-sm-5 form-group" ng-class="{ 'has-danger' : regForm.zip.$invalid && !regForm.zip.$pristine }">
             <label for="registerZip" class="sr-only">Register Zipcode</label>
-            <input class="form-control" type="number" placeholder="Zipcode" id="registerZip" ng-model='reg.zip' name="zip">
-            <p ng-show="regForm.zip.$invalid && !regForm.zip.$pristine" class="form-text text-muted centerText">Zipcode is required</p>
+            <input required class="form-control" type="number" placeholder="Zipcode" id="registerZip" ng-model='reg.zip' name="zip" minlength='5'>
+            <p ng-show="regForm.zip.$invalid && regForm.zip.$dirty" class="form-text text-muted centerText">Must be at least 5 Numbers</p>
           </div>
         </div>
 
