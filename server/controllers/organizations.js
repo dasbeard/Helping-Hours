@@ -348,6 +348,71 @@ module.exports = (function(){
 
 
 
+    loginAdmin: function(req,res){
+      var myEmail = req.body.email.toLowerCase();
+      // Find user by email
+      Organization.findOne({email: myEmail}, function(err, oneUser){
+        if(err){
+          console.log('====== Error ======'.red);
+          console.log(err);
+        } else {
+          if(!oneUser){
+            // console.log('====== user NOT Found ======'.yellow);
+            res.json({error: "Email or Password Incorrect"});
+
+          } else {
+            // console.log('====== Checking password ======'.yellow);
+            // Authenticate password
+            if(bcrypt.compareSync(req.body.password, oneUser.password)){
+              // console.log('====== Successfuly Logged In ======');
+              var toSendBack = {id: oneUser._id,
+                formattedAddress: oneUser.formattedAddress,
+                organization: oneUser.organization,
+              };
+              res.json(toSendBack)
+            } else {
+              res.json({error: "Email or Password do not match"});
+            }
+          }
+        }
+      });
+    }, // End Login Method
+
+
+    getAll: function(req,res){
+      Organization.find(({}), function(err, allOrgs){
+        if (err){
+          console.log('===== ERROR ====='.red);
+          console.log(err);
+          res.json({error: 'Something went wrong :('})
+        } else{
+          var sendBack = [];
+          for (var i = 0; i<allOrgs.length; i++){
+            sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
+                        website: allOrgs[i].website,
+                        address: allOrgs[i].streetNumber + ' ' + allOrgs[i].streetName + ', ' + allOrgs[i].city,
+                        organization: allOrgs[i].organization,
+                        description: allOrgs[i].description,
+                        position: [allOrgs[i].latitude,allOrgs[i].longitude],
+                        phone: phoneDisplay(allOrgs[i].phone),
+                        email: allOrgs[i].email,
+                        _id: allOrgs[i]._id
+                      }
+              );
+            };
+            res.json(sendBack);
+          }
+        })
+      },
+
+
+
+
+
+
+
+
+
 
 
 

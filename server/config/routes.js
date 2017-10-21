@@ -52,6 +52,15 @@ module.exports = function(app){
     organizations.citySearch(req,res)
   });
 
+  app.post('/loginAdmin', function(req,res){
+    organizations.loginAdmin(req,res)
+  });
+
+  app.post('/getAll', function(req,res){
+    organizations.getAll(req,res)
+  });
+
+
   // app.post('/reg', function(req,res){
   //   organizations.reg(req,res)
   // });

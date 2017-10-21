@@ -38,12 +38,16 @@ app.config(function($stateProvider, $urlRouterProvider){
     templateUrl: "../partials/organization.html",
     controller:"organizationController"
   })
-  // .state('admin', {
-  //   url: "/admin/:id",
-  //   templateUrl: "../partials/admin.html",
-  //   controller:"adminController"
-  // })
-
+  .state('admin', {
+    url: "/admin",
+    templateUrl: "../partials/admin.html",
+    controller:"adminController"
+  })
+  .state('adminPortal', {
+    url: "/adminPortal",
+    templateUrl: "../partials/adminPortal.html",
+    controller:"adminController"
+  })
   // ========== for development ==========
   .state('second', {
     url: "/second",

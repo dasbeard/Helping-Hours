@@ -1,12 +1,11 @@
 // =========================================================================
 // =========================== LogReg Controller ===========================
 // =========================================================================
-app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$location', '$cookies', '$window', '$state', function($scope, $rootScope, logRegFactory, $location, $cookies, $window, $state){
+app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'adminFactory', '$location', '$cookies', '$window', '$state', function($scope, $rootScope, logRegFactory, adminFactory, $location, $cookies, $window, $state){
 
 
   $rootScope.loggedInUser = $cookies.getObject('loggedUser')
 
-console.log($rootScope.loggedInUser);
 
 
 // Register New User Method
@@ -181,6 +180,42 @@ console.log($rootScope.loggedInUser);
 
     }
   }; // End Login Method
+
+
+
+
+  // Admin Login Method
+  $scope.adminLogin = function(){
+    console.log($scope.admin);
+    $scope.error = '';
+
+    // ===== Front End Validation ====
+    if (!$scope.admin){
+      $scope.error = 'Please Enter in Email and Password';
+    } else if(!$scope.admin.email){
+      $scope.error = 'Email required to sign in';
+    }else if (!$scope.admin.password){
+      $scope.error = 'Password required to sign in';
+    } else {
+      // Call Factory Method to Login
+      $scope.error = '';
+      // console.log('sending to backend');
+      adminFactory.loginAdmin($scope.admin, function(output){
+        // adminFactory.log(output);
+        if(output.data.error){
+          $scope.error = output.data.error;
+        } else {
+          // console.log(output.data);
+          setCookie(output.data);
+          window.location.replace('/#!/adminPortal');
+        }
+      });
+    // $scope.admin = {};
+
+    }
+  }; // End Login Method
+
+
 
 
   $scope.myPage = function(){
