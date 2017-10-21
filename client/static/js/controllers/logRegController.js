@@ -6,7 +6,7 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', '$l
 
   $rootScope.loggedInUser = $cookies.getObject('loggedUser')
 
-
+console.log($rootScope.loggedInUser);
 
 
 // Register New User Method

@@ -27,8 +27,12 @@
             <a href='' ng-click="openWebsite()" popover-class='popOverTip' uib-popover="Open in new tab" popover-trigger="'mouseenter'" popover-placement="top">{{org.website}}</a>
           </div>
 
-          <div class="orgInfo">
-            <p >{{org.contactEmail}}</p>
+          <div class="orgInfo copyEmail" ngclipboard data-clipboard-text="{{org.contactEmail}}" ng-click="copyEmail()">
+
+            <p ng-hide='copied'>{{org.contactEmail}}</p>
+            <p ng-show='copied' class="copied">Copied to clipboard</p>
+
+
           </div>
 
           <div class="orgInfo">

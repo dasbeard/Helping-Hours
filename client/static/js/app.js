@@ -1,5 +1,5 @@
 //==================== Creating Angular App ====================
-var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'ngCookies', 'ngAnimate', 'ui.mask', 'ngMap']);
+var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'ngCookies', 'ngAnimate', 'ui.mask', 'ngMap', 'ngclipboard']);
 
 
 
@@ -38,6 +38,11 @@ app.config(function($stateProvider, $urlRouterProvider){
     templateUrl: "../partials/organization.html",
     controller:"organizationController"
   })
+  // .state('admin', {
+  //   url: "/admin/:id",
+  //   templateUrl: "../partials/admin.html",
+  //   controller:"adminController"
+  // })
 
   // ========== for development ==========
   .state('second', {

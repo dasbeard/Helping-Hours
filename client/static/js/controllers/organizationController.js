@@ -1,7 +1,7 @@
 // =========================================================================
 // =========================== Organization Controller ===========================
 // =========================================================================
-app.controller('organizationController', ['$scope', 'editFactory', '$location', '$cookies', '$window', 'NgMap', '$stateParams', function($scope, editFactory, $location, $cookies, $window, NgMap, $stateParams){
+app.controller('organizationController', ['$scope', 'editFactory', '$location', '$cookies', '$window', 'NgMap', '$stateParams', '$timeout', function($scope, editFactory, $location, $cookies, $window, NgMap, $stateParams, $timeout){
 
 
   $scope.daysStatus = false;
@@ -60,20 +60,24 @@ app.controller('organizationController', ['$scope', 'editFactory', '$location', 
 
 
 
+  $scope.copyEmail = function(){
+    $scope.copied = 1;
+    $timeout(function() {
+      $scope.copied = 0;
+    }, 2800);
+  };
+
   $scope.openWebsite = function (){
     var site = 'http://'
     site += $scope.org.website
     $window.open(site);
-  }
-
+  };
 
   $scope.openMap = function (){
     var site = 'https://www.google.com/maps/dir/?api=1&destination=';
     site += encodeURI($scope.org.formattedAddress);
     $window.open(site);
-  }
-
-
+  };
 
   function phoneDisplay(str){
     if (str.length == 10){

@@ -5,15 +5,15 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const NodeGeocoder = require('node-geocoder');
 const distance = require('google-distance');
-// const moment = require('moment');
 
 distance.key = ('AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM');
 
-var options = {
+
+var googleOptions = {
   provider: 'google',
   apiKey: 'AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM'
 };
-var geocoder = NodeGeocoder(options)
+var geocoder = NodeGeocoder(googleOptions)
 
 var Organization = mongoose.model('Organization');
 
@@ -80,6 +80,7 @@ module.exports = (function(){
                   formattedAddress: newOrganization.formattedAddress,
                   organization: newOrganization.organization,
                 };
+
                 res.json({success: true, sentback: toSendBack})
               }
             });
@@ -1007,9 +1008,6 @@ function phoneDisplay(str){
 
 
 
-
-
-
 function intParsing(input){
   var myArr = ('' + input).split('');
   var myStr = '';
@@ -1057,15 +1055,6 @@ function validateLocation(orgObj){
 if (!emailRegex.test(orgObj.email)){
     return 'Please enter in a valid email';
   }
-  // else if (!orgObj.description){
-  //   return 'Please enter a Description to continue';
-  // }
-  // else if (orgObj.description.length < 3){
-  //   return 'Description must be at least 3 characters long';
-  // }
-  // else if (orgObj.description.length > 150){
-  //   return 'Description is too long. 150 Characters max';
-  // }
   else if (orgObj.password == "     ") {
     return 'Please enter a password to continue';
   }
@@ -1078,16 +1067,6 @@ if (!emailRegex.test(orgObj.email)){
   else if(orgObj.password != orgObj.password_conf){
     return 'Passwords do not match!';
   }
-  // if (orgObj.website){
-  //   if (!websiteRegex.test(orgObj.website)){
-  //     return 'Please enter a valid Website';
-  //   }
-  // }
-  // if (orgObj.phone){
-  //   if (!phoneRegex.test(orgObj.phone)){
-  //     return 'Please enter a valid Phone Number';
-  //   }
-  // }
   return true;
 }; // End Validate Location
 

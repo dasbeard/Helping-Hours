@@ -1,8 +1,22 @@
 <div class="container-fluid homeSpacing">
-  <div class="row ">
-    <div class="col-sm-6">
+  <div class="row" ng-controller="logRegController">
+    <div ng-if="!loggedInUser" class="homeHeader greyContainer col-sm-10 col-sm-offset-1">
+      <h2>Helping Hours</h2>
+      <p>Helping hours is a a free resource to help those in need find the help they deserve.</p>
+      <p>We provide a single place where any organization is able to sign-up and let everyone know where they are and what services they provide.</p>
+      <p>From soup kitchens to churches and any where in-between that is there to help provide resources for those in need.</p>
+    </div>
 
-      <div ng-controller="homeController as vm" class="homePageDiv">
+    <div ng-if="loggedInUser" class="homeHeader greyContainer col-sm-10 col-sm-offset-1">
+      <h2>Welcome {{loggedInUser.organization}}</h2>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5 mapDiv">
+
+      <div ng-controller="homeController as vm" class="">
 
         <ng-map id="mapId" default-style="false" center="41,-93" zoom="3">
 
@@ -27,52 +41,56 @@
 
 
     </div>
-    <div class="col-sm-6 homePageDiv greyContainer accordionDiv">
 
-      <uib-accordion close-others="oneAtATime" ng-show='!loadingOrgs'>
-        <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-          <uib-accordion-heading>
-            Within 2 Miles <span class="accordHeading">{{within2miles.length}} location(s)</span>
-          </uib-accordion-heading>
+    <div class="col-sm-2 centerDivide"></div>
+
+    <div class="col-sm-5 accordionDiv">
+
+        <uib-accordion close-others="oneAtATime" ng-show='!loadingOrgs'>
+          <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+            <uib-accordion-heading>
+              Within 2 Miles <span class="accordHeading">{{within2miles.length}} location(s)</span>
+            </uib-accordion-heading>
+              <table class="table table-sm table-hover">
+                <tbody>
+                  <tr ng-repeat='place in within2miles'>
+                    <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
+                    <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+
+          <div uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              Within 5 Miles <span class="accordHeading">{{within5miles.length}} location(s)</span>
+            </uib-accordion-heading>
+              <table class="table table-sm table-hover">
+                <tbody>
+                  <tr ng-repeat='place in within5miles'>
+                    <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
+                    <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+
+          <div uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+              Within 25 Miles <span class="accordHeading">{{within25miles.length}} location(s)</span>
+            </uib-accordion-heading>
             <table class="table table-sm table-hover">
               <tbody>
-                <tr ng-repeat='place in within2miles'>
+                <tr ng-repeat='place in within25miles'>
                   <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
                   <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
                 </tr>
               </tbody>
             </table>
-        </div>
+          </div>
 
-        <div uib-accordion-group class="panel-default">
-          <uib-accordion-heading>
-            Within 5 Miles <span class="accordHeading">{{within5miles.length}} location(s)</span>
-          </uib-accordion-heading>
-            <table class="table table-sm table-hover">
-              <tbody>
-                <tr ng-repeat='place in within5miles'>
-                  <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
-                  <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
+        </uib-accordion>
 
-        <div uib-accordion-group class="panel-default">
-          <uib-accordion-heading>
-            Within 25 Miles <span class="accordHeading">{{within25miles.length}} location(s)</span>
-          </uib-accordion-heading>
-          <table class="table table-sm table-hover">
-            <tbody>
-              <tr ng-repeat='place in within25miles'>
-                <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
-                <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </uib-accordion>
 
       <div class="lds-ripple" ng-show='loadingOrgs'>
         <div></div>
@@ -81,16 +99,19 @@
     </div>
 
 
-    <div class="row homeSpacing">
-      <div class="col-sm-6 col-sm-offset-6">
+
+
+
+    <div class="row">
+      <div class="col-sm-5 col-sm-offset-7">
         <div class="row citySearchDiv">
           <form class="" name='SearchCity' ng-submit="citySearch(loginForm.$valid)">
-            <div class="form-group col-sm-5 " ng-class="{ 'has-danger' : SearchCity.city.$invalid && !SearchCity.city.$pristine }">
+            <div class="form-group col-sm-6 " ng-class="{ 'has-danger' : SearchCity.city.$invalid && !SearchCity.city.$pristine }">
               <label class="sr-only" for="searchCity">Search City.. </label>
               <input required placeholder="City..." class='form-control' id='searchCity' type="text" name="city" ng-model='city'>
             </div>
 
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-3">
               <label class="sr-only" for="myselect">State..</label>
               <select required class="form-control" name="state" ng-model='state'>
                 <option value="">State</option>
@@ -158,6 +179,9 @@
   </div>
 
 
+
+
+
   <div class="row">
 
 <!-- popover-class='popOverTip' uib-popover="Open in new tab" popover-trigger="'mouseenter'" popover-placement="top" -->
@@ -175,6 +199,24 @@
   </div>
 
 
+  <footer class="greyContainer footer">
+    <div class="row">
+      <div class="col-sm-4">
+        <p>*Helping Hours is still under development</p>
+      </div>
+      <div class="col-sm-2 col-sm-offset-4">
+        <p>Contact us at: </p>
+      </div>
+      <div class="col-sm-2 copyEmail centerText" ngclipboard data-clipboard-text="helpinghoursadm@gmail.com" ng-click="copyEmail()">
 
+        <p ng-hide='copied'>HelpingHoursAdm@gmail.com</p>
+        <p ng-show='copied' class="footerCopied ">Copied to clipboard</p>
+
+
+      </div>
+
+
+    </div>
+  </footer>
 
 </div>
