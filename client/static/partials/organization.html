@@ -93,27 +93,27 @@
         <div class="col-sm-6 col-sm-offset-1 servicesPadding">
           <div class="row servicesSpacing">
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label" ng-class="{ 'notAvailable' : !orgServices.beds } ">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.beds' ng-true-value="true" ng-false-value="false">
                 Beds available
               </label>
             </div>
             <div class="col-xs-6">
-              <label class="form-check-label">
-                <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.cloths' ng-true-value="true" ng-false-value="false">
+              <label class="form-check-label" ng-class="{ 'notAvailable' : !orgServices.cloths }">
+                <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.cloths' ng-true-value="true" ng-false-value="false" >
                 Clothing available
               </label>
             </div>
           </div>
           <div class="row servicesSpacing">
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label" ng-class="{ 'notAvailable' : !orgServices.childCare }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.childCare' ng-true-value="true" ng-false-value="false">
                 Childcare available
               </label>
             </div>
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label" ng-class="{ 'notAvailable' : !orgServices.recActivites }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.recActivites' ng-true-value="true" ng-false-value="false">
                 Recreational Activities
               </label>
@@ -121,13 +121,13 @@
           </div>
           <div class="row servicesSpacing">
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label" ng-class="{ 'notAvailable' : !orgServices.donations }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.donations' ng-true-value="true" ng-false-value="false">
                 Takes Donations
               </label>
             </div>
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label" ng-class="{ 'notAvailable' : !orgServices.education }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.education' ng-true-value="true" ng-false-value="false">
                 Educational Help
               </label>
@@ -135,13 +135,13 @@
           </div>
           <div class="row servicesSpacing">
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label" ng-class="{ 'notAvailable' : !orgServices.job }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.job' ng-true-value="true" ng-false-value="false">
                 Job Placement Help
               </label>
             </div>
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label" ng-class="{ 'notAvailable' : !orgServices.interview }">
                 <input disabled class="form-check-input " type="checkbox" ng-model='orgServices.interview' ng-true-value="true" ng-false-value="false">
                 Interview Help
               </label>
@@ -162,13 +162,13 @@
         <div class="col-sm-10 col-sm-offset-2 servicesPadding">
           <div class="row servicesSpacing">
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label"  ng-class="{ 'notAvailable' : !orgServices.beds }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.beds' ng-true-value="true" ng-false-value="false">
                 Beds available
               </label>
             </div>
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label"  ng-class="{ 'notAvailable' : !orgServices.cloths }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.cloths' ng-true-value="true" ng-false-value="false">
                 Clothing available
               </label>
@@ -176,13 +176,13 @@
           </div>
           <div class="row servicesSpacing">
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label"  ng-class="{ 'notAvailable' : !orgServices.childCare }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.childCare' ng-true-value="true" ng-false-value="false">
                 Childcare available
               </label>
             </div>
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label"  ng-class="{ 'notAvailable' : !orgServices.recActivites }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.recActivites' ng-true-value="true" ng-false-value="false">
                 Recreational Activities
               </label>
@@ -190,13 +190,13 @@
           </div>
           <div class="row servicesSpacing">
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label"  ng-class="{ 'notAvailable' : !orgServices.donations }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.donations' ng-true-value="true" ng-false-value="false">
                 Takes Donations
               </label>
             </div>
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label"  ng-class="{ 'notAvailable' : !orgServices.education }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.education' ng-true-value="true" ng-false-value="false">
                 Educational Help
               </label>
@@ -204,13 +204,13 @@
           </div>
           <div class="row servicesSpacing">
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label"  ng-class="{ 'notAvailable' : !orgServices.job }">
                 <input disabled class="form-check-input" type="checkbox" ng-model='orgServices.job' ng-true-value="true" ng-false-value="false">
                 Job Placement Help
               </label>
             </div>
             <div class="col-xs-6">
-              <label class="form-check-label">
+              <label class="form-check-label"  ng-class="{ 'notAvailable' : !orgServices.interview }">
                 <input disabled class="form-check-input " type="checkbox" ng-model='orgServices.interview' ng-true-value="true" ng-false-value="false">
                 Interview Help
               </label>

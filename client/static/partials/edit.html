@@ -20,7 +20,7 @@
               <label for="website" class="sr-only">Organizations Website</label>
               <input type="text" name="website" class="form-control" placeholder="Website" id="website" ng-model="editOrg.website" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/">
             </div>
-            <p ng-show="editOrgForm.website.$invalid && !editOrgForm.website.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
+            <p ng-show="editOrgForm.website.$invalid && !editOrgForm.website.$pristine" class="form-text text-muted">Please enter a vaild Website</p>
 
             <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.email.$invalid && !editOrgForm.email.$pristine }">
               <label for="orgEmail" class="sr-only" >Contact Email</label>

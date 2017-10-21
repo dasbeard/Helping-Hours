@@ -5,10 +5,10 @@ app.controller('adminController', ['$scope', 'adminFactory', '$location', '$cook
 
 
 
-  getAllOrgs();
+  getAllAdmin();
 
-  function getAllOrgs(){
-    adminFactory.getAll(function(output){
+  function getAllAdmin(){
+    adminFactory.getAllAdmin(function(output){
       $scope.allOrgs = output.data;
     })
   };

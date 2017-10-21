@@ -35,13 +35,15 @@ app.controller('organizationController', ['$scope', 'editFactory', '$location', 
 
       if(!$scope.org.contactEmail && !$scope.org.phone && !$scope.org.website){
         $scope.noOrgInfo = true;
-
       }
 
       if(output.data.phone){
         $scope.org.phone = phoneDisplay(output.data.phone);
       }
-      $scope.loggedInUser = $cookies.getObject('loggedUser');
+
+
+
+      // $scope.loggedInUser = $cookies.getObject('loggedUser');
 
       NgMap.getMap().then(function(map) {
           var marker = new google.maps.Marker({

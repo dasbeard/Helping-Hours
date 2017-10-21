@@ -56,8 +56,8 @@ module.exports = function(app){
     organizations.loginAdmin(req,res)
   });
 
-  app.post('/getAll', function(req,res){
-    organizations.getAll(req,res)
+  app.post('/getAllAdmin', function(req,res){
+    organizations.getAllAdmin(req,res)
   });
 
 

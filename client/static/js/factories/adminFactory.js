@@ -10,8 +10,8 @@ app.factory('adminFactory', ['$http', function ($http){
     });
   };
 
-  factory.getAll = function(callback){
-    $http.post('/getAll').then(function(output){
+  factory.getAllAdmin = function(callback){
+    $http.post('/getAllAdmin').then(function(output){
       callback(output)
     });
   };

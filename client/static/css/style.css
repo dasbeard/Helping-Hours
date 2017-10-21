@@ -621,6 +621,12 @@ display: inline-flex;
   margin-bottom: 25px;
 }
 
+.notAvailable{
+  width: 100%;
+  text-decoration: line-through;
+  color: grey;
+}
+
 .copyEmail{
   cursor: pointer;
 }

@@ -379,7 +379,7 @@ module.exports = (function(){
     }, // End Login Method
 
 
-    getAll: function(req,res){
+    getAllAdmin: function(req,res){
       Organization.find(({}), function(err, allOrgs){
         if (err){
           console.log('===== ERROR ====='.red);
@@ -388,14 +388,20 @@ module.exports = (function(){
         } else{
           var sendBack = [];
           for (var i = 0; i<allOrgs.length; i++){
-            sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
-                        website: allOrgs[i].website,
-                        address: allOrgs[i].streetNumber + ' ' + allOrgs[i].streetName + ', ' + allOrgs[i].city,
+            sendBack.push({
                         organization: allOrgs[i].organization,
-                        description: allOrgs[i].description,
+                        formattedAddress: allOrgs[i].formattedAddress,
+                        streetNumber: allOrgs[i].streetNumber,
+                        streetName: allOrgs[i].streetName,
+                        city: allOrgs[i].city,
+                        state: allOrgs[i].state,
+                        zip:allOrgs[i].zip,
                         position: [allOrgs[i].latitude,allOrgs[i].longitude],
                         phone: phoneDisplay(allOrgs[i].phone),
+                        website: allOrgs[i].website,
+                        description: allOrgs[i].description,
                         email: allOrgs[i].email,
+                        contactEmail: allOrgs[i].contactEmail,
                         _id: allOrgs[i]._id
                       }
               );
