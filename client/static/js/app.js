@@ -41,7 +41,7 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('admin', {
     url: "/admin",
     templateUrl: "../partials/admin.html",
-    controller:"logRegController"
+    controller:"adminController"
   })
   .state('adminPortal', {
     url: "/adminPortal",

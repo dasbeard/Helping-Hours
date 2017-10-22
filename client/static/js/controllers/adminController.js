@@ -5,7 +5,8 @@ app.controller('adminController', ['$scope', 'adminFactory', '$location', '$cook
 
 
 
-  getAllAdmin();
+
+
 
   function getAllAdmin(){
     adminFactory.getAllAdmin(function(output){

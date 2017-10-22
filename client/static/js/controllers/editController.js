@@ -128,7 +128,7 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
 
 
 
-  $scope.addDay = function(isValid, service){
+  $scope.addDay = function(isValid, service){;
     $scope.hoursOfOpFormInvalid = false;
     if(!isValid){
       $scope.hoursOfOpFormInvalid = true;

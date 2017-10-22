@@ -32,6 +32,7 @@ app.controller('organizationController', ['$scope', 'editFactory', '$location', 
       if(($scope.org.daysServingFood.length < 1) && ($scope.org.hoursOfOperation.length < 1)){
         $scope.daysStatus = true;
       }
+      console.log($scope.org.daysServingFood);
 
       if(!$scope.org.contactEmail && !$scope.org.phone && !$scope.org.website){
         $scope.noOrgInfo = true;

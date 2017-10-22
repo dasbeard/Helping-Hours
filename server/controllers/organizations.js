@@ -16,6 +16,8 @@ var googleOptions = {
 var geocoder = NodeGeocoder(googleOptions)
 
 var Organization = mongoose.model('Organization');
+var Admin = mongoose.model('Admin');
+
 
 module.exports = (function(){
   return {
@@ -136,7 +138,7 @@ module.exports = (function(){
         }
         else {
           var toSendBack = {
-                            orgName: oneUser.organization, website: oneUser.website, formattedAddress: oneUser.formattedAddress, contactEmail: oneUser.contactEmail, phone: oneUser.phone, description: oneUser.description, hoursOfOperation: oneUser.hoursOfOperation, daysServingFood: oneUser.daysServingFood, services: oneUser.services, lat: oneUser.latitude, lng: oneUser.longitude
+                            orgName: oneUser.organization, website: oneUser.website, formattedAddress: oneUser.formattedAddress, contactEmail: oneUser.contactEmail, phone: oneUser.phone, description: oneUser.description, hoursOfOperation: sortByTimes(oneUser.hoursOfOperation), daysServingFood: sortByTimes(oneUser.daysServingFood), services: oneUser.services, lat: oneUser.latitude, lng: oneUser.longitude
                             };
           res.json(toSendBack);
         }
@@ -146,7 +148,6 @@ module.exports = (function(){
 
 
     addDay: function(req,res){
-      // console.log(req.body);
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
         if (err){
           console.log('===== Error ====='.red);
@@ -157,6 +158,7 @@ module.exports = (function(){
           // console.log(newDay);
           if(req.body.service == 'hoursOfOperation'){
             oneUser.hoursOfOperation.push(newDay);
+            sortByTimes(oneUser.hoursOfOperation);
             oneUser.save(function(err){
               if (err){
                 console.log('==== Error When saving new day ===='.red);
@@ -168,6 +170,7 @@ module.exports = (function(){
             })
           } else if (req.body.service == 'daysServingFood') {
             oneUser.daysServingFood.push(newDay);
+            sortByTimes(oneUser.daysServingFood);
             oneUser.save(function(err){
               if (err){
                 console.log('==== Error When saving new day ===='.red);
@@ -1076,6 +1079,37 @@ function phoneDisplay(str){
     return str.substr(0,1) + '(' + str.substr(1,3) + ')' + str.substr(4,3) + '-' + str.substr(7);
   }
 };
+
+
+
+function sortByTimes(input){
+  var sorter = {
+    "monday": 1,
+    "tuesday": 2,
+    "wednesday": 3,
+    "thursday": 4,
+    "friday": 5,
+    "saturday": 6,
+    "sunday": 7
+  }
+
+  input.sort(function sortByOpen(a, b) {
+    var day1 = a.open;
+    var day2 = b.open;
+    return day1 > day2;
+  });
+
+  input.sort(function sortByDay(a, b) {
+    var day1 = a.day.toLowerCase();
+    var day2 = b.day.toLowerCase();
+    return sorter[day1] > sorter[day2];
+  });
+
+
+  return input;
+}
+
+
 
 
 
