@@ -1,22 +1,34 @@
-<div class="cointainer-fluid">
+<div class="container-fluid">
+
+  <div ng-if=error class="jumbotron jumbotron-fluid jumbotronError">
+    <div class="container">
+      <h1 class="display-3">Error</h1>
+      <p class="lead">{{error}}</p>
+    </div>
+  </div>
+
   <div class="row">
-    <div class="col-sm-12 greyContainer">
+    <div class="col-sm-4 col-sm-offset-4 greyContainer adminLog">
+      <h3 class="centerText">Login</h3>
 
-      <table class="table table-sm table-hover">
-        <tbody>
-          <tr ng-repeat='org in allOrgs'>
-            <td>{{org.organization}}</td>
-            <td>{{org.formattedAddress}}</td>
-            <td>{{org.email}}</td>
-            <td>{{org.phone}}</td>
-            <td>{{org.website}}</td>
-            <td>{{org.contactEmail}}</td>
+      <form name="adminForm" ng-submit="adminLogin(adminForm.$valid)">
+        <div class="form-group" ng-class="{ 'has-danger' : adminForm.email.$invalid && !adminForm.email.$pristine }">
+          <label for="adminEmail" class="sr-only" >Login Email</label>
+          <input autofocus required type="email" class="form-control" placeholder="Email" id="adminEmail" ng-model='admin.email' name="email">
+          <p ng-show="adminForm.email.$invalid && !adminForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
+        </div>
 
-          </tr>
-        </tbody>
-      </table>
+        <div class="form-group" ng-class="{ 'has-danger' : adminForm.password.$invalid && !adminForm.password.$pristine }">
+          <label class="sr-only" for="adminPassword">Password</label>
+          <input required type="password" class="form-control" id="adminPassword" placeholder="Password" ng-model='admin.password' name="password" ng-minlength="5">
+          <p ng-show="adminForm.password.$error.minlength" class="form-text text-muted">Passwords are at least 5 characters long</p>
+        </div>
 
+        <div class="row">
+          <button class="btn btn-secondary centerButton" type="submit">Log In</button>
+        </div>
 
+      </form>
     </div>
   </div>
 </div>

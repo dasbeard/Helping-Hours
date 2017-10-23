@@ -19,6 +19,10 @@ var Organization = mongoose.model('Organization');
 var Admin = mongoose.model('Admin');
 
 
+// =========================================================================
+// ============================== Methods ==================================
+// =========================================================================
+
 module.exports = (function(){
   return {
 
@@ -55,7 +59,7 @@ module.exports = (function(){
     newRegistration: function (req,res){
       // console.log(req.body);
       // check if email is already registered
-      Organization.findOne({email: req.body.email}, function(err, oneUser){
+      Organization.findOne({email: req.body.email.toLowerCase()}, function(err, oneUser){
         if (err){
           console.log('===== ERROR ====='.red);
           console.log(err);
@@ -351,68 +355,71 @@ module.exports = (function(){
 
 
 
-    loginAdmin: function(req,res){
-      var myEmail = req.body.email.toLowerCase();
-      // Find user by email
-      Organization.findOne({email: myEmail}, function(err, oneUser){
-        if(err){
-          console.log('====== Error ======'.red);
-          console.log(err);
-        } else {
-          if(!oneUser){
-            // console.log('====== user NOT Found ======'.yellow);
-            res.json({error: "Email or Password Incorrect"});
-
-          } else {
-            // console.log('====== Checking password ======'.yellow);
-            // Authenticate password
-            if(bcrypt.compareSync(req.body.password, oneUser.password)){
-              // console.log('====== Successfuly Logged In ======');
-              var toSendBack = {id: oneUser._id,
-                formattedAddress: oneUser.formattedAddress,
-                organization: oneUser.organization,
-              };
-              res.json(toSendBack)
-            } else {
-              res.json({error: "Email or Password do not match"});
-            }
-          }
-        }
-      });
-    }, // End Login Method
 
 
-    getAllAdmin: function(req,res){
-      Organization.find(({}), function(err, allOrgs){
-        if (err){
-          console.log('===== ERROR ====='.red);
-          console.log(err);
-          res.json({error: 'Something went wrong :('})
-        } else{
-          var sendBack = [];
-          for (var i = 0; i<allOrgs.length; i++){
-            sendBack.push({
-                        organization: allOrgs[i].organization,
-                        formattedAddress: allOrgs[i].formattedAddress,
-                        streetNumber: allOrgs[i].streetNumber,
-                        streetName: allOrgs[i].streetName,
-                        city: allOrgs[i].city,
-                        state: allOrgs[i].state,
-                        zip:allOrgs[i].zip,
-                        position: [allOrgs[i].latitude,allOrgs[i].longitude],
-                        phone: phoneDisplay(allOrgs[i].phone),
-                        website: allOrgs[i].website,
-                        description: allOrgs[i].description,
-                        email: allOrgs[i].email,
-                        contactEmail: allOrgs[i].contactEmail,
-                        _id: allOrgs[i]._id
-                      }
-              );
-            };
-            res.json(sendBack);
-          }
-        })
-      },
+
+    // loginAdmin: function(req,res){
+    //   var myEmail = req.body.email.toLowerCase();
+    //   // Find user by email
+    //   Organization.findOne({email: myEmail}, function(err, oneUser){
+    //     if(err){
+    //       console.log('====== Error ======'.red);
+    //       console.log(err);
+    //     } else {
+    //       if(!oneUser){
+    //         // console.log('====== user NOT Found ======'.yellow);
+    //         res.json({error: "Email or Password Incorrect"});
+    //
+    //       } else {
+    //         // console.log('====== Checking password ======'.yellow);
+    //         // Authenticate password
+    //         if(bcrypt.compareSync(req.body.password, oneUser.password)){
+    //           // console.log('====== Successfuly Logged In ======');
+    //           var toSendBack = {id: oneUser._id,
+    //             formattedAddress: oneUser.formattedAddress,
+    //             organization: oneUser.organization,
+    //           };
+    //           res.json(toSendBack)
+    //         } else {
+    //           res.json({error: "Email or Password do not match"});
+    //         }
+    //       }
+    //     }
+    //   });
+    // }, // End Login Method
+    //
+    //
+    // getAllAdmin: function(req,res){
+    //   Organization.find(({}), function(err, allOrgs){
+    //     if (err){
+    //       console.log('===== ERROR ====='.red);
+    //       console.log(err);
+    //       res.json({error: 'Something went wrong :('})
+    //     } else{
+    //       var sendBack = [];
+    //       for (var i = 0; i<allOrgs.length; i++){
+    //         sendBack.push({
+    //                     organization: allOrgs[i].organization,
+    //                     formattedAddress: allOrgs[i].formattedAddress,
+    //                     streetNumber: allOrgs[i].streetNumber,
+    //                     streetName: allOrgs[i].streetName,
+    //                     city: allOrgs[i].city,
+    //                     state: allOrgs[i].state,
+    //                     zip:allOrgs[i].zip,
+    //                     position: [allOrgs[i].latitude,allOrgs[i].longitude],
+    //                     phone: phoneDisplay(allOrgs[i].phone),
+    //                     website: allOrgs[i].website,
+    //                     description: allOrgs[i].description,
+    //                     email: allOrgs[i].email,
+    //                     contactEmail: allOrgs[i].contactEmail,
+    //                     _id: allOrgs[i]._id
+    //                   }
+    //           );
+    //         };
+    //         res.json(sendBack);
+    //       }
+    //     })
+    //   },
 
 
 

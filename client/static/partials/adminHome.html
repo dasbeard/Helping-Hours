@@ -1,0 +1,26 @@
+<div ng-if="loggedInUser" class="cointainer-fluid">
+  <div class="row">
+    <div class="col-sm-12 greyContainer">
+
+      <table class="table table-condensed table-hover">
+        <tbody >
+          <tr ng-repeat='org in allOrgs'>
+              <td class="adminTableBtn"><button class="btn btn-secondary smallerBtn2" >Edit</button></td>
+              <td class="adminTableName">{{org.organization}}</td>
+              <td class="adminTableStreet">{{org.streetNumber}} {{org.streetName}}</td>
+              <td class="adminTableCity">{{org.city}}</td>
+              <td class="adminTableState">{{org.state}}</td>
+              <td class="adminTableEmail">{{org.email}}</td>
+              <td class="adminTablePhone">{{org.phone}}</td>
+              <td class="adminTableWebsite">{{org.website}}</td>
+              <td class="adminTableEmail">{{org.contactEmail}}</td>
+              <td class="adminTableBtn"><button class="btn btn-secondary smallerBtn2" >Delete</button></td>
+
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>

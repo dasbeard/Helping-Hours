@@ -725,8 +725,41 @@ display: inline-flex;
 /*=======================================================*/
 /*================== Admin Page Classes ==================*/
 /*=======================================================*/
-
-
 .adminLog{
   margin-top: 10%;
+}
+
+.smallerBtn2 {
+  line-height: 10px;
+  height: 25px;
+  padding: 2px 5px;
+}
+
+
+.adminTableBtn {
+  width: auto;
+}
+.adminTableName{
+  width: auto;
+}
+.adminTableStreet{
+  width: auto;
+}
+.adminTableCity{
+  width: auto;
+}
+.adminTableState{
+  width: auto;
+}
+.adminTableEmail{
+  width: auto;
+}
+.adminTablePhone{
+  width: auto;
+}
+.adminTableWebsite{
+  width: auto;
+}
+.adminTableEmail{
+  width: auto;
 }

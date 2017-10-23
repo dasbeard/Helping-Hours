@@ -40,12 +40,12 @@ app.config(function($stateProvider, $urlRouterProvider){
   })
   .state('admin', {
     url: "/admin",
-    templateUrl: "../partials/admin.html",
-    controller:"adminController"
-  })
-  .state('adminPortal', {
-    url: "/adminPortal",
     templateUrl: "../partials/adminPortal.html",
+    controller:"logRegController"
+  })
+  .state('adminHome', {
+    url: "/adminHome",
+    templateUrl: "../partials/adminHome.html",
     controller:"adminController"
   })
   // ========== for development ==========

@@ -186,7 +186,7 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
 
   // Admin Login Method
   $scope.adminLogin = function(){
-    console.log($scope.admin);
+    // console.log($scope.admin);
     $scope.error = '';
 
     // ===== Front End Validation ====
@@ -207,11 +207,9 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
         } else {
           // console.log(output.data);
           setCookie(output.data);
-          window.location.replace('/#!/adminPortal');
+          window.location.replace('/#!/adminHome');
         }
       });
-    // $scope.admin = {};
-
     }
   }; // End Login Method
 

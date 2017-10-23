@@ -2,6 +2,8 @@
 // ========================= Required Models ===============================
 // =========================================================================
 var organizations = require('./../controllers/organizations.js');
+var admin = require('./../controllers/admin.js');
+
 
 module.exports = function(app){
 // =========================================================================
@@ -53,11 +55,11 @@ module.exports = function(app){
   });
 
   app.post('/loginAdmin', function(req,res){
-    organizations.loginAdmin(req,res)
+    admin.loginAdmin(req,res)
   });
 
   app.post('/getAllAdmin', function(req,res){
-    organizations.getAllAdmin(req,res)
+    admin.getAllAdmin(req,res)
   });
 
 
