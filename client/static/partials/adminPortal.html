@@ -14,13 +14,13 @@
       <form name="adminForm" ng-submit="adminLogin(adminForm.$valid)">
         <div class="form-group" ng-class="{ 'has-danger' : adminForm.email.$invalid && !adminForm.email.$pristine }">
           <label for="adminEmail" class="sr-only" >Login Email</label>
-          <input autofocus required type="email" class="form-control" placeholder="Email" id="adminEmail" ng-model='admin.email' name="email">
+          <input tabindex="1" autofocus required type="email" class="form-control" placeholder="Email" id="adminEmail" ng-model='admin.email' name="email">
           <p ng-show="adminForm.email.$invalid && !adminForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
         </div>
 
         <div class="form-group" ng-class="{ 'has-danger' : adminForm.password.$invalid && !adminForm.password.$pristine }">
           <label class="sr-only" for="adminPassword">Password</label>
-          <input required type="password" class="form-control" id="adminPassword" placeholder="Password" ng-model='admin.password' name="password" ng-minlength="5">
+          <input required tabindex="2" type="password" class="form-control" id="adminPassword" placeholder="Password" ng-model='admin.password' name="password" ng-minlength="5">
           <p ng-show="adminForm.password.$error.minlength" class="form-text text-muted">Passwords are at least 5 characters long</p>
         </div>
 

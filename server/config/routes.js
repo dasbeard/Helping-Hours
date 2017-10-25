@@ -54,6 +54,9 @@ module.exports = function(app){
     organizations.citySearch(req,res)
   });
 
+
+
+
   app.post('/loginAdmin', function(req,res){
     admin.loginAdmin(req,res)
   });
@@ -61,6 +64,19 @@ module.exports = function(app){
   app.post('/getAllAdmin', function(req,res){
     admin.getAllAdmin(req,res)
   });
+
+  app.post('/removeOrg', function(req,res){
+    admin.removeOrg(req,res)
+  });
+
+  app.post('/deleteOrgAdmin', function(req,res){
+    admin.deleteOrgAdmin(req,res)
+  });
+
+  app.post('/editOrgAdmin', function(req,res){
+    admin.editOrgAdmin(req,res)
+  });
+
 
 
   // app.post('/reg', function(req,res){

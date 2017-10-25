@@ -65,35 +65,9 @@ module.exports = (function(){
                 res.json({error: "Email or Password do not match"});
               }
             }
-          } //End First Else
-        }) // End findOne
-
-
-
-      // } else {
-      //   console.log('incorrect email'.red);
-      //   res.json({error: 'Incorrect E-Mail or Password'})
-      // }
-
+          }
+        })
     }, // End Admin Login Method
-
-
-
-
-
-
-
-
-    //
-    // // Authenticate password
-    // if(bcrypt.compareSync(req.body.password, oneUser.password)){
-    //   res.json(true)
-    // } else {
-    //   res.json({error: "Email or Password do not match"});
-    // }
-
-
-
 
 
     getAllAdmin: function(req,res){
@@ -121,14 +95,57 @@ module.exports = (function(){
                         contactEmail: allOrgs[i].contactEmail,
                         _id: allOrgs[i]._id
                       }
-              );
-            };
-            res.json(sendBack);
-          }
-        })
-      },
+            );
+          };
+          res.json(sendBack);
+        }
+      })
+    },
 
 
+    deleteOrgAdmin: function (req,res){
+      console.log('Removed Organization'.red);
+      console.log(req.body);
+      Organization.remove({_id:req.body.id}, function(err){
+        if(err){
+          console.log('===== Error Removing Organization ====='.red);
+          console.log(err);
+          res.json({error: 'Error Removing Organization'});
+        } else {
+          res.json(true);
+        }
+      })
+    },
+
+    editOrgAdmin: function(req,res){
+      // console.log(req.body);
+      Organization.findOne({_id: req.body.id}, function(err, oneOrg){
+        if(err){
+            console.log('===== Error Finding Organization ====='.red);
+            console.log(err);
+            res.json({error: 'Error Finding Organization'});
+        } else if(oneOrg){
+          // console.log(oneOrg);
+          oneOrg.organization = req.body.name;
+          oneOrg.email = req.body.email;
+          if(req.body.phone){
+            oneOrg.phone = req.body.phone.replace(/[-+()\s]/g, '');;
+          };
+          oneOrg.save(function(err){
+            if(err){
+              console.log('===== Error Updating Org - Admin');
+              console.log(err);
+              res.json({error: 'Error Updating Organization'});
+            } else {
+              res.json(true);
+            }
+          })
+
+        }
+
+      })
+
+    },
 
 
 
@@ -136,6 +153,7 @@ module.exports = (function(){
 
       } // End Return
     })();
+
 
 
 

@@ -67,7 +67,24 @@
 .redBackground{
   background: rgba(241, 221, 222,1)
 }
+
+.btn{
+  border: 1px solid rgba(107, 120, 142, .5);
+  box-shadow:1px 1px 2px;
+}
+
+.btn-secondary:hover{
+  background-color: #d8d8d8;
+}
+
+
+/*==================== Fixer Classes ==================*/
+
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
 
 
 /*=======================================================*/
@@ -84,10 +101,6 @@
 
 #brandText{
   color: black;
-}
-
-.navSpacing{
-  float: right;
 }
 
 .footer{
@@ -347,11 +360,6 @@ padding: 0;
   margin-bottom: 5%;
 }
 
-.btn{
-  border: 1px solid rgba(107, 120, 142, .5);
-  box-shadow:1px 1px 2px;
-
-}
 
 .locationMask{
   margin-top: 15%;
@@ -729,37 +737,63 @@ display: inline-flex;
   margin-top: 10%;
 }
 
-.smallerBtn2 {
+.adminSpacing{
+  margin-left: .5%;
+  margin-right: .5%;
+}
+
+.searchBar{
+  padding: 8px;
+  background-color: rgba(225, 225, 225, 0.85);
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.searchBar input{
+  background-color: rgb(215,215,215);
+}
+
+.adminTable{
+  background-color: rgba(225, 225, 225, 0.85);
+  -webkit-border-bottom-left-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  -moz-border-radius-bottomright: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.deleteBtn {
+  /*background-color: red;*/
+  box-shadow:2px 2px 25px;
   line-height: 10px;
   height: 25px;
   padding: 2px 5px;
 }
 
 
-.adminTableBtn {
-  width: auto;
+.deleteBtn:hover {
+  background-color: #C83331;
+  /*background-color: blue;*/
 }
-.adminTableName{
-  width: auto;
+
+
+.adminEditModal{
+  padding-left: 20%;
 }
-.adminTableStreet{
-  width: auto;
+
+@media only screen and (max-width: 750px) {
+  .adminEditModal{
+    padding-left: 30%;
+  }
 }
-.adminTableCity{
-  width: auto;
-}
-.adminTableState{
-  width: auto;
-}
-.adminTableEmail{
-  width: auto;
-}
-.adminTablePhone{
-  width: auto;
-}
-.adminTableWebsite{
-  width: auto;
-}
-.adminTableEmail{
-  width: auto;
+
+@media only screen and (max-width: 478px) {
+  .adminEditModal{
+    padding-left: 20%;
+  }
 }

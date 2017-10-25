@@ -206,7 +206,7 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
           $scope.error = output.data.error;
         } else {
           // console.log(output.data);
-          setCookie(output.data);
+          setCookie(output.data, 'admin');
           window.location.replace('/#!/adminHome');
         }
       });
@@ -225,11 +225,18 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
   $scope.logoutUser = function(){
     // console.log('button clicked');
     $cookies.remove('loggedUser');
+    $cookies.remove('loggedAdmin');
+
     window.location.replace('/');
   } // End logoutUser method
 
 
 
+
+
+  $scope.adminPage = function(){
+    window.location.replace('/#!/adminHome');
+  }
 
 
 
@@ -239,12 +246,19 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
   $scope.isCollapsedHorizontal = false;
 
 
-  function setCookie(input){
+  function setCookie(input, admin){
     var expireAt = new Date();
     expireAt.setDate(expireAt.getDate() + .5);
-    $cookies.putObject("loggedUser", input, {expires: expireAt});
-    $rootScope.loggedInUser = $cookies.getObject('loggedUser');
-  }
+
+    if(admin){
+      $cookies.putObject("loggedAdmin", input, {expires: expireAt});
+      $rootScope.loggedInAdmin = $cookies.getObject('loggedAdmin');
+    } else {
+      $cookies.putObject("loggedUser", input, {expires: expireAt});
+      $rootScope.loggedInUser = $cookies.getObject('loggedUser');
+    }
+
+  };
 
 
 

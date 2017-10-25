@@ -1,0 +1,18 @@
+<div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+        </div>
+          <div class="modal-body" id="modal-body">
+            <p ng-repeat="item in $ctrl.items">{{ item }}</p>
+          </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+
+
+    <button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button>
+
+</div>

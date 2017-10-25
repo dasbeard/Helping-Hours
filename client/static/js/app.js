@@ -46,12 +46,14 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('adminHome', {
     url: "/adminHome",
     templateUrl: "../partials/adminHome.html",
-    controller:"adminController"
+    // controller:"adminController"
+    controller:"adminController as $ctrl"
+
   })
   // ========== for development ==========
   .state('second', {
     url: "/second",
     templateUrl: "../partials/second.html",
-    controller:"homeController"
+    controller:"ModalDemoCtrl"
   })
 });

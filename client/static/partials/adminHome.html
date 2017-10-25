@@ -1,26 +1,107 @@
-<div ng-if="loggedInUser" class="cointainer-fluid">
-  <div class="row">
-    <div class="col-sm-12 greyContainer">
-
-      <table class="table table-condensed table-hover">
-        <tbody >
-          <tr ng-repeat='org in allOrgs'>
-              <td class="adminTableBtn"><button class="btn btn-secondary smallerBtn2" >Edit</button></td>
-              <td class="adminTableName">{{org.organization}}</td>
-              <td class="adminTableStreet">{{org.streetNumber}} {{org.streetName}}</td>
-              <td class="adminTableCity">{{org.city}}</td>
-              <td class="adminTableState">{{org.state}}</td>
-              <td class="adminTableEmail">{{org.email}}</td>
-              <td class="adminTablePhone">{{org.phone}}</td>
-              <td class="adminTableWebsite">{{org.website}}</td>
-              <td class="adminTableEmail">{{org.contactEmail}}</td>
-              <td class="adminTableBtn"><button class="btn btn-secondary smallerBtn2" >Delete</button></td>
-
-          </tr>
-        </tbody>
-      </table>
-
-
+<div ng-if="loggedInAdmin" class="container-fluid adminSpacing" >
+  <div class="row  centerText searchBar">
+    <div class="col-sm-4 col-sm-offset-1  ">
+      <label>Search Organization Name: </label>
+      <input class="" ng-model="search.organization">
+    </div>
+    <div class="col-sm-3  ">
+      <label>Search City: </label>
+      <input class="" ng-model="search.city">
+    </div>
+    <div class="col-sm-3  ">
+      <label>Search State: </label>
+      <input class="" ng-model="search.state">
     </div>
   </div>
+    <div class="row">
+
+      <div class="col-sm-12 table-responsive adminTable">
+
+        <table class="table table-hover">
+
+
+          <tbody>
+            <!-- popover-class='popOverTip' uib-popover="Click to Edit" popover-trigger="'mouseenter'" popover-placement="bottom" -->
+
+            <tr ng-repeat='org in allOrgs | filter:search:strict' >
+                <td ng-click='$ctrl.edit(org._id, org.organization, org.email, org.phone, org.formattedAddress)'><h4>{{org.organization}}</h4></td>
+                <td>{{org.streetNumber}} {{org.streetName}}</td>
+                <td>{{org.city}},{{org.state}}</td>
+                <td>{{org.email}}</td>
+                <td><button class="btn btn-danger deleteBtn" ng-click='$ctrl.open(org._id, org.organization)'>Delete</button></td>
+
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+  <div class="Delete-Organization">
+      <script type="text/ng-template" id="deleteOrgModal.html">
+          <div class="modal-header">
+              <h3 class="modal-title centerText" id="modal-title">Are you sure you want to Delete this Organization?</h3>
+          </div>
+            <div class="modal-body centerText" id="modal-body">
+              <h2>{{$ctrl.orgInfo.name}}</h2>
+            </div>
+          <div class="modal-footer centerText">
+              <button class="btn btn-danger " type="button" ng-click="$ctrl.removeOrg()">OK</button>
+              <button class="btn btn-secondary " type="button" ng-click="$ctrl.cancel()">Cancel</button>
+          </div>
+      </script>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="Edit-Organization">
+      <script type="text/ng-template" id="editOrgModal.html">
+          <div class="modal-header">
+              <h3 class="modal-title centerText" id="modal-title">Editing {{$ctrl.orgInfo.name}}</h3>
+          </div>
+          <form name="editOrgAdminForm" ng-submit='$ctrl.editOrgAdmin(editOrgAdminForm.$valid)'>
+            <div class="modal-body adminEditModal" id="modal-body">
+
+                <div class="form-group input-group" ng-class="{ 'has-danger' : editOrgAdminForm.oegName.$invalid && !editOrgAdminForm.oegName.$pristine }">
+                  <label for="orgName" class="sr-only">{{$ctrl.orgInfo.name}}</label>
+                  <input required type="text" name="orgName" id="orgName" class="form-control" placeholder="{{$ctrl.orgInfo.name}}" ng-model='$ctrl.orgInfo.name'>
+                </div>
+
+                <div class="form-group input-group" ng-class="{ 'has-danger' : editOrgAdminForm.email.$invalid && !editOrgAdminForm.email.$pristine }">
+                  <label for="orgEmail" class="sr-only" >Email</label>
+                  <input required type="email" class="form-control" placeholder="{{$ctrl.orgInfo.email}}" id="orgEmail" name="email" ng-model='$ctrl.orgInfo.email'>
+                </div>
+                <p ng-show="editOrgAdminForm.email.$invalid && !editOrgAdminForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
+
+                <div class="form-group input-group" ng-class="{ 'has-danger' : editOrgAdminForm.phone.$invalid && !editOrgAdminForm.phone.$pristine }">
+                  <label for="orgPhone" class="sr-only">Contact Phone Number</label>
+                  <input type="tel" class="form-control" placeholder="{{$ctrl.orgInfo.phone}}" id="orgPhone" name="phone" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" ng-model='$ctrl.orgInfo.phone'>
+                </div>
+
+            </div>
+            <div class="modal-footer centerText">
+              <button class="btn btn-secondary " type="submit">OK</button>
+              <button class="btn btn-secondary " type="button" ng-click="$ctrl.cancel()">Cancel</button>
+            </div>
+
+        </form>
+
+      </script>
+  </div>
+
+
 </div>

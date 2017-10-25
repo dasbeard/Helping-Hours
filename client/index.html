@@ -43,6 +43,10 @@
   <script type="text/javascript" src='js/controllers/organizationController.js'></script>
   <script type="text/javascript" src='js/controllers/adminController.js'></script>
 
+  <!-- <script type="text/javascript" src='js/controllers/ModalDemoCtrl.js'></script> -->
+  <!-- <script type="text/javascript" src='js/controllers/adminDeleteModalController.js'></script> -->
+
+
 
 
   <script type="text/javascript" src='js/factories/logRegFactory.js'></script>
@@ -57,7 +61,7 @@
 
 <body class="" style="background-color:black;">
 
-  <nav class="navbar navbar-default navbar-light navBarColor" role="navigation" ng-controller="logRegController">
+  <nav class="navbar navbar-default navbar-light navBarColor " role="navigation" ng-controller="logRegController">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
 				<span class="sr-only">Toggle navigation</span>
@@ -68,14 +72,18 @@
       <a class="navbar-brand" id="brandText" ui-sref="/">Helping Hours</a>
 		</div>
 		<div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-			<ul class="nav navbar-nav navSpacing">
+			<ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
-          <a ng-show='!loggedInUser' class="nav-link" ui-sref="/">Home</a>
-          <a ng-show='loggedInUser' class="nav-link" href="" ng-click="myPage()">My Page</a>
+          <a ng-if='(!loggedInUser && !loggedInAdmin)' class="nav-link" ui-sref="/">Home</a>
+          <a ng-if='loggedInUser' class="nav-link" href="" ng-click="myPage()">My Page</a>
+          <a ng-if='loggedInAdmin' class="nav-link" href="" ng-click="adminPage()">Admin Page</a>
+
         </li>
         <li class="nav-item">
-          <a ng-show='!loggedInUser' class="nav-link" ui-sref="logReg">Login/Register</a>
-          <a ng-show='loggedInUser' class="nav-link" href="" ng-click='logoutUser()'>Logout</a>
+          <a ng-if='!loggedInUser' ng-hide="loggedInAdmin" class="nav-link" ui-sref="logReg">Login/Register</a>
+          <a ng-if='loggedInUser' class="nav-link" href="" ng-click='logoutUser()'>Logout</a>
+          <a ng-if='loggedInAdmin' class="nav-link" href="" ng-click='logoutUser()'>Logout</a>
+
         </li>
 			</ul>
 		</div>
