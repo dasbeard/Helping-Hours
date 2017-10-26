@@ -360,60 +360,34 @@ padding: 0;
   margin-bottom: 5%;
 }
 
-
-.locationMask{
-  margin-top: 15%;
-  background-color: white;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  min-width: 250px;
-  margin-left: 22%;
-  margin-right: 22%;
-  padding: 2% 5% 0 5%;
-}
-
-
-.locationMask p{
-  line-height: 30px;
-}
-
 .addressNotFound{
   font-size: .7em;
   padding: 5%;
 }
 
-
-.OrgNameMask{
-  margin-top: 15%;
-  background-color: white;
-  padding: 2% 5% 2% 5%;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  min-width: 250px;
-  margin-left: 22%;
-  margin-right: 22%;
-}
-
 .latLngContainer{
-  margin: 15%;
+  margin: 0 5% 5% 5%;
 }
 
 .latLngDiv{
-  background-color: white;
-  height: 350px;
+  height: 300px;
   padding: 1% 5% 2% 5%;
-  margin-bottom: 10%;
 }
 
 .latLngDiv form{
   margin-top: 15%;
 }
 
+.latLngDiv input{
+  background-color: rgb(235,235,235);
+  width: 110%;
+  margin-left: -5%;
+}
+
 .latLngDiv button{
   margin-top: 10%;
 }
+
 
 .jumbotronError{
   padding: 5px;
@@ -440,32 +414,8 @@ padding: 0;
   .logRegContainers:nth-child(1){
     margin-top: 5px;
   }
-  .logRegContainers:nth-child(2){
-    margin-bottom: 25px;
-  }
-  .OrgNameMask {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .locationMask {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .latLngContainer {
-    margin: 2%;
-  }
   .latLngDiv {
-    max-height: 300px;
-  }
-  .latLngDiv:nth-child(2) {
-    max-height: 210px;
-  }
-  .latLngDiv button{
-    margin-bottom: 12px;
-    margin-top: 5%;
-  }
-  .latLngDiv form{
-    margin-top: 5%;
+    margin-bottom: 5%;
   }
 }
 

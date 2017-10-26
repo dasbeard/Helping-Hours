@@ -184,6 +184,14 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
 
 
 
+
+
+
+
+
+
+
+
   // Admin Login Method
   $scope.adminLogin = function(){
     // console.log($scope.admin);
@@ -211,7 +219,13 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
         }
       });
     }
-  }; // End Login Method
+  }; // End Admin Login Method
+
+
+    $scope.adminPage = function(){
+      window.location.replace('/#!/adminHome');
+    }
+
 
 
 
@@ -229,15 +243,6 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
 
     window.location.replace('/');
   } // End logoutUser method
-
-
-
-
-
-  $scope.adminPage = function(){
-    window.location.replace('/#!/adminHome');
-  }
-
 
 
 

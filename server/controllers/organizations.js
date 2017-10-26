@@ -57,7 +57,7 @@ module.exports = (function(){
 
 
     newRegistration: function (req,res){
-      // console.log(req.body);
+      console.log(req.body);
       // check if email is already registered
       Organization.findOne({email: req.body.email.toLowerCase()}, function(err, oneUser){
         if (err){
@@ -80,6 +80,7 @@ module.exports = (function(){
               if (err){
                 console.log('==== Error When saving new organization ===='.red);
                 console.log(err);
+                res.json({error: "Error When saving Organization"});
               } else {
                 // console.log('==== Successfuly Registered ===='.yellow);
                 var toSendBack = {id: newOrganization._id,

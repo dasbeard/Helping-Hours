@@ -54,6 +54,13 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('second', {
     url: "/second",
     templateUrl: "../partials/second.html",
-    controller:"ModalDemoCtrl"
+    controller:"testingController as $lCtrl"
   })
+
+  .state('latLng', {
+    url: "/latLng",
+    templateUrl: "../partials/latLng.html",
+    controller:"testingController as $lCtrl"
+  })
+
 });
