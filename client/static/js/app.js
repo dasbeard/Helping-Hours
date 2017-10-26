@@ -41,7 +41,7 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('admin', {
     url: "/admin",
     templateUrl: "../partials/adminPortal.html",
-    controller:"logRegController"
+    controller:"logRegController as $lCtrl"
   })
   .state('adminHome', {
     url: "/adminHome",
@@ -57,10 +57,5 @@ app.config(function($stateProvider, $urlRouterProvider){
     controller:"testingController as $lCtrl"
   })
 
-  .state('latLng', {
-    url: "/latLng",
-    templateUrl: "../partials/latLng.html",
-    controller:"testingController as $lCtrl"
-  })
 
 });

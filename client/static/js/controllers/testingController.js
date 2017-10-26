@@ -223,9 +223,6 @@ app.controller('testingController', ['$scope', '$rootScope', 'logRegFactory', 'a
   //   orgModal();
   // }
 
-  $scope.closeAlert = function() {
-    // $scope.alerts.splice(index, 1);
-  };
 
 
   function orgModal(locationResponse, parentSelector){

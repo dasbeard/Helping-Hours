@@ -48,7 +48,7 @@ app.controller('adminController', ['$scope', 'adminFactory', '$location', '$cook
     });
 
     modalInstance.result.then(function (orgInfo) {
-      console.log(orgInfo);
+      // console.log(orgInfo);
       // Note: Possbily use old snack bar to show which org was just deleted
       getAllAdmin();
       }, function () {
