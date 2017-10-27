@@ -143,7 +143,7 @@ module.exports = (function(){
         }
         else {
           var toSendBack = {
-                            orgName: oneUser.organization, website: oneUser.website, formattedAddress: oneUser.formattedAddress, contactEmail: oneUser.contactEmail, phone: oneUser.phone, description: oneUser.description, hoursOfOperation: sortByTimes(oneUser.hoursOfOperation), daysServingFood: sortByTimes(oneUser.daysServingFood), services: oneUser.services, lat: oneUser.latitude, lng: oneUser.longitude
+                            orgName: oneUser.organization, website: oneUser.website, formattedAddress: oneUser.formattedAddress, contactEmail: oneUser.contactEmail, phone: oneUser.phone, description: oneUser.description, hoursOfOperation: oneUser.hoursOfOperation, daysServingFood: oneUser.daysServingFood, services: oneUser.services, lat: oneUser.latitude, lng: oneUser.longitude
                             };
           res.json(toSendBack);
         }
@@ -153,41 +153,146 @@ module.exports = (function(){
 
 
     addDay: function(req,res){
-      Organization.findOne({_id: req.body.id}, function(err, oneUser){
+
+      Organization.findOne({_id: req.body.id}, function(err, oneOrg){
         if (err){
           console.log('===== Error ====='.red);
           console.log(err);
           res.json({error: 'Problem Finding Record'})
         } else {
-          var newDay = {day: req.body.day, open: req.body.open, openPeriod: req.body.openPeriod, closed: req.body.closed, closedPeriod: req.body.closedPeriod};
-          // console.log(newDay);
-          if(req.body.service == 'hoursOfOperation'){
-            oneUser.hoursOfOperation.push(newDay);
-            sortByTimes(oneUser.hoursOfOperation);
-            oneUser.save(function(err){
-              if (err){
-                console.log('==== Error When saving new day ===='.red);
-                console.log(err);
-                res.json({error: 'Problem Saving Day'})
-              } else {
-                res.json(true);
-              }
-            })
-          } else if (req.body.service == 'daysServingFood') {
-            oneUser.daysServingFood.push(newDay);
-            sortByTimes(oneUser.daysServingFood);
-            oneUser.save(function(err){
-              if (err){
-                console.log('==== Error When saving new day ===='.red);
-                console.log(err);
-                res.json({error: 'Problem Saving Day'})
-              } else {
-                res.json(true);
-              }
-            })
+          if(req.body.type === 'HOP'){
+            for(i=0; i<req.body.days.length;i++){
+              oneOrg.hoursOfOperation.push(req.body.days[i])
+            };
+            sortByTimes2(oneOrg.hoursOfOperation);
+              oneOrg.save(function(err){
+                if (err){
+                  console.log('==== Error When saving new day ===='.red);
+                  console.log(err);
+                  res.json({error: 'Problem Saving Day'})
+                } else {
+                  res.json(true);
+                }
+              });
+          } else {
+            for(i=0; i<req.body.days.length;i++){
+              oneOrg.daysServingFood.push(req.body.days[i])
+            };
+            sortByTimes2(oneOrg.daysServingFood);
+              oneOrg.save(function(err){
+                if (err){
+                  console.log('==== Error When saving new day ===='.red);
+                  console.log(err);
+                  res.json({error: 'Problem Saving Day'})
+                } else {
+                  res.json(true);
+                }
+              });
           }
+
+
+          // var newDay = {day: req.body.day, open: req.body.open, openPeriod: req.body.openPeriod, closed: req.body.closed, closedPeriod: req.body.closedPeriod};
+          // // console.log(newDay);
+          // if(req.body.service == 'hoursOfOperation'){
+          //   oneUser.hoursOfOperation.push(newDay);
+          //   sortByTimes(oneUser.hoursOfOperation);
+          //   oneUser.save(function(err){
+          //     if (err){
+          //       console.log('==== Error When saving new day ===='.red);
+          //       console.log(err);
+          //       res.json({error: 'Problem Saving Day'})
+          //     } else {
+          //       res.json(true);
+          //     }
+          //   })
+          // } else if (req.body.service == 'daysServingFood') {
+          //   oneUser.daysServingFood.push(newDay);
+          //   sortByTimes(oneUser.daysServingFood);
+          //   oneUser.save(function(err){
+          //     if (err){
+          //       console.log('==== Error When saving new day ===='.red);
+          //       console.log(err);
+          //       res.json({error: 'Problem Saving Day'})
+          //     } else {
+          //       res.json(true);
+          //     }
+          //   })
+          // }
         }
       })
+
+
+
+      function sortByTimes2(input){
+        // var sorter = {
+        //   "monday": 1,
+        //   "tuesday": 2,
+        //   "wednesday": 3,
+        //   "thursday": 4,
+        //   "friday": 5,
+        //   "saturday": 6,
+        //   "sunday": 7
+        // }
+
+        input.sort(function sortByOpen(a, b) {
+          var day1 = a.open;
+          var day2 = b.open;
+          return day1 > day2;
+        });
+
+        input.sort(function sortByDay(a, b) {
+          var day1 = a.id;
+          var day2 = b.id;
+          return day1 > day2;
+        });
+
+
+        return input;
+      }
+
+
+
+
+
+
+
+
+
+      // Organization.findOne({_id: req.body.id}, function(err, oneUser){
+      //   if (err){
+      //     console.log('===== Error ====='.red);
+      //     console.log(err);
+      //     res.json({error: 'Problem Finding Record'})
+      //   } else {
+      //     var newDay = {day: req.body.day, open: req.body.open, openPeriod: req.body.openPeriod, closed: req.body.closed, closedPeriod: req.body.closedPeriod};
+      //     // console.log(newDay);
+      //     if(req.body.service == 'hoursOfOperation'){
+      //       oneUser.hoursOfOperation.push(newDay);
+      //       sortByTimes(oneUser.hoursOfOperation);
+      //       oneUser.save(function(err){
+      //         if (err){
+      //           console.log('==== Error When saving new day ===='.red);
+      //           console.log(err);
+      //           res.json({error: 'Problem Saving Day'})
+      //         } else {
+      //           res.json(true);
+      //         }
+      //       })
+      //     } else if (req.body.service == 'daysServingFood') {
+      //       oneUser.daysServingFood.push(newDay);
+      //       sortByTimes(oneUser.daysServingFood);
+      //       oneUser.save(function(err){
+      //         if (err){
+      //           console.log('==== Error When saving new day ===='.red);
+      //           console.log(err);
+      //           res.json({error: 'Problem Saving Day'})
+      //         } else {
+      //           res.json(true);
+      //         }
+      //       })
+      //     }
+      //   }
+      // })
     },
 
 
@@ -1090,32 +1195,32 @@ function phoneDisplay(str){
 
 
 
-function sortByTimes(input){
-  var sorter = {
-    "monday": 1,
-    "tuesday": 2,
-    "wednesday": 3,
-    "thursday": 4,
-    "friday": 5,
-    "saturday": 6,
-    "sunday": 7
-  }
-
-  input.sort(function sortByOpen(a, b) {
-    var day1 = a.open;
-    var day2 = b.open;
-    return day1 > day2;
-  });
-
-  input.sort(function sortByDay(a, b) {
-    var day1 = a.day.toLowerCase();
-    var day2 = b.day.toLowerCase();
-    return sorter[day1] > sorter[day2];
-  });
-
-
-  return input;
-}
+// function sortByTimes(input){
+//   var sorter = {
+//     "monday": 1,
+//     "tuesday": 2,
+//     "wednesday": 3,
+//     "thursday": 4,
+//     "friday": 5,
+//     "saturday": 6,
+//     "sunday": 7
+//   }
+//
+//   input.sort(function sortByOpen(a, b) {
+//     var day1 = a.open;
+//     var day2 = b.open;
+//     return day1 > day2;
+//   });
+//
+//   input.sort(function sortByDay(a, b) {
+//     var day1 = a.day.toLowerCase();
+//     var day2 = b.day.toLowerCase();
+//     return sorter[day1] > sorter[day2];
+//   });
+//
+//
+//   return input;
+// }
 
 
 

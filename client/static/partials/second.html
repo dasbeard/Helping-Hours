@@ -1,206 +1,31 @@
-<div class="container-fluid">
+<div class="whiteBG container-fluid">
+  <div class="row">
 
+    <div class="col--sm-12" ng-model="days" ng-weekday-selector></div>
+  </div>
 
+  <div class="row">
 
-  <script type="text/ng-template" id="alert.html">
-    <div ng-transclude></div>
-  </script>
+    <div class="col-sm-5 col-sm-offset-1 timePick" uib-timepicker hour-step="1" minute-step="15" ng-model="open"></div>
 
-  <div ng-if="error" uib-alert template-url="alert.html" class="alert-danger centerText">
-    <h3>Error</h3>
-    <p>{{error}}</p>
+    <div class="col-sm-1"><p>To</p></div>
+
+    <div class="col-sm-5 timePick" uib-timepicker hour-step="1" minute-step="15" ng-model="close"></div>
+
   </div>
 
 
   <div class="row">
 
-    <div class="col-sm-5 greyContainer logRegContainers">
-      <h3 class="centerText">Login</h3>
+    <button class="col-sm-4 col-sm-offset-4 btn btn-secondary" type="button" name="button" ng-click='getTime()'>Add</button>
 
-      <form name="loginForm" ng-submit="loginUser(loginForm.$valid)" novalidate>
-        <div class="form-group" ng-class="{ 'has-danger' : loginForm.email.$invalid && !loginForm.email.$pristine }">
-          <label for="loginEmail" class="sr-only" >Login Email</label>
-          <input autofocus required type="email" class="form-control" placeholder="Email" id="loginEmail" ng-model='login.email' name="email">
-          <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
-        </div>
-
-        <div class="form-group" ng-class="{ 'has-danger' : loginForm.password.$invalid && !loginForm.password.$pristine }">
-          <label class="sr-only" for="loginPassword">Password</label>
-          <input required type="password" class="form-control" id="loginPassword" placeholder="Password" ng-model='login.password' name="password" ng-minlength="5">
-          <p ng-show="loginForm.password.$error.minlength" class="form-text text-muted">Passwords are at least 5 characters long</p>
-        </div>
-
-
-        <div class="row">
-          <button class="btn btn-secondary centerButton" type="submit">Log In</button>
-        </div>
-
-      </form>
-    </div>
-
-    <div class="col-sm-5 greyContainer logRegContainers">
-      <h3 class="centerText">Register</h3>
-      <form name="regForm" ng-submit='$lCtrl.register(regForm.$valid)' novalidate>
-
-        <div class="form-group" ng-class="{ 'has-danger' : regForm.street.$invalid && !regForm.street.$pristine }">
-          <label for="registerStreet" class="sr-only">Register Street</label>
-          <input required class="form-control" type="text" placeholder="Address" id="registerStreet" ng-model='reg.street' name="street" minlength='1'>
-          <p ng-show="regForm.street.$invalid && !regForm.street.$pristine" class="form-text text-muted centerText">Street Address is Required</p>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-7 form-group" ng-class="{ 'has-danger' : regForm.city.$invalid && !regForm.city.$pristine }">
-            <label for="registerCity" class="sr-only">Register City</label>
-            <input required class="form-control" type="text" placeholder="City" id="registerCity" ng-model='reg.city' name="city" minlength='1'>
-            <p ng-show="regForm.city.$invalid && !regForm.city.$pristine" class="form-text text-muted centerText">City is required</p>
-          </div>
-
-          <div class="col-sm-5 form-group" ng-class="{ 'has-danger' : regForm.zip.$invalid && !regForm.zip.$pristine }">
-            <label for="registerZip" class="sr-only">Register Zipcode</label>
-            <input required class="form-control" type="number" placeholder="Zipcode" id="registerZip" ng-model='reg.zip' name="zip" minlength='5'>
-            <p ng-show="regForm.zip.$invalid && regForm.zip.$dirty" class="form-text text-muted centerText">Must be at least 5 Numbers</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <button class="btn btn-secondary centerButton" type="submit">Register</button>
-        </div>
-      </form>
-    </div>
   </div>
+
+
+<div class="">
+  <ul ng-repeat="day in daysToAdd">
+    <li>{{day.name}} - {{day.open}} to {{day.close}}</li>
+  </ul>
 </div>
 
-
-
-
-
-
-
-
-<!-- ========== Your Location Modal ========== -->
-<div class="Location-Modal">
-    <script type="text/ng-template" id="yourLocationModal.html">
-        <div class="modal-header">
-            <h3 class="modal-title centerText" id="modal-title">{{locationHeading}}</h3>
-        </div>
-          <div class="modal-body " id="modal-body">
-            <div class="row" ng-repeat='place in allFound'>
-              <div class="col-xs-7 col-sm-7">
-                <p>{{place.formattedAddress}}</p>
-              </div>
-              <div class="col-xs-3 col-sm-offset-2">
-                <button class="btn btn-secondary smallerBtn" ng-click='selectedAddress(place)'>{{locationButton}}</button>
-              </div>
-
-            </div>          </div>
-        <div class="modal-footer centerText">
-          <p class="centerText addressNotFound">Don't see your address? <a href="" ng-click="enterLatLong()">click here</a></p>
-            <button class="btn btn-secondary " type="button" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
 </div>
-<!-- ========== End Your Location Modal ========== -->
-
-
-
-<!-- ========== Organization Modal ========== -->
-<div class="Organization-Modal">
-    <script type="text/ng-template" id="organizationModal.html">
-        <div class="modal-header">
-          <p class="logRegError">{{error2}}</p>
-          <h3 class="modal-title centerText" id="modal-title">Tell Us More</h3>
-        </div>
-
-        <div class="modal-body " id="modal-body">
-          <form name="userForm" ng-submit="confirmPassword(userForm.$valid)" novalidate>
-
-            <div class="form-group" ng-class="{ 'has-danger' : userForm.orgName.$invalid && !userForm.orgName.$pristine }">
-              <label class="sr-only" for="organizationName">Organization Name</label>
-              <input required type="text" class="form-control" id="organizationName" placeholder="Organization Name" ng-model='reg2.orgName' ng-minlength="3"  name="orgName">
-              <p ng-show="userForm.orgName.$error.minlength" class="form-text text-muted">Organization name must be at least 3 characters long.</p>
-              <p ng-show="userForm.orgName.$error.maxlength" class="form-text text-muted">Username is too long.</p>
-              <p ng-show="userForm.orgName.$invalid && !userForm.orgName.$pristine" class="form-text text-muted">Organization Name is Required</p>
-            </div>
-
-            <div class="form-group" ng-class="{ 'has-danger' : userForm.email.$invalid && !userForm.email.$pristine }">
-              <label class="sr-only" for="email">E-Mail</label>
-              <input required type="email" class="form-control" id="email" placeholder="E-Mail" ng-model='reg2.email' name="email">
-              <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="form-text text-muted">Enter a valid email.</p>
-            </div>
-
-            <div class="form-group" ng-class="{ 'has-danger' : userForm.password.$invalid && !userForm.password.$pristine }">
-              <label class="sr-only" for="regPassword">Password</label>
-              <input required type="password" class="form-control" id="regPassword" placeholder="Password" ng-model='reg2.password' name="password" ng-minlength="5">
-              <p ng-show="userForm.password.$error.minlength" class="form-text text-muted">Password must be at least 5 characters</p>
-            </div>
-
-            <div class="form-group" ng-class"{ 'has-danger' : userForm.passwordConf.$invalid && !userForm.passwordConf.$pristine }">
-              <label class="sr-only" for="regPasswordConf">Confirm Password</label>
-              <input required type="password" class="form-control" id="regPasswordConf" placeholder="Confirm Password" ng-model='reg2.passwordConf' name="passwordConf" ng-minlength="5">
-            </div>
-
-            <div class="row">
-              <button class="col-xs-4 col-xs-offset-4 btn btn-secondary" type="submit">Submit</button>
-            </div>
-          </form>
-
-       </div>
-        <div class="modal-footer centerText">
-            <button class="btn btn-secondary " type="button" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
-</div>
-<!-- ========== End Organization Modal ========== -->
-
-
-
-
-
-<!-- ========== Lat/Long Modal ========== -->
-<div class="LatLng-Modal">
-    <script type="text/ng-template" id="latLngModal.html">
-        <div class="modal-header">
-            <h3 class="modal-title centerText" id="modal-title">How to find your Latitude and Longitude</h3>
-        </div>
-          <div class="modal-body " id="modal-body">
-
-            <div class="row latLngContainer">
-
-              <div class="col-sm-5 greyContainer latLngDiv">
-                  <h4 class="centerText">How to:</h4>
-                  <ol>
-                    <li>Open <a href='' ng-click="openGoogleMaps()">Google Maps</a> in another tab or window and find your location. </li>
-                    <li>On the map, right click on the correct location and select 'Whats here?'.</li>
-                    <li>A window should appear at the bottom of the map with the address as well as the Latitude and Longitude. <span>(i.e. 34.184450, -118.448286)</span></li>
-                  </ol>
-              </div>
-
-              <div class="col-sm-5 col-sm-offset-2 greyContainer latLngDiv">
-                <p class="logRegError centerText">{{error2}}</p>
-                <h4 class="centerText">Your Latitude and Longitude</h4>
-                <form name="latLngForm" ng-submit='latLngSubmit(latLngForm.$valid)' novalidate>
-                  <div class="row">
-                    <div class="col-xs-6 form-group" ng-class="{ 'has-danger' : latLngForm.lat.$invalid && !latLngForm.lat.$pristine }">
-                      <label for="latitude" class="sr-only">Latitude</label>
-                      <input required class="form-control" type="number" placeholder="Latitude" id="latitude" ng-model='latLng.lat' name="lat">
-                      <p ng-show="latLngForm.lat.$invalid && !latLngForm.lat.$pristine" class="form-text text-muted centerText">Latitude is required</p>
-                    </div>
-
-                    <div class="col-xs-6 form-group" ng-class="{ 'has-danger' : latLngForm.lng.$invalid && !latLngForm.lng.$pristine }">
-                      <label for="longitude" class="sr-only">Longitude</label>
-                      <input required class="form-control" type="number" placeholder="Longitude" id="longitude" ng-model='latLng.lng' name="lng">
-                      <p ng-show="latLngForm.lng.$invalid && !latLngForm.lng.$pristine" class="form-text text-muted centerText">Longitude is required</p>
-                    </div>
-
-                  </div>
-                  <div class="row">
-                    <button class="col-xs-4 col-xs-offset-4 btn btn-secondary stickToBottom" type="submit">Register</button>
-                  </div>
-                </form>
-
-              </div>
-            </div>
-          </div>
-    </script>
-</div>
-<!-- ========== End Lat/Long Modal ========== -->

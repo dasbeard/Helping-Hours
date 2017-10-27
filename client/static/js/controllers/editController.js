@@ -124,8 +124,28 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
 
 
 
+  $scope.addDay2 = function(input){
+    var toSend = {id: $scope.loggedInUser.id, input: input};
+    // console.log(toSend);
 
+    var modalInstance = $uibModal.open({
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'HoursOfOpModal.html',
+      controller: 'HoursOfOpCtrl',
+      size: 'lg',
+      resolve: {
+        typeOfDay: function () {
+          return toSend;
+        }
+      }
+    });
 
+    modalInstance.result.then(function (response) {
+      console.log(response);
+        getOrganizationInfo();
+
+    }, function () {});
+  };
 
 
   $scope.addDay = function(isValid, service){;
@@ -185,21 +205,13 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
     })
   };
 
-
   $scope.addDayOfOp = function(){
     $scope.hoursOfOpMask = true;
   };
 
-
   $scope.addServing = function(){
     $scope.servingFoodMask = true;
   };
-
-
-
-
-
-
 
   $scope.closeMask = function() {
     $scope.hoursOfOpMask = false;
@@ -209,8 +221,6 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
     $scope.servingFoodFormInvalid = false;
     $scope.servingFoodFormInvalid2 = false;
   };
-
-
 
   function getOrganizationInfo(){
     editFactory.getOrgInfo($scope.loggedInUser, function(output){
@@ -236,26 +246,50 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
     // console.log('saved');
   };
 
-
-
-
-
-
-  // $scope.open = function () {
-  //   $scope.savedMask = true;
-  //   setTimeout(function () {
-  //       $scope.$apply(function () {
-  //           $scope.savedMask = false;
-  //       });
-  //   }, 2000);
-  // }
-
-
-
-
-
-
-
-
-
 }]); // End Controller
+
+
+
+// =========================================================================
+// ===================== HoursOfOpCtrl Controller =======================
+// =========================================================================
+app.controller('HoursOfOpCtrl', ['$scope', '$uibModalInstance', 'editFactory', 'typeOfDay', function ($scope, $uibModalInstance, editFactory, typeOfDay) {
+
+  $scope.open = '2017-10-26T07:00:43.000Z';
+  $scope.close = $scope.open;
+  console.log(typeOfDay);
+
+  if(typeOfDay == 'HOP'){
+    $scope.modalTitle = 'When are you Open?';
+  } else {
+    $scope.modalTitle = 'When are you Serving Food?';
+  };
+
+
+  $scope.add = function() {
+    var daysToAdd = [];
+    for(i=0; i<$scope.days.length; i++){
+      if($scope.days[i].isSelected == true){
+        $scope.days[i].open = $scope.open;
+        $scope.days[i].close = $scope.close;
+        daysToAdd.push($scope.days[i]);
+      }
+    }
+    console.log(daysToAdd);
+    var sendToDB = {id:typeOfDay.id, type: typeOfDay.input, days: daysToAdd};
+    editFactory.addDay(sendToDB, function(output){
+      if(output.data == 'error'){
+  // =============== Error Message Here
+      } else {
+        $uibModalInstance.close(true);
+      }
+    });
+
+
+
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+}]); // End HoursOfOpCtrl Controller

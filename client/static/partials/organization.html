@@ -57,14 +57,13 @@
                 <h3 class="">Hours of Operation</h3>
               </div>
 
-              <table class="table table-sm table-hover">
+              <table class="table table-sm table-hover" id="showTables">
                 <tbody>
-                  <tr ng-repeat="d in org.hoursOfOperation">
-                    <th scope="row">{{d.day}}</th>
-                    <td>{{d.open}} {{d.openPeriod}}</td>
+                  <tr id="timeTable" ng-repeat="d in org.hoursOfOperation">
+                    <td>{{d.name}}</td>
+                    <td id="editTimePick" uib-timepicker ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
                     <td class="editTableTo">to</td>
-                    <td>{{d.closed}} {{d.closedPeriod}}</td>
-                  </tr>
+                    <td id="editTimePick" uib-timepicker ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
                 </tbody>
               </table>
 
@@ -75,13 +74,13 @@
               <div class="hoursContainer">
                 <h3 class="">Days Serving Food</h3>
               </div>
-              <table class="table table-sm table-hover">
+              <table class="table table-sm table-hover" id="showTables">
                 <tbody>
-                  <tr ng-repeat="d in org.daysServingFood">
-                    <th scope="row">{{d.day}}</th>
-                    <td>{{d.open}} {{d.openPeriod}}</td>
+                  <tr id="timeTable" ng-repeat="d in org.daysServingFood">
+                    <td>{{d.name}}</td>
+                    <td id="editTimePick" uib-timepicker ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
                     <td class="editTableTo">to</td>
-                    <td>{{d.closed}} {{d.closedPeriod}}</td>
+                    <td id="editTimePick" uib-timepicker ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
                   </tr>
                 </tbody>
               </table>

@@ -18,7 +18,7 @@
 
             <div class="form-group input-group lowerZ" ng-class="{ 'has-danger' : editOrgForm.website.$invalid && !editOrgForm.$pristine }">
               <label for="website" class="sr-only">Organizations Website</label>
-              <input type="text" name="website" class="form-control" placeholder="Website" id="website" ng-model="editOrg.website" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/">
+              <input type="text" name="website" class="form-control" placeholder="Website" ng-model="editOrg.website" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/">
             </div>
             <p ng-show="editOrgForm.website.$invalid && !editOrgForm.website.$pristine" class="form-text text-muted">Please enter a vaild Website</p>
 
@@ -125,15 +125,15 @@
               <div class="col-sm-12 centerText ">
                 <div class="hoursContainer">
                   <h3 class="">Hours of Operation</h3>
-                  <p><a href="" ng-click="addDayOfOp()">Add a Day</a></p>
+                  <p><a href="" ng-click="addDay2('HOP')">Add a Day</a></p>
                 </div>
                 <table class="table table-sm table-hover">
                   <tbody>
-                    <tr ng-repeat="d in editOrg.hoursOfOperation">
-                      <th scope="row">{{d.day}}</th>
-                      <td>{{d.open}} {{d.openPeriod}}</td>
+                    <tr id="timeTable" ng-repeat="d in editOrg.hoursOfOperation">
+                      <td>{{d.name}}</td>
+                      <td id="editTimePick" uib-timepicker ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
                       <td class="editTableTo">to</td>
-                      <td>{{d.closed}} {{d.closedPeriod}}</td>
+                      <td id="editTimePick" uib-timepicker ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
                       <td><button type="button" class="btn btn-secondary btn-sm smallerBtn" ng-click="removeDay($index, 'hoursOfOperation')">remove</button></td>
                     </tr>
                   </tbody>
@@ -145,15 +145,15 @@
               <div class="col-sm-12 centerText ">
                 <div class="hoursContainer">
                   <h3 class="">Days Serving Food</h3>
-                  <p><a href="" ng-click="addServing()">Add a Day</a></p>
+                  <p><a href="" ng-click="addDay2('Food')">Add a Day</a></p>
                 </div>
                 <table class="table table-sm table-hover">
                   <tbody>
-                    <tr ng-repeat="d in editOrg.daysServingFood">
-                      <th scope="row">{{d.day}}</th>
-                      <td>{{d.open}} {{d.openPeriod}}</td>
+                    <tr id="timeTable" ng-repeat="d in editOrg.daysServingFood">
+                      <td>{{d.name}}</td>
+                      <td id="editTimePick" uib-timepicker ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
                       <td class="editTableTo">to</td>
-                      <td>{{d.closed}} {{d.closedPeriod}}</td>
+                      <td id="editTimePick" uib-timepicker ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
                       <td><button type="button" class="btn btn-secondary btn-sm smallerBtn" ng-click="removeDay($index, 'daysServingFood')">remove</button></td>
                     </tr>
                   </tbody>
@@ -168,15 +168,63 @@
     </div>
   </form>
 
+  <!-- <button type="button" name="button" ng-click='addDay2()'>days2</button> -->
 </div>
 
 
 
 
 
+<!-- ========== Add Day Modal ========== -->
+<div class="HoursOfOp-Modal">
+    <script type="text/ng-template" id="HoursOfOpModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title centerText" id="modal-title">{{modalTitle}}</h3>
+        </div>
+
+        <form name="addDayForm" ng-submit="add()">
+          <div class="modal-body " id="modal-body">
+              <div class="row">
+                <div class="col--sm-12" ng-model="days" ng-weekday-selector></div>
+              </div>
+
+              <!-- <div class="row">
+                <div class="col-xs-12 col-sm-4 col-sm-offset-3">
+                  <h4>Open</h4>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                  <h4>Close</h4>
+                </div>
+              </div> -->
+
+              <div class="row">
+                <div class="col-sm-4 col-sm-offset-2 timePick" uib-timepicker hour-step="1" minute-step="15" ng-model="open"></div>
+
+                <div class="col-sm-4 timePick" uib-timepicker hour-step="1" minute-step="15" ng-model="close"></div>
+              </div>
+            </div>
+
+          <div class="modal-footer centerText">
+            <button class="col-sm-4 col-sm-offset-2 btn btn-secondary" type="submit">Add</button>
+            <button class="col-sm-4  btn btn-secondary " type="button" ng-click="cancel()">Cancel</button>
+          </div>
+      </form>
+
+    </script>
+</div>
+<!-- ========== End Add Day Modal ========== -->
+
+
+
+
+
+
+
+
+
 <!-- ========== Add Hours of Operation Display Mask ========== -->
-<div class="DisplayMaskBackground container-fluid" ng-show='hoursOfOpMask'>
-<!-- <div class="DisplayMaskBackground container-fluid "> -->
+<!-- <div class="DisplayMaskBackground container-fluid" ng-show='hoursOfOpMask'>
+
 
     <div class="row ">
       <div class="col-sm-8 col-sm-offset-2 editPageMask">
@@ -289,7 +337,7 @@
       </div>
     </div>
 
-</div>
+</div> -->
 <!-- ========== End Add Hours of Operation  Display Mask ========== -->
 
 
@@ -299,8 +347,7 @@
 
 
 <!-- ========== Add Serving Food Display Mask ========== -->
-<div class="DisplayMaskBackground container-fluid" ng-show='servingFoodMask'>
-<!-- <div class="DisplayMaskBackground container-fluid "> -->
+<!-- <div class="DisplayMaskBackground container-fluid" ng-show='servingFoodMask'>
 
     <div class="row ">
       <div class="col-sm-8 col-sm-offset-2 editPageMask">
@@ -416,7 +463,7 @@
       </div>
     </div>
 
-</div>
+</div> -->
 <!-- ========== End Add Serving Food  Display Mask ========== -->
 
 

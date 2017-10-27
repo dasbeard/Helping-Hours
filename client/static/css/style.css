@@ -65,7 +65,14 @@
 }
 
 .redBackground{
-  background: rgba(241, 221, 222,1)
+  background: rgba(241, 221, 222,1);
+}
+
+.whiteBG{
+  background: white;
+  width: 60%;
+  height: 60%;
+  margin-left: 20%;
 }
 
 .btn{
@@ -76,6 +83,8 @@
 .btn-secondary:hover{
   background-color: #d8d8d8;
 }
+
+
 
 
 /*==================== Fixer Classes ==================*/
@@ -244,11 +253,6 @@
   margin: 5px;
   display: inline-block;
 }
-
-#website {
-  color: blue;
-}
-
 
 
 @media only screen and (max-width: 500px) {
@@ -428,8 +432,31 @@ padding: 0;
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 1%;
-
 }
+
+.timePick .btn-link {
+  box-shadow: 0px 0px 0px;
+  border: 0;
+}
+
+#editTimePick input, #editTimePick button {
+  box-shadow: 0px 0px 0px;
+  border: 0;
+  background-color: inherit;
+  color: black;
+  padding: 0;
+  width: 25px;;
+}
+
+#editTimePick button{
+  font-weight: 400;
+}
+
+#editTimePick {
+  padding: 2px;
+}
+
+
 .boxBg{
   margin: 0 5% 1% 5%;
   background-color: rgba(225, 225, 225, 0.85);
@@ -453,24 +480,6 @@ padding: 0;
   width: auto;
 }
 
-@media only screen and (max-width: 500px) {
-  .editInfoAdjust{
-    padding-left: calc(50% - 80px);
-  }
-  .editPageMask{
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .Btn2{
-    margin-left: 10%;
-  }
-  .mySelect div select{
-    width: 120px;
-    margin-left: calc(50% - 60px);
-  }
-
-}
-
 .servicesPadding{
   padding-left: 5%;
   padding-right: 5%;
@@ -486,9 +495,6 @@ padding: 0;
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-
-
-
 
 .lowerZ{
   z-index: 0;
@@ -543,18 +549,31 @@ padding: 0;
   padding-left: 50px;
 }
 
-.servicesContainer td, .servicesContainer th{
-  padding: 1px;
-}
-
-.servicesContainer th{
-  width: 25px;
+#timeTable td{
+  vertical-align: middle;
 }
 
 .editTableTo{
   width: 25px;
 }
 
+@media only screen and (max-width: 500px) {
+  .editInfoAdjust{
+    padding-left: calc(50% - 80px);
+  }
+  .editPageMask{
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .Btn2{
+    margin-left: 10%;
+  }
+  .mySelect div select{
+    width: 120px;
+    margin-left: calc(50% - 60px);
+  }
+
+}
 
 /*.editOrgName{
 padding-top: 20px;

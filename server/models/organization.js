@@ -21,8 +21,8 @@ var OrganizationSchema = new mongoose.Schema({
   phone: {type: String, trim: true},
   website: {type: String, trim: true},
   description: {type: String, maxlength: 150, trim: true},
-  hoursOfOperation: [{}],
   services: {},
+  hoursOfOperation: [{}],
   daysServingFood: [{}],
   email:{
         type: String,
