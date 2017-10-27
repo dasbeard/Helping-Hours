@@ -17,17 +17,17 @@
 
 
           <div class="centerBottomAddress centerText">
-            <p class="orgMapClick" ng-click='openMap()' popover-class='popOverTip' uib-popover="Open Google Maps in new tab" popover-trigger="'mouseenter'" popover-placement="bottom">{{org.formattedAddress}}</p>
+            <p class="orgMapClick" ng-click='openMap()' tooltip-popup-delay='500' tooltip-placement='bottom' uib-tooltip='Open Google Maps in new tab'>{{org.formattedAddress}}</p>
           </div>
         </div>
 
         <div class="col-sm-3 col-sm-pull-6 centerText orgPushDown" >
           <h4 ng-if='!noOrgInfo'>Contact Us</h4>
           <div class="orgInfo">
-            <a href='' ng-click="openWebsite()" popover-class='popOverTip' uib-popover="Open in new tab" popover-trigger="'mouseenter'" popover-placement="top">{{org.website}}</a>
+            <a href='' ng-click="openWebsite()" tooltip-popup-delay='500' tooltip-placement='top' uib-tooltip='Open in new tab'>{{org.website}}</a>
           </div>
 
-          <div class="orgInfo copyEmail" ngclipboard data-clipboard-text="{{org.contactEmail}}" ng-click="copyEmail()">
+          <div class="orgInfo copyEmail" tooltip-popup-delay='500' uib-tooltip='Click to Copy' tooltip-placement='bottom' ngclipboard data-clipboard-text="{{org.contactEmail}}" ng-click="copyEmail()">
 
             <p ng-hide='copied'>{{org.contactEmail}}</p>
             <p ng-show='copied' class="copied">Copied to clipboard</p>

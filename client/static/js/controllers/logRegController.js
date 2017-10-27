@@ -2,13 +2,10 @@
 // =========================== LogReg Controller ===========================
 // =========================================================================
 app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'adminFactory', '$location', '$cookies', '$window', '$state', '$uibModal', function($scope, $rootScope, logRegFactory, adminFactory, $location, $cookies, $window, $state, $uibModal){
-  var $lCtrl = this;
 
   $rootScope.loggedInUser = $cookies.getObject('loggedUser')
 
   $scope.register = function (isValid, size, parentSelector) {
-    // console.log($scope.reg);
-
     if(isValid){
       if(!$scope.reg){
         $scope.error = 'Please enter your information to register';
@@ -20,7 +17,6 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
         $scope.error = 'Please enter a Zip code';
       } else {
         $scope.error = '';
-
   // =-=-=-=-=-=-=-=-=-=-=-=- Modal -==-=-=-=-=-=-=-=-=-=
         logRegFactory.findLocation($scope.reg, function(output){
           if(output.error){
@@ -34,13 +30,13 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
               ariaDescribedBy: 'modal-body',
               templateUrl: 'yourLocationModal.html',
               controller: 'yourLocationCtrl',
-              controllerAs: '$lCtrl',
+              // controllerAs: '$lCtrl',
               size: size,
               appendTo: parentElem,
               resolve: {
                 allFound: function () {
                   return allFound;
-                }
+                }, function () {}
               }
             });
 
@@ -67,61 +63,10 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
   };
   // =-=-=-=-=-=-=-=-=-=- End Modal -==-=-=-=-=-=-=-=-=-=
 
-
-  $scope.selectedAddress = function(address){
-    // console.log(address.formattedAddress);
-    $scope.newUser = {address: address};
-    $scope.OrgNamePrompt = true;
-  }; // End selectedAddress method
-
-  $scope.latLngSubmit = function(isValid){
-    if(isValid){
-      if($scope.latLng){
-        if(!$scope.latLng.lat){
-          $scope.error2 = 'Latitude is Required';
-        }
-        else if(!$scope.latLng.lng){
-          $scope.error2 = 'Longitude is Required';
-        }
-        else {
-          logRegFactory.findLatLng($scope.latLng, function(output){
-            // console.log(output.data);
-            if(output.data.error){
-              console.log(output.data.error);
-              $scope.error = output.data.error;
-            } else {
-              $scope.error = '';
-              $scope.foundLocations = output.data;
-              $scope.latLngPromt = false;
-              $scope.showLocationPicker = true;
-              if(output.data.length > 1){
-                $scope.locationHeading = 'Please Select Your Address';
-                $scope.locationButton = 'Select';
-              } else {
-                $scope.locationHeading = 'Is This Your Address?';
-                $scope.locationButton = 'Yes';
-              }
-            }
-          })
-        }
-      }
-    }
-  }; // End latLng method
-
-  // $scope.enterLatLong = function(){
-  //   $scope.showLocationPicker = false;
-  //   $scope.latLngPromt = true;
-  // }; // End enterLatLong method
-
-  $scope.openGoogleMaps = function() {
-  		$window.open('http://www.maps.google.com', '_blank');
-  	}; // End openGoogleMaps method
-
   // Login Method
   $scope.loginUser = function(){
     // console.log($scope.login);
     $scope.error = '';
-
     // ===== Front End Validation ====
     if (!$scope.login){
       $scope.error = 'Please Enter in Email and Password';
@@ -188,7 +133,6 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
   }
 
   $scope.logoutUser = function(){
-    // console.log('button clicked');
     $cookies.remove('loggedUser');
     $cookies.remove('loggedAdmin');
 
@@ -213,17 +157,6 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
 
   };
 
-
-  // $scope.openLatLng = function(){
-  //   latLngModal();
-  // }
-  //
-  // $scope.openOrg = function(){
-  //   orgModal();
-  // }
-
-
-
   function orgModal(locationResponse, parentSelector){
     var parentElem = parentSelector ?
     angular.element($document[0].querySelector('.Organization-Modal ' + parentSelector)) : undefined;
@@ -231,7 +164,6 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
       ariaDescribedBy: 'modal-body',
       templateUrl: 'organizationModal.html',
       controller: 'organizationCtrl',
-      // controllerAs: '$oCtrl',
       // size: size,
       appendTo: parentElem,
       resolve: {
@@ -247,7 +179,7 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
       window.location.replace('/#!/edit');
     }, function () {
       });
-  }
+  };
 
 
   function latLngModal(parentSelector, input){
@@ -257,26 +189,16 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
       ariaDescribedBy: 'modal-body',
       templateUrl: 'latLngModal.html',
       controller: 'LatLngCtrl',
-      controllerAs: '$llCtrl',
       size: 'lg',
       appendTo: parentElem,
-      resolve: {
-        // location: function () {
-        //   return locationResponse;
-        // }
-      }
+      resolve: {}
     });
 
     modalInstance.result.then(function (response) {
       orgModal(response);
-      // setCookie(response.sentback);
-      // window.location.replace('/#!/edit');
     }, function () {
       });
-  }
-
-
-
+  };
 
 
 }]); // End Controller
@@ -298,12 +220,10 @@ app.controller('yourLocationCtrl', ['$scope', '$uibModalInstance', 'allFound', '
   }
 
   $scope.selectedAddress = function(selectedInput) {
-    // console.log(selectedInput);
     $uibModalInstance.close(selectedInput);
   };
 
   $scope.enterLatLong = function(){
-
     $uibModalInstance.close('LatLng');
   }
 
@@ -319,12 +239,9 @@ app.controller('yourLocationCtrl', ['$scope', '$uibModalInstance', 'allFound', '
 app.controller('organizationCtrl', ['$scope', '$uibModalInstance', 'location', 'logRegFactory', function ($scope, $uibModalInstance, location, logRegFactory) {
 
   $scope.confirmPassword = function(isValid) {
-    // console.log(isValid);
     if(isValid){
       $scope.reg2.address = location;
-      // console.log($scope.reg2);
       logRegFactory.newRegistration($scope.reg2, function(output){
-        // console.log(output.data);
         if(output.data.error){
           $scope.error2 = output.data.error;
         } else {
@@ -349,21 +266,16 @@ app.controller('organizationCtrl', ['$scope', '$uibModalInstance', 'location', '
 app.controller('LatLngCtrl', ['$scope', '$uibModalInstance', 'logRegFactory', '$window', function ($scope, $uibModalInstance, logRegFactory, $window) {
 
   $scope.latLngSubmit = function(isValid) {
-    // console.log(isValid);
     if(isValid){
-      // console.log($scope.latLng);
       logRegFactory.findLatLng($scope.latLng, function(output){
-        // console.log(output.data);
         if(output.data.error){
           console.log(output.data.error);
           $scope.error = output.data.error;
         } else {
-          // console.log(output.data[0]);
           $uibModalInstance.close(output.data[0]);
         }
       });
     }
-
   };
 
   $scope.cancel = function () {
@@ -372,6 +284,6 @@ app.controller('LatLngCtrl', ['$scope', '$uibModalInstance', 'logRegFactory', '$
 
   $scope.openGoogleMaps = function() {
   		$window.open('http://www.maps.google.com', '_blank');
-  	}; // End openGoogleMaps method
+  	};
 
 }]); // End organizationCtrl Controller

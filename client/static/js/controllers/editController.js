@@ -113,7 +113,7 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
                 $scope.savedMask = false;
             });
             window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
-        }, 700);
+        }, 1000);
         // window.location.replace('/#!/organization/' + $scope.loggedInUser.id);
 
       }
@@ -141,7 +141,6 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
     });
 
     modalInstance.result.then(function (response) {
-      console.log(response);
         getOrganizationInfo();
 
     }, function () {});
@@ -191,7 +190,6 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
       }
     }
   };
-
 
 
   $scope.removeDay = function(idx, service){
@@ -257,7 +255,6 @@ app.controller('HoursOfOpCtrl', ['$scope', '$uibModalInstance', 'editFactory', '
 
   $scope.open = '2017-10-26T07:00:43.000Z';
   $scope.close = $scope.open;
-  console.log(typeOfDay);
 
   if(typeOfDay == 'HOP'){
     $scope.modalTitle = 'When are you Open?';
@@ -275,7 +272,6 @@ app.controller('HoursOfOpCtrl', ['$scope', '$uibModalInstance', 'editFactory', '
         daysToAdd.push($scope.days[i]);
       }
     }
-    console.log(daysToAdd);
     var sendToDB = {id:typeOfDay.id, type: typeOfDay.input, days: daysToAdd};
     editFactory.addDay(sendToDB, function(output){
       if(output.data == 'error'){

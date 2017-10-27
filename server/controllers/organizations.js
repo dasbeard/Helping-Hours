@@ -44,7 +44,6 @@ module.exports = (function(){
     findLatLng: function(req,res){
       // console.log(req.body);
       geocoder.reverse({lat:req.body.lat, lon:req.body.lng}, function(err, output) {
-        // console.log(res);
         if (err){
           console.log('===== ERROR ====='.red);
           console.log(err);
@@ -57,7 +56,7 @@ module.exports = (function(){
 
 
     newRegistration: function (req,res){
-      console.log(req.body);
+      // console.log(req.body);
       // check if email is already registered
       Organization.findOne({email: req.body.email.toLowerCase()}, function(err, oneUser){
         if (err){
@@ -73,7 +72,7 @@ module.exports = (function(){
             var myEmail = req.body.email.toLowerCase();
             var pw = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
             var newOrganization = new Organization({
-              organization: req.body.orgName, formattedAddress: req.body.address.formattedAddress, streetNumber: req.body.address.streetNumber, streetName: req.body.address.streetName, city: req.body.address.city, state: req.body.address.administrativeLevels.level1short, zip: req.body.address.zipcode, latitude: req.body.address.latitude, longitude: req.body.address.longitude, email: myEmail, password: pw,
+              organization: req.body.orgName, formattedAddress: req.body.address.formattedAddress, streetNumber: req.body.address.streetNumber, streetName: req.body.address.streetName, city: req.body.address.city, neighborhood:req.body.address.extra.neighborhood.toLowerCase(), state: req.body.address.administrativeLevels.level1short, zip: req.body.address.zipcode, latitude: req.body.address.latitude, longitude: req.body.address.longitude, email: myEmail, password: pw,
             })
             // Save new Organization
             newOrganization.save(function(err){
@@ -153,7 +152,6 @@ module.exports = (function(){
 
 
     addDay: function(req,res){
-
       Organization.findOne({_id: req.body.id}, function(err, oneOrg){
         if (err){
           console.log('===== Error ====='.red);
@@ -179,120 +177,18 @@ module.exports = (function(){
               oneOrg.daysServingFood.push(req.body.days[i])
             };
             sortByTimes2(oneOrg.daysServingFood);
-              oneOrg.save(function(err){
-                if (err){
-                  console.log('==== Error When saving new day ===='.red);
-                  console.log(err);
-                  res.json({error: 'Problem Saving Day'})
-                } else {
-                  res.json(true);
-                }
-              });
+            oneOrg.save(function(err){
+              if (err){
+                console.log('==== Error When saving new day ===='.red);
+                console.log(err);
+                res.json({error: 'Problem Saving Day'})
+              } else {
+                res.json(true);
+              }
+            });
           }
-
-
-          // var newDay = {day: req.body.day, open: req.body.open, openPeriod: req.body.openPeriod, closed: req.body.closed, closedPeriod: req.body.closedPeriod};
-          // // console.log(newDay);
-          // if(req.body.service == 'hoursOfOperation'){
-          //   oneUser.hoursOfOperation.push(newDay);
-          //   sortByTimes(oneUser.hoursOfOperation);
-          //   oneUser.save(function(err){
-          //     if (err){
-          //       console.log('==== Error When saving new day ===='.red);
-          //       console.log(err);
-          //       res.json({error: 'Problem Saving Day'})
-          //     } else {
-          //       res.json(true);
-          //     }
-          //   })
-          // } else if (req.body.service == 'daysServingFood') {
-          //   oneUser.daysServingFood.push(newDay);
-          //   sortByTimes(oneUser.daysServingFood);
-          //   oneUser.save(function(err){
-          //     if (err){
-          //       console.log('==== Error When saving new day ===='.red);
-          //       console.log(err);
-          //       res.json({error: 'Problem Saving Day'})
-          //     } else {
-          //       res.json(true);
-          //     }
-          //   })
-          // }
         }
       })
-
-
-
-      function sortByTimes2(input){
-        // var sorter = {
-        //   "monday": 1,
-        //   "tuesday": 2,
-        //   "wednesday": 3,
-        //   "thursday": 4,
-        //   "friday": 5,
-        //   "saturday": 6,
-        //   "sunday": 7
-        // }
-
-        input.sort(function sortByOpen(a, b) {
-          var day1 = a.open;
-          var day2 = b.open;
-          return day1 > day2;
-        });
-
-        input.sort(function sortByDay(a, b) {
-          var day1 = a.id;
-          var day2 = b.id;
-          return day1 > day2;
-        });
-
-
-        return input;
-      }
-
-
-
-
-
-
-
-
-
-      // Organization.findOne({_id: req.body.id}, function(err, oneUser){
-      //   if (err){
-      //     console.log('===== Error ====='.red);
-      //     console.log(err);
-      //     res.json({error: 'Problem Finding Record'})
-      //   } else {
-      //     var newDay = {day: req.body.day, open: req.body.open, openPeriod: req.body.openPeriod, closed: req.body.closed, closedPeriod: req.body.closedPeriod};
-      //     // console.log(newDay);
-      //     if(req.body.service == 'hoursOfOperation'){
-      //       oneUser.hoursOfOperation.push(newDay);
-      //       sortByTimes(oneUser.hoursOfOperation);
-      //       oneUser.save(function(err){
-      //         if (err){
-      //           console.log('==== Error When saving new day ===='.red);
-      //           console.log(err);
-      //           res.json({error: 'Problem Saving Day'})
-      //         } else {
-      //           res.json(true);
-      //         }
-      //       })
-      //     } else if (req.body.service == 'daysServingFood') {
-      //       oneUser.daysServingFood.push(newDay);
-      //       sortByTimes(oneUser.daysServingFood);
-      //       oneUser.save(function(err){
-      //         if (err){
-      //           console.log('==== Error When saving new day ===='.red);
-      //           console.log(err);
-      //           res.json({error: 'Problem Saving Day'})
-      //         } else {
-      //           res.json(true);
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
     },
 
 
@@ -436,7 +332,7 @@ module.exports = (function(){
 
     citySearch: function(req,res){
       var city = titleCase(req.body.city)
-      Organization.find({$and: [{state: req.body.state}, {city: city}]}, function(err, results){
+      Organization.find({$and: [{state: req.body.state}, {$or: [{city: city}, {neighborhood: req.body.city.toLowerCase()}]}]}, function(err, results){
         if (err){
           console.log('==== Error finding by state ===='.red);
           console.log(err);
@@ -457,6 +353,47 @@ module.exports = (function(){
         }
       })
     },
+
+
+
+    // query = {$or:[{firstName:{$regex: req.body.customerName, $options: 'i'}},{lastName:{$regex: req.body.customerName, $options: 'i'}}]}
+
+
+
+    // citySearch: function(req,res){
+    //   var city = titleCase(req.body.city)
+    //   Organization.find({$and: [{state: req.body.state}, {city: city}]}, function(err, results){
+    //     if (err){
+    //       console.log('==== Error finding by state ===='.red);
+    //       console.log(err);
+    //     } else {
+    //       // console.log(results);
+    //       var sendBack = [];
+    //
+    //       for (var i=0; i<results.length; i++){
+    //         organization = { formattedAddress: results[i].formattedAddress, organization: results[i].organization, website: results[i].website, _id: results[i]._id}
+    //         sendBack.push(organization);
+    //       };
+    //
+    //       if (sendBack.length == 0){
+    //         res.json({error: 'No locations found'});
+    //       } else {
+    //         res.json(sendBack);
+    //       }
+    //     }
+    //   })
+    // },
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1193,37 +1130,22 @@ function phoneDisplay(str){
   }
 };
 
+function sortByTimes2(input){
+  input.sort(function sortByOpen(a, b) {
+    var day1 = a.open;
+    var day2 = b.open;
+    return day1 > day2;
+  });
+
+  input.sort(function sortByDay(a, b) {
+    var day1 = a.id;
+    var day2 = b.id;
+    return day1 > day2;
+  });
 
 
-// function sortByTimes(input){
-//   var sorter = {
-//     "monday": 1,
-//     "tuesday": 2,
-//     "wednesday": 3,
-//     "thursday": 4,
-//     "friday": 5,
-//     "saturday": 6,
-//     "sunday": 7
-//   }
-//
-//   input.sort(function sortByOpen(a, b) {
-//     var day1 = a.open;
-//     var day2 = b.open;
-//     return day1 > day2;
-//   });
-//
-//   input.sort(function sortByDay(a, b) {
-//     var day1 = a.day.toLowerCase();
-//     var day2 = b.day.toLowerCase();
-//     return sorter[day1] > sorter[day2];
-//   });
-//
-//
-//   return input;
-// }
-
-
-
+  return input;
+}
 
 
 function intParsing(input){

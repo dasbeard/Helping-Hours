@@ -177,7 +177,7 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
     $scope.copied = 1;
     $timeout(function() {
       $scope.copied = 0;
-    }, 2800);
+    }, 2600);
   };
 
 

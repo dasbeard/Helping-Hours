@@ -44,74 +44,159 @@
 
     <div class="col-sm-2 centerDivide"></div>
 
-    <div class="col-sm-5 accordionDiv">
+    <div class="col-sm-5 accordionDiv" >
+      <div class="row">
+        <div class="col-xs-12">
+          <uib-accordion close-others="oneAtATime" ng-show='!loadingOrgs'>
+            <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+              <uib-accordion-heading>
+                Within 2 Miles <span class="accordHeading">{{within2miles.length}} location(s)</span>
+              </uib-accordion-heading>
+                <table class="table table-sm table-hover">
+                  <tbody>
+                    <tr ng-repeat='place in within2miles'>
+                      <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
+                      <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
 
-        <uib-accordion close-others="oneAtATime" ng-show='!loadingOrgs'>
-          <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-            <uib-accordion-heading>
-              Within 2 Miles <span class="accordHeading">{{within2miles.length}} location(s)</span>
-            </uib-accordion-heading>
+            <div uib-accordion-group class="panel-default">
+              <uib-accordion-heading>
+                Within 5 Miles <span class="accordHeading">{{within5miles.length}} location(s)</span>
+              </uib-accordion-heading>
+                <table class="table table-sm table-hover">
+                  <tbody>
+                    <tr ng-repeat='place in within5miles'>
+                      <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
+                      <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+
+            <div uib-accordion-group class="panel-default">
+              <uib-accordion-heading>
+                Within 25 Miles <span class="accordHeading">{{within25miles.length}} location(s)</span>
+              </uib-accordion-heading>
               <table class="table table-sm table-hover">
                 <tbody>
-                  <tr ng-repeat='place in within2miles'>
+                  <tr ng-repeat='place in within25miles'>
                     <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
                     <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+          </uib-accordion>
+
+
+          <div class="lds-ripple" ng-show='loadingOrgs'>
+            <div></div>
+            <div></div>
           </div>
 
-          <div uib-accordion-group class="panel-default">
-            <uib-accordion-heading>
-              Within 5 Miles <span class="accordHeading">{{within5miles.length}} location(s)</span>
-            </uib-accordion-heading>
-              <table class="table table-sm table-hover">
-                <tbody>
-                  <tr ng-repeat='place in within5miles'>
-                    <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
-                    <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-
-          <div uib-accordion-group class="panel-default">
-            <uib-accordion-heading>
-              Within 25 Miles <span class="accordHeading">{{within25miles.length}} location(s)</span>
-            </uib-accordion-heading>
-            <table class="table table-sm table-hover">
-              <tbody>
-                <tr ng-repeat='place in within25miles'>
-                  <td ng-click="visitOrg(place._id)">{{place.organization}}</td>
-                  <td ng-click="visitOrg(place._id)">{{place.formattedAddress}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-        </uib-accordion>
-
-
-      <div class="lds-ripple" ng-show='loadingOrgs'>
-        <div></div>
-        <div></div>
+        </div>
       </div>
+
+
+      <div class="row citySearchDiv">
+        <!-- <div class="col-xs-12"> -->
+          <!-- <div class="row" > -->
+            <h4>Search by City</h4>
+
+            <form class="" name='SearchCity' ng-submit="citySearch(loginForm.$valid)">
+
+              <div class="form-group col-sm-5 " ng-class="{ 'has-danger' : SearchCity.city.$invalid && !SearchCity.city.$pristine }">
+                <label class="sr-only" for="searchCity">Search City.. </label>
+                <input required placeholder="City..." class='form-control' id='searchCity' type="text" name="city" ng-model='city'>
+              </div>
+
+              <div class="form-group col-sm-3">
+                <label class="sr-only" for="myselect">State..</label>
+                <select required class="form-control" name="state" ng-model='state'>
+                  <option value="">State</option>
+                  <option value="AL">AL</option>
+                  <option value="AK">AK</option>
+                  <option value="AZ">AZ</option>
+                  <option value="AR">AR</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DE">DE</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="IA">IA</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="ME">ME</option>
+                  <option value="MD">MD</option>
+                  <option value="MA">MA</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MS">MS</option>
+                  <option value="MO">MO</option>
+                  <option value="MT">MT</option>
+                  <option value="NE">NE</option>
+                  <option value="NV">NV</option>
+                  <option value="NH">NH</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NY">NY</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VT">VT</option>
+                  <option value="VA">VA</option>
+                  <option value="WA">WA</option>
+                  <option value="WV">WV</option>
+                  <option value="WI">WI</option>
+                  <option value="WY">WY</option>
+                </select>
+              </div>
+
+              <div class="form-group col-sm-2 ">
+                <button class="btn btn-secondary" type="submit"> Search</button>
+              </div>
+            </form>
+
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+
     </div>
 
 
 
 
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-sm-5 col-sm-offset-7">
         <div class="row citySearchDiv">
           <form class="" name='SearchCity' ng-submit="citySearch(loginForm.$valid)">
-            <div class="form-group col-sm-6 " ng-class="{ 'has-danger' : SearchCity.city.$invalid && !SearchCity.city.$pristine }">
+
+            <div class="form-group col-sm-4 " ng-class="{ 'has-danger' : SearchCity.city.$invalid && !SearchCity.city.$pristine }">
               <label class="sr-only" for="searchCity">Search City.. </label>
               <input required placeholder="City..." class='form-control' id='searchCity' type="text" name="city" ng-model='city'>
             </div>
 
-            <div class="form-group col-sm-3">
+            <div class="form-group col-sm-4">
               <label class="sr-only" for="myselect">State..</label>
               <select required class="form-control" name="state" ng-model='state'>
                 <option value="">State</option>
@@ -168,13 +253,13 @@
               </select>
             </div>
 
-            <div class="form-group col-sm-3 ">
+            <div class="form-group col-sm-2 ">
               <button class="btn btn-secondary" type="submit"> Search</button>
             </div>
           </form>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 
@@ -184,11 +269,12 @@
 
   <div class="row">
 
-<!-- popover-class='popOverTip' uib-popover="Open in new tab" popover-trigger="'mouseenter'" popover-placement="top" -->
 
-    <div ng-show='searchedCity' class="greyContainer searchResults col-sm-8 col-sm-offset-2">
+    <div ng-show='searchedCity' class="greyContainer searchResults col-sm-10 col-sm-offset-1">
       <li ng-repeat='place in searchedCity'>
-        <a href='' ng-click="goToOrgSearch(place._id)"> <span>{{place.organization}}</span> - </a> <a href='' ng-click="openMap(place.formattedAddress)">{{place.formattedAddress}}</a> <p ng-show='place.website'> - </p> <a ng-show='place.website' href='' ng-click="openWebsite(place.website)">{{place.website}}</a>
+        <a href='' ng-click="goToOrgSearch(place._id)" tooltip-popup-delay='500' uib-tooltip="Go to Organization's Page" tooltip-placement='left'> <span>{{place.organization}}</span> - </a>
+        <a href='' ng-click="openMap(place.formattedAddress)" tooltip-popup-delay='500' uib-tooltip='View on Google Maps' tooltip-placement='bottom'>{{place.formattedAddress}}</a>
+        <p ng-show='place.website'> - </p> <a ng-show='place.website' href='' ng-click="openWebsite(place.website)" tooltip-popup-delay='500' uib-tooltip='Open in new tab' tooltip-placement='right'>{{place.website}}</a>
       </li>
 
       <h4>{{noLocations}}</h4>
@@ -201,17 +287,16 @@
 
   <footer class="greyContainer footer">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-xs-12 col-sm-5">
         <p>*Helping Hours is still under development</p>
       </div>
-      <div class="col-sm-2 col-sm-offset-4">
+      <div class="col-xs-4 col-sm-4 ">
         <p>Contact us at: </p>
       </div>
-      <div class="col-sm-2 copyEmail centerText" ngclipboard data-clipboard-text="helpinghoursadm@gmail.com" ng-click="copyEmail()">
+      <div class="col-xs-8 col-sm-2 copyEmail centerText" ngclipboard data-clipboard-text="helpinghoursadm@gmail.com" ng-click="copyEmail()">
 
         <p ng-hide='copied'>HelpingHoursAdm@gmail.com</p>
         <p ng-show='copied' class="footerCopied ">Copied to clipboard</p>
-
 
       </div>
 
