@@ -3,7 +3,11 @@
 // =========================================================================
 app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'adminFactory', '$location', '$cookies', '$window', '$state', '$uibModal', function($scope, $rootScope, logRegFactory, adminFactory, $location, $cookies, $window, $state, $uibModal){
 
-  $rootScope.loggedInUser = $cookies.getObject('loggedUser')
+  $rootScope.loggedInUser = $cookies.getObject('loggedUser');
+  $rootScope.loggedInAdmin = $cookies.getObject('loggedAdmin');
+
+
+
 
   $scope.register = function (isValid, size, parentSelector) {
     if(isValid){
@@ -59,9 +63,18 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
           }
         });
       }
-    } // end isValid
+    } else if(!isValid){
+      $scope.error = 'All fields are required to Register';
+      clearError();
+    };
   };
   // =-=-=-=-=-=-=-=-=-=- End Modal -==-=-=-=-=-=-=-=-=-=
+
+
+  $scope.closeAlert = function(){
+    $scope.error= '';
+  };
+
 
   // Login Method
   $scope.loginUser = function(){
@@ -70,10 +83,13 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
     // ===== Front End Validation ====
     if (!$scope.login){
       $scope.error = 'Please Enter in Email and Password';
+      clearError();
     } else if(!$scope.login.email){
       $scope.error = 'Email required to sign in';
+      clearError();
     }else if (!$scope.login.password){
       $scope.error = 'Password required to sign in';
+      clearError();
     } else {
       // Call Factory Method to Login
       $scope.error = '';
@@ -96,37 +112,41 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
   }; // End Login Method
 
   // Admin Login Method
-  $scope.adminLogin = function(){
+  $scope.adminLogin = function(isValid){
     // console.log($scope.admin);
     $scope.error = '';
-
-    // ===== Front End Validation ====
-    if (!$scope.admin){
-      $scope.error = 'Please Enter in Email and Password';
-    } else if(!$scope.admin.email){
-      $scope.error = 'Email required to sign in';
-    }else if (!$scope.admin.password){
-      $scope.error = 'Password required to sign in';
+    if(isValid){
+      // ===== Front End Validation ====
+      if (!$scope.admin){
+        $scope.error = 'Please Enter in Email and Password';
+        clearError();
+      } else if(!$scope.admin.email){
+        $scope.error = 'Email required to sign in';
+        clearError();
+      }else if (!$scope.admin.password){
+        $scope.error = 'Password required to sign in';
+      } else {
+        clearError();
+        // Call Factory Method to Login
+        $scope.error = '';
+        // console.log('sending to backend');
+        adminFactory.loginAdmin($scope.admin, function(output){
+          // adminFactory.log(output);
+          if(output.data.error){
+            $scope.error = output.data.error;
+            clearError();
+          } else {
+            // console.log(output.data);
+            setCookie(output.data, 'admin');
+            window.location.replace('/#!/adminHome');
+          }
+        });
+      }
     } else {
-      // Call Factory Method to Login
-      $scope.error = '';
-      // console.log('sending to backend');
-      adminFactory.loginAdmin($scope.admin, function(output){
-        // adminFactory.log(output);
-        if(output.data.error){
-          $scope.error = output.data.error;
-        } else {
-          // console.log(output.data);
-          setCookie(output.data, 'admin');
-          window.location.replace('/#!/adminHome');
-        }
-      });
+      $scope.error = "All fields are required";
+      clearError();
     }
   }; // End Admin Login Method
-
-  $scope.adminPage = function(){
-      window.location.replace('/#!/adminHome');
-    }
 
   $scope.myPage = function(){
     window.location.replace('/#!/organization/' + $rootScope.loggedInUser.id);
@@ -201,6 +221,15 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
   };
 
 
+  function clearError(){
+    setTimeout(function () {
+        $scope.$apply(function () {
+            $scope.error = false;
+        });
+    }, 5000);
+  };
+
+
 }]); // End Controller
 
 
@@ -250,12 +279,24 @@ app.controller('organizationCtrl', ['$scope', '$uibModalInstance', 'location', '
           $uibModalInstance.close(response);
         }
       });
+    } else {
+      $scope.error2 = "All fields are required";
+      setTimeout(function () {
+          $scope.$apply(function () {
+              $scope.error2 = false;
+          });
+      }, 5000);
     }
   };
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
+
+  $scope.closeAlert = function(){
+    $scope.error2= '';
+  };
+
 }]); // End organizationCtrl Controller
 
 
@@ -267,14 +308,22 @@ app.controller('LatLngCtrl', ['$scope', '$uibModalInstance', 'logRegFactory', '$
 
   $scope.latLngSubmit = function(isValid) {
     if(isValid){
+      // console.log($scope.latLng);
       logRegFactory.findLatLng($scope.latLng, function(output){
+        // console.log(output);
         if(output.data.error){
-          console.log(output.data.error);
-          $scope.error = output.data.error;
+          $scope.error2 = output.data.error;
+          setTimeout(function () {
+              $scope.$apply(function () {
+                  $scope.error2 = '';
+              });
+          }, 5000);
         } else {
           $uibModalInstance.close(output.data[0]);
         }
       });
+    } else {
+      $scope.error2 = "Both Latitude and Longitude are required";
     }
   };
 
@@ -285,5 +334,11 @@ app.controller('LatLngCtrl', ['$scope', '$uibModalInstance', 'logRegFactory', '$
   $scope.openGoogleMaps = function() {
   		$window.open('http://www.maps.google.com', '_blank');
   	};
+
+
+  $scope.closeAlert = function(){
+    $scope.error2= '';
+  };
+
 
 }]); // End organizationCtrl Controller

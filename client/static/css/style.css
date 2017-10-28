@@ -417,6 +417,34 @@
 /*=======================================================*/
 /*================== Edit Page Classes ==================*/
 /*=======================================================*/
+.errorAlert{
+  margin-bottom: -250px;
+	animation-name: slideDown;
+	-webkit-animation-name: slideDown;
+
+	animation-duration: .6s;
+	-webkit-animation-duration: .6s;
+
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+
+	visibility: visible !important;
+}
+
+@keyframes slideDown {
+	0% {transform: translateY(-100%);}
+	50%{transform: translateY(8%);}
+	65%{transform: translateY(-4%);}
+	100% {transform: translateY(0%);}
+}
+
+@-webkit-keyframes slideDown {
+	0% {-webkit-transform: translateY(-100%);}
+	50%{-webkit-transform: translateY(8%);}
+	65%{-webkit-transform: translateY(-4%);}
+	100% {-webkit-transform: translateY(0%);}
+}
+
 .servicesContainer{
   padding-left: 25px;
   padding-right: 25px;
@@ -446,7 +474,7 @@
 }
 
 .boxBg{
-  margin: 0 5% 1% 5%;
+  margin: 10px 5% 1% 5%;
   background-color: rgba(225, 225, 225, 0.85);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -507,6 +535,7 @@
   text-align: center;
   margin-top: 15%;
   font-weight: bold;
+  font-size: 5em;
   color: white;
   text-shadow: 0px 7px 21px #800000;
 }
@@ -677,6 +706,7 @@
 }
 
 .adminSpacing{
+  margin-top: 10px;
   margin-left: .5%;
   margin-right: .5%;
 }
@@ -704,6 +734,10 @@
   -moz-border-radius-bottomright: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+
+.adminTable h4{
+  margin: 0;
 }
 
 .deleteBtn {

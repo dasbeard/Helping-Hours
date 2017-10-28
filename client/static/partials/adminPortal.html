@@ -1,9 +1,9 @@
 <div class="container-fluid">
 
-  <div ng-if=error class="jumbotron jumbotron-fluid jumbotronError">
-    <div class="container">
-      <h1 class="display-3">Error</h1>
-      <p class="lead">{{error}}</p>
+  <div class="row" ng-if="error">
+    <div  uib-alert class="alert-danger centerText errorAlert" close="closeAlert()">
+      <h3>Error</h3>
+      <p>{{error}}</p>
     </div>
   </div>
 
@@ -11,7 +11,7 @@
     <div class="col-sm-4 col-sm-offset-4 greyContainer adminLog">
       <h3 class="centerText">Login</h3>
 
-      <form name="adminForm" ng-submit="adminLogin(adminForm.$valid)">
+      <form name="adminForm" ng-submit="adminLogin(adminForm.$valid)" novalidate>
         <div class="form-group" ng-class="{ 'has-danger' : adminForm.email.$invalid && !adminForm.email.$pristine }">
           <label for="adminEmail" class="sr-only" >Login Email</label>
           <input tabindex="1" autofocus required type="email" class="form-control" placeholder="Email" id="adminEmail" ng-model='admin.email' name="email">

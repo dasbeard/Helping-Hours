@@ -102,6 +102,8 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
     // console.log(services);
     editFactory.updateServices(services, function(output){
       if(output.data.error){
+        $scope.error = output.data.error;
+        clearError();
 // =-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-
               // Error message containing response
 // =-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-
@@ -146,56 +148,12 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
     }, function () {});
   };
 
-
-  $scope.addDay = function(isValid, service){;
-    $scope.hoursOfOpFormInvalid = false;
-    if(!isValid){
-      $scope.hoursOfOpFormInvalid = true;
-    } else {
-      if(service == 'hoursOfOperation'){
-        if(($scope.hoursOfOp.open > $scope.hoursOfOp.closed) && ($scope.hoursOfOp.openPeriod == $scope.hoursOfOp.closedPeriod)){
-          // console.log('not valid');
-          $scope.hoursOfOpFormInvalid2 = true;
-        } else {
-          $scope.hoursOfOp.id = $scope.loggedInUser.id;
-          $scope.hoursOfOp.service = service;
-
-          editFactory.addDay($scope.hoursOfOp, function(output){
-            if(output.data.error){
-// =-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-
-              // Error message containing response
-// =-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=--=-
-            } else {
-              getOrganizationInfo()
-              $scope.hoursOfOpMask = false;
-            }
-          })
-        }
-      } else if (service == 'daysServingFood'){
-        if(($scope.servingFood.open > $scope.servingFood.closed) && ($scope.servingFood.openPeriod == $scope.servingFood.closedPeriod)){
-          $scope.hoursOfOpFormInvalid2 = true;
-        } else {
-          $scope.servingFood.id = $scope.loggedInUser.id;
-          $scope.servingFood.service = service;
-
-          editFactory.addDay($scope.servingFood, function(output){
-            if(output.data.error){
-              // Error message containing response
-            } else {
-              getOrganizationInfo()
-              $scope.servingFoodMask = false;
-            }
-          })
-        }
-      }
-    }
-  };
-
-
   $scope.removeDay = function(idx, service){
     var toRemove = {id: $scope.loggedInUser.id, index: idx, service: service};
     editFactory.removeDay(toRemove, function(output){
       if(output.data.error){
+        $scope.error = output.error;
+
         // Error message containing response
       } else {
         getOrganizationInfo()
@@ -203,28 +161,12 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
     })
   };
 
-  $scope.addDayOfOp = function(){
-    $scope.hoursOfOpMask = true;
-  };
-
-  $scope.addServing = function(){
-    $scope.servingFoodMask = true;
-  };
-
-  $scope.closeMask = function() {
-    $scope.hoursOfOpMask = false;
-    $scope.servingFoodMask = false;
-    $scope.hoursOfOpFormInvalid = false;
-    $scope.hoursOfOpFormInvalid2 = false;
-    $scope.servingFoodFormInvalid = false;
-    $scope.servingFoodFormInvalid2 = false;
-  };
-
   function getOrganizationInfo(){
     editFactory.getOrgInfo($scope.loggedInUser, function(output){
       if(output.data.error){
         console.log('Error');
         console.log(output.data.error);
+        $scope.error = output.data.error;
       } else {
         $scope.editOrg = output.data;
         $scope.editOrgServices = output.data.services;
@@ -242,6 +184,17 @@ app.controller('editController', ['$scope', 'editFactory', '$location', '$cookie
       }
     })
     // console.log('saved');
+  };
+
+
+
+
+  function clearError(){
+    setTimeout(function () {
+        $scope.$apply(function () {
+            $scope.error = false;
+        });
+    }, 5000);
   };
 
 }]); // End Controller
@@ -275,7 +228,12 @@ app.controller('HoursOfOpCtrl', ['$scope', '$uibModalInstance', 'editFactory', '
     var sendToDB = {id:typeOfDay.id, type: typeOfDay.input, days: daysToAdd};
     editFactory.addDay(sendToDB, function(output){
       if(output.data == 'error'){
-  // =============== Error Message Here
+        $scope.error = output.error;
+        setTimeout(function () {
+            $scope.$apply(function () {
+                $scope.error = false;
+            });
+        }, 5000);
       } else {
         $uibModalInstance.close(true);
       }

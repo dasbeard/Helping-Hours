@@ -1,14 +1,11 @@
 <div class="container-fluid">
 
+  <div class="row" ng-if="error">
 
-
-  <script type="text/ng-template" id="alert.html">
-    <div ng-transclude></div>
-  </script>
-
-  <div ng-if="error" uib-alert template-url="alert.html" class="alert-danger centerText" ng-click="closeError()">
-    <h3>Error</h3>
-    <p>{{error}}</p>
+    <div  uib-alert class="alert-danger centerText errorAlert" close="closeAlert()">
+      <h3>Error</h3>
+      <p>{{error}}</p>
+    </div>
   </div>
 
 
@@ -107,6 +104,10 @@
 <div class="Organization-Modal">
     <script type="text/ng-template" id="organizationModal.html">
         <div class="modal-header">
+          <div ng-if="error2" uib-alert class="alert-danger centerText errorAlert" styonloadedmetadata="max-height:45px;" close="closeAlert()">
+            <p>{{error2}}</p>
+          </div>
+
           <p class="logRegError">{{error2}}</p>
           <h3 class="modal-title centerText" id="modal-title">Tell Us More</h3>
         </div>
@@ -119,7 +120,6 @@
               <input required type="text" class="form-control" id="organizationName" placeholder="Organization Name" ng-model='reg2.orgName' ng-minlength="3"  name="orgName">
               <p ng-show="userForm.orgName.$error.minlength" class="form-text text-muted">Organization name must be at least 3 characters long.</p>
               <p ng-show="userForm.orgName.$error.maxlength" class="form-text text-muted">Username is too long.</p>
-              <!-- <p ng-show="userForm.orgName.$invalid && !userForm.orgName.$pristine" class="form-text text-muted">Organization Name is Required</p> -->
             </div>
 
             <div class="form-group" ng-class="{ 'has-danger' : userForm.email.$invalid && !userForm.email.$pristine }">
@@ -160,6 +160,9 @@
 <div class="LatLng-Modal">
     <script type="text/ng-template" id="latLngModal.html">
         <div class="modal-header">
+          <div ng-if="error2" uib-alert class="alert-danger centerText errorAlert" styonloadedmetadata="max-height:45px;" close="closeAlert()">
+            <p>{{error2}}</p>
+          </div>
             <h3 class="modal-title centerText" id="modal-title">How to find your Latitude and Longitude</h3>
         </div>
           <div class="modal-body " id="modal-body">
@@ -176,7 +179,6 @@
               </div>
 
               <div class="col-sm-5 col-sm-offset-2 greyContainer latLngDiv">
-                <p class="logRegError centerText">{{error2}}</p>
                 <h4 class="centerText">Your Latitude and Longitude</h4>
                 <form name="latLngForm" ng-submit='latLngSubmit(latLngForm.$valid)' novalidate>
                   <div class="row">

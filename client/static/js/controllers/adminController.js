@@ -5,7 +5,6 @@ app.controller('adminController', ['$scope', 'adminFactory', '$location', '$cook
 
   var $ctrl = this;
 
-
   if ($cookies.getObject('loggedAdmin')){
     $scope.loggedInAdmin = $cookies.getObject('loggedAdmin');
       getAllAdmin();
@@ -13,15 +12,9 @@ app.controller('adminController', ['$scope', 'adminFactory', '$location', '$cook
     window.location.replace('/');
   };
 
-
-
-
-
-
   function getAllAdmin(){
     adminFactory.getAllAdmin(function(output){
       $scope.allOrgs = output.data;
-      // console.log($scope.allOrgs);
     })
   };
 
@@ -104,25 +97,23 @@ app.controller('adminController', ['$scope', 'adminFactory', '$location', '$cook
 // =========================================================================
 // ===================== deleteOrgCtrl Controller =======================
 // =========================================================================
-app.controller('deleteOrgCtrl', ['$uibModalInstance', 'orgInfo', 'adminFactory', function ($uibModalInstance, orgInfo, adminFactory) {
+app.controller('deleteOrgCtrl', ['$scope', '$uibModalInstance', 'orgInfo', 'adminFactory', function ($scope, $uibModalInstance, orgInfo, adminFactory) {
 
-  var $ctrl = this;
+  // var $ctrl = this;
 
-  $ctrl.orgInfo = orgInfo;
+  $scope.orgInfo = orgInfo;
 
-  $ctrl.removeOrg = function () {
+  $scope.removeOrg = function () {
     adminFactory.deleteOrg(orgInfo, function(output){
       if(output.data == true){
         $uibModalInstance.close(orgInfo);
       } else {
-        $scope.error = output.data;
-        // Error message Here
-
+        $scope.error2 = output.data;
       }
     })
   };
 
-  $ctrl.cancel = function () {
+  $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
 }]); // End deleteOrgCtrl Controller
@@ -136,35 +127,25 @@ app.controller('deleteOrgCtrl', ['$uibModalInstance', 'orgInfo', 'adminFactory',
 // ===================== editOrgModalCtrl Controller =======================
 // =========================================================================
 
-app.controller('editOrgModalCtrl', ['$uibModalInstance', '$scope', 'orgInfo', 'adminFactory', function ($uibModalInstance, $scope, orgInfo, adminFactory) {
+app.controller('editOrgModalCtrl', ['$scope', '$uibModalInstance', '$scope', 'orgInfo', 'adminFactory', function ($scope, $uibModalInstance, $scope, orgInfo, adminFactory) {
 
-  var $ctrl = this;
+  // var $ctrl = this;
 
-  // adminFactory.editOrgAdmin(orgInfo, function(output){
-  //   console.log(output);
-  //   $ctrl.thisOrg = output.data;
-  // })
+  $scope.orgInfo = orgInfo;
 
-
-  $ctrl.orgInfo = orgInfo;
-
-
-
-  $ctrl.editOrgAdmin = function (isValid) {
+  $scope.editOrgAdmin = function (isValid) {
     if(isValid){
-      adminFactory.editOrgAdmin($ctrl.orgInfo, function(output){
+      adminFactory.editOrgAdmin($scope.orgInfo, function(output){
         if(output.data.error){
-          // Error message Here
+          $scope.error2 = output.data.error;
         } else if (output.data == true){
-
           $uibModalInstance.close(orgInfo);
         }
       })
     }
-
   };
 
-  $ctrl.cancel = function () {
+  $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
 

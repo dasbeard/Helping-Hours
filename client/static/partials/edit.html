@@ -2,6 +2,13 @@
 
   <form name="editOrgForm" ng-submit="editOrganization(editOrgForm.$valid)" >
     <div class="container-fluid servicesContainer">
+      <div class="row" ng-if="error">
+
+        <div  uib-alert class="alert-danger centerText errorAlert" close="closeAlert()">
+          <h3>Error</h3>
+          <p>{{error}}</p>
+        </div>
+      </div>
 
         <div class="row">
 

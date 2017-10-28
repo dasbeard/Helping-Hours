@@ -15,9 +15,9 @@
   </div>
     <div class="row">
 
-      <div class="col-sm-12 table-responsive adminTable">
+      <div class="col-sm-12 table-responsive adminTable" id="adminTable">
 
-        <table class="table table-hover">
+        <table class="table table-hover" >
 
 
           <tbody>
@@ -45,21 +45,26 @@
 
 
 
-
+<!-- ============ Delete-Organization Modal ============ -->
   <div class="Delete-Organization">
       <script type="text/ng-template" id="deleteOrgModal.html">
           <div class="modal-header">
+            <div ng-if="error2" uib-alert class="alert-danger centerText errorAlert" styonloadedmetadata="max-height:45px;" close="closeAlert()">
+              <p>{{error2}} </p>
+            </div>
+
               <h3 class="modal-title centerText" id="modal-title">Are you sure you want to Delete this Organization?</h3>
           </div>
             <div class="modal-body centerText" id="modal-body">
-              <h2>{{$ctrl.orgInfo.name}}</h2>
+              <h2>{{orgInfo.name}}</h2>
             </div>
           <div class="modal-footer centerText">
-              <button class="btn btn-danger " type="button" ng-click="$ctrl.removeOrg()">OK</button>
-              <button class="btn btn-secondary " type="button" ng-click="$ctrl.cancel()">Cancel</button>
+              <button class="btn btn-danger " type="button" ng-click="removeOrg()">OK</button>
+              <button class="btn btn-secondary " type="button" ng-click="cancel()">Cancel</button>
           </div>
       </script>
   </div>
+<!-- ============ End Delete-Organization Modal ============ -->
 
 
 
@@ -67,41 +72,47 @@
 
 
 
-
+<!-- ============ Edit-Organization Modal ============ -->
   <div class="Edit-Organization">
       <script type="text/ng-template" id="editOrgModal.html">
           <div class="modal-header">
-              <h3 class="modal-title centerText" id="modal-title">Editing {{$ctrl.orgInfo.name}}</h3>
+            <div ng-if="error2" uib-alert class="alert-danger centerText errorAlert" styonloadedmetadata="max-height:45px;" close="closeAlert()">
+              <p>{{error2}} </p>
+            </div>
+
+              <h3 class="modal-title centerText" id="modal-title">Editing {{orgInfo.name}}</h3>
           </div>
-          <form name="editOrgAdminForm" ng-submit='$ctrl.editOrgAdmin(editOrgAdminForm.$valid)'>
+          <form name="editOrgAdminForm" ng-submit='editOrgAdmin(editOrgAdminForm.$valid)'>
             <div class="modal-body adminEditModal" id="modal-body">
 
                 <div class="form-group input-group" ng-class="{ 'has-danger' : editOrgAdminForm.oegName.$invalid && !editOrgAdminForm.oegName.$pristine }">
-                  <label for="orgName" class="sr-only">{{$ctrl.orgInfo.name}}</label>
-                  <input required type="text" name="orgName" id="orgName" class="form-control" placeholder="{{$ctrl.orgInfo.name}}" ng-model='$ctrl.orgInfo.name'>
+                  <label for="orgName" class="sr-only">{{orgInfo.name}}</label>
+                  <input required type="text" name="orgName" id="orgName" class="form-control" placeholder="Organization Name" ng-model='orgInfo.name'>
                 </div>
 
                 <div class="form-group input-group" ng-class="{ 'has-danger' : editOrgAdminForm.email.$invalid && !editOrgAdminForm.email.$pristine }">
                   <label for="orgEmail" class="sr-only" >Email</label>
-                  <input required type="email" class="form-control" placeholder="{{$ctrl.orgInfo.email}}" id="orgEmail" name="email" ng-model='$ctrl.orgInfo.email'>
+                  <input required type="email" class="form-control" placeholder="E-Mail" id="orgEmail" name="email" ng-model='orgInfo.email'>
                 </div>
                 <p ng-show="editOrgAdminForm.email.$invalid && !editOrgAdminForm.email.$pristine" class="form-text text-muted">Please enter a vaild E-Mail Adderess</p>
 
                 <div class="form-group input-group" ng-class="{ 'has-danger' : editOrgAdminForm.phone.$invalid && !editOrgAdminForm.phone.$pristine }">
                   <label for="orgPhone" class="sr-only">Contact Phone Number</label>
-                  <input type="tel" class="form-control" placeholder="{{$ctrl.orgInfo.phone}}" id="orgPhone" name="phone" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" ng-model='$ctrl.orgInfo.phone'>
+                  <input type="tel" class="form-control" placeholder="Phone Number" id="orgPhone" name="phone" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" ng-model='orgInfo.phone'>
                 </div>
 
             </div>
             <div class="modal-footer centerText">
               <button class="btn btn-secondary " type="submit">OK</button>
-              <button class="btn btn-secondary " type="button" ng-click="$ctrl.cancel()">Cancel</button>
+              <button class="btn btn-secondary " type="button" ng-click="cancel()">Cancel</button>
             </div>
 
         </form>
 
       </script>
   </div>
+<!-- ============ End Edit-Organization Modal ============ -->
+
 
 
 </div>
