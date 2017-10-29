@@ -1,11 +1,8 @@
 //==================== Creating Angular App ====================
-var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'ngCookies', 'ngAnimate', 'ui.mask', 'ngMap', 'ngclipboard', 'ng-weekday-selector']);
-
-
-
+var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'ngCookies', 'ngSanitize', 'ngAnimate', 'ui.mask', 'ngMap', 'ngclipboard', 'ng-weekday-selector']);
 
 //==================== Angular Routes ====================
-app.config(function($stateProvider, $urlRouterProvider){
+app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise("/")
 
   $stateProvider
@@ -14,14 +11,6 @@ app.config(function($stateProvider, $urlRouterProvider){
     templateUrl: "../partials/home.html",
     controller:"homeController"
   })
-  // ========== same as '/' ==========
-  // .state('home', {
-  //     url: "/home",
-  //     templateUrl: "../partials/home.html",
-  //     controller:"homeController"
-  // })
-  // ==========  ==========  ==========
-
 
   .state('logReg', {
     url: "/logReg",
@@ -50,12 +39,5 @@ app.config(function($stateProvider, $urlRouterProvider){
     controller:"adminController as $ctrl"
 
   })
-  // ========== for development ==========
-  .state('second', {
-    url: "/second",
-    templateUrl: "../partials/second.html",
-    controller:"testingController as $lCtrl"
-  })
 
-
-});
+}]);

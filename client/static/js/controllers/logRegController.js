@@ -3,10 +3,12 @@
 // =========================================================================
 app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'adminFactory', '$location', '$cookies', '$window', '$state', '$uibModal', function($scope, $rootScope, logRegFactory, adminFactory, $location, $cookies, $window, $state, $uibModal){
 
-  $rootScope.loggedInUser = $cookies.getObject('loggedUser');
-  $rootScope.loggedInAdmin = $cookies.getObject('loggedAdmin');
-
-
+  if($cookies.getObject('loggedUser')){
+    $rootScope.loggedInUser = $cookies.getObject('loggedUser');
+  }
+  if($cookies.getObject('loggedAdmin')){
+    $rootScope.loggedInAdmin = $cookies.getObject('loggedAdmin');
+  }
 
 
   $scope.register = function (isValid, size, parentSelector) {
@@ -21,7 +23,6 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
         $scope.error = 'Please enter a Zip code';
       } else {
         $scope.error = '';
-  // =-=-=-=-=-=-=-=-=-=-=-=- Modal -==-=-=-=-=-=-=-=-=-=
         logRegFactory.findLocation($scope.reg, function(output){
           if(output.error){
             $scope.error = output.error;
@@ -40,27 +41,18 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
               resolve: {
                 allFound: function () {
                   return allFound;
-                }, function () {}
+                }
               }
-            });
-
+            })
             modalInstance.result.then(function (locationResponse) {
-              // console.log(locationResponse);
-
               if(locationResponse == "LatLng"){
-                latLngModal()
-              }
-
+                latLngModal();
+              };
               if(locationResponse.formattedAddress){
                 var newOrg = orgModal(locationResponse)
               }
-
-
-
-
             }, function () {});
-
-          }
+          };
         });
       }
     } else if(!isValid){
@@ -68,8 +60,6 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
       clearError();
     };
   };
-  // =-=-=-=-=-=-=-=-=-=- End Modal -==-=-=-=-=-=-=-=-=-=
-
 
   $scope.closeAlert = function(){
     $scope.error= '';
@@ -78,9 +68,7 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
 
   // Login Method
   $scope.loginUser = function(){
-    // console.log($scope.login);
     $scope.error = '';
-    // ===== Front End Validation ====
     if (!$scope.login){
       $scope.error = 'Please Enter in Email and Password';
       clearError();
@@ -101,22 +89,17 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
         } else {
           // console.log(output.data);
           setCookie(output.data);
-          // $cookies.putObject("loggedUser", output.data);
-          // $rootScope.loggedInUser = $cookies.getObject('loggedUser');
           window.location.replace('/#!/organization/' + $rootScope.loggedInUser.id);
         }
       });
-    // $scope.login = {};
 
     }
   }; // End Login Method
 
   // Admin Login Method
   $scope.adminLogin = function(isValid){
-    // console.log($scope.admin);
     $scope.error = '';
     if(isValid){
-      // ===== Front End Validation ====
       if (!$scope.admin){
         $scope.error = 'Please Enter in Email and Password';
         clearError();
@@ -150,12 +133,16 @@ app.controller('logRegController', ['$scope', '$rootScope', 'logRegFactory', 'ad
 
   $scope.myPage = function(){
     window.location.replace('/#!/organization/' + $rootScope.loggedInUser.id);
-  }
+  };
+
+  $scope.adminPage = function(){
+    window.location.replace('/#!/adminHome');
+  };
+
 
   $scope.logoutUser = function(){
     $cookies.remove('loggedUser');
     $cookies.remove('loggedAdmin');
-
     window.location.replace('/');
   } // End logoutUser method
 
@@ -246,7 +233,7 @@ app.controller('yourLocationCtrl', ['$scope', '$uibModalInstance', 'allFound', '
   } else {
     $scope.locationHeading = 'Is This Your Address?';
     $scope.locationButton = 'Yes';
-  }
+  };
 
   $scope.selectedAddress = function(selectedInput) {
     $uibModalInstance.close(selectedInput);
@@ -254,7 +241,7 @@ app.controller('yourLocationCtrl', ['$scope', '$uibModalInstance', 'allFound', '
 
   $scope.enterLatLong = function(){
     $uibModalInstance.close('LatLng');
-  }
+  };
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
@@ -286,7 +273,7 @@ app.controller('organizationCtrl', ['$scope', '$uibModalInstance', 'location', '
               $scope.error2 = false;
           });
       }, 5000);
-    }
+    };
   };
 
   $scope.cancel = function () {
