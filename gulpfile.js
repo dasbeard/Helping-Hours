@@ -8,7 +8,6 @@ const pump = require('pump');
 gulp.task('css', function(){
   gulp.src([
     './bower_components/ng-weekday-selector/ngWeekdaySelector.css',
-    './client/static/css/css/bootstrap.min.css',
     './client/static/css/style.css',
   ])
   .pipe(concat('app.css'))
