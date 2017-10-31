@@ -174,8 +174,6 @@
         </div>
     </div>
   </form>
-
-  <!-- <button type="button" name="button" ng-click='addDay2()'>days2</button> -->
 </div>
 
 
@@ -195,25 +193,27 @@
                 <div class="col-sm-12" ng-model="days" ng-weekday-selector></div>
               </div>
 
-              <!-- <div class="row">
-                <div class="col-xs-12 col-sm-4 col-sm-offset-3">
-                  <h4>Open</h4>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                  <h4>Close</h4>
-                </div>
-              </div> -->
-
               <div class="row">
-                <div class="col-sm-4 col-sm-offset-2 timePick" uib-timepicker hour-step="1" minute-step="15" ng-model="open"></div>
+                <div class="col-sm-4 col-sm-offset-2">
+                  <div>
+                    <h4 class="centerText">Open</h4>
+                  </div>
+                  <div class=" timePick" uib-timepicker hour-step="1" minute-step="15" ng-model="open"></div>
+                </div>
 
-                <div class="col-sm-4 timePick" uib-timepicker hour-step="1" minute-step="15" ng-model="close"></div>
+                <div class="col-sm-4 ">
+                  <div>
+                    <h4 class="centerText">Close</h4>
+                  </div>
+                <div class="timePick" uib-timepicker hour-step="1" minute-step="15" ng-model="close"></div>
               </div>
+
             </div>
 
           <div class="modal-footer centerText">
-            <button class="col-sm-4 col-sm-offset-2 btn btn-secondary" type="submit">Add</button>
-            <button class="col-sm-4  btn btn-secondary " type="button" ng-click="cancel()">Cancel</button>
+            <button class="col-sm-2 col-sm-offset-3 btn btn-secondary" type="submit">Add</button>
+          <div class="col-xs-0 col-sm-2"></div>
+            <button class="col-sm-2  btn btn-secondary " type="button" ng-click="cancel()">Cancel</button>
           </div>
       </form>
 
@@ -226,11 +226,8 @@
 
 <!-- ========== Save Mask ========== -->
 <div class="container-fluid saveMask" ng-show='savedMask'>
-<!-- <div class="container-fluid saveMask"> -->
   <div class="centerText">
     <h1 class="">Saved</h1>
   </div>
-
-
 </div>
 <!-- ========== End Save Mask ========== -->
