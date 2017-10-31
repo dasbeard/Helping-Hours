@@ -129,7 +129,7 @@
 
           <div class="col-sm-5 col-sm-pull-7 col-sm-offset-1">
             <div class="row">
-              <div class="col-sm-12 centerText ">
+              <div class="col-sm-12 centerText " id="timeBox">
                 <div class="hoursContainer">
                   <h3 class="">Hours of Operation</h3>
                   <p><a href="" ng-click="addDay2('HOP')">Add a Day</a></p>
@@ -138,9 +138,9 @@
                   <tbody>
                     <tr id="timeTable" ng-repeat="d in editOrg.hoursOfOperation">
                       <td>{{d.name}}</td>
-                      <td id="editTimePick" uib-timepicker ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
-                      <td class="editTableTo">to</td>
-                      <td id="editTimePick" uib-timepicker ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
+                      <td id="editTimePick" uib-timepicker pad-hours=false ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
+                      <td id="editTableTo">-</td>
+                      <td id="editTimePick" uib-timepicker pad-hours=false ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
                       <td><button type="button" class="btn btn-secondary btn-sm smallerBtn" ng-click="removeDay($index, 'hoursOfOperation')">remove</button></td>
                     </tr>
                   </tbody>
@@ -149,7 +149,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12 centerText ">
+              <div class="col-sm-12 centerText" id="timeBox">
                 <div class="hoursContainer">
                   <h3 class="">Days Serving Food</h3>
                   <p><a href="" ng-click="addDay2('Food')">Add a Day</a></p>
@@ -158,9 +158,9 @@
                   <tbody>
                     <tr id="timeTable" ng-repeat="d in editOrg.daysServingFood">
                       <td>{{d.name}}</td>
-                      <td id="editTimePick" uib-timepicker ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
-                      <td class="editTableTo">to</td>
-                      <td id="editTimePick" uib-timepicker ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
+                      <td id="editTimePick" uib-timepicker pad-hours=false ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
+                      <td id="editTableTo">-</td>
+                      <td id="editTimePick" uib-timepicker pad-hours=false ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
                       <td><button type="button" class="btn btn-secondary btn-sm smallerBtn" ng-click="removeDay($index, 'daysServingFood')">remove</button></td>
                     </tr>
                   </tbody>
@@ -192,7 +192,7 @@
         <form name="addDayForm" ng-submit="add()">
           <div class="modal-body " id="modal-body">
               <div class="row">
-                <div class="col--sm-12" ng-model="days" ng-weekday-selector></div>
+                <div class="col-sm-12" ng-model="days" ng-weekday-selector></div>
               </div>
 
               <!-- <div class="row">

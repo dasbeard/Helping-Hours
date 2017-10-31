@@ -61,9 +61,9 @@
                 <tbody>
                   <tr id="timeTable" ng-repeat="d in org.hoursOfOperation">
                     <td>{{d.name}}</td>
-                    <td id="editTimePick" uib-timepicker ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
+                    <td id="editTimePick" uib-timepicker pad-hours=false ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
                     <td class="editTableTo">to</td>
-                    <td id="editTimePick" uib-timepicker ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
+                    <td id="editTimePick" uib-timepicker pad-hours=false ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
                 </tbody>
               </table>
 
@@ -78,9 +78,9 @@
                 <tbody>
                   <tr id="timeTable" ng-repeat="d in org.daysServingFood">
                     <td>{{d.name}}</td>
-                    <td id="editTimePick" uib-timepicker ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
+                    <td id="editTimePick" uib-timepicker pad-hours=false ng-model="d.open" ng-disabled=true show-spinners=false readonly-input=true></td>
                     <td class="editTableTo">to</td>
-                    <td id="editTimePick" uib-timepicker ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
+                    <td id="editTimePick" uib-timepicker pad-hours=false ng-model="d.close" ng-disabled=true show-spinners=false readonly-input=true></td>
                   </tr>
                 </tbody>
               </table>

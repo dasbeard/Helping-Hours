@@ -16,15 +16,6 @@ gulp.task('css', function(){
   .pipe(gulp.dest('./client/static/appjs'))
 
 });
-//
-// gulp.task('myCss', function(){
-//   gulp.src([
-//   ])
-//   .pipe(concat('my.css'))
-//   .pipe(css())
-//   .pipe(gulp.dest('./client/static/appjs'))
-//
-// });
 
 gulp.task('scripts', function(){
   gulp.src([
