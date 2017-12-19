@@ -191,7 +191,4 @@ app.controller('homeController', ['$scope', 'homeFactory', '$location', '$cookie
 
 
 
-
-
-
 }]); // End Controller

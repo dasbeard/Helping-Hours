@@ -3,7 +3,6 @@ const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const css = require('gulp-clean-css');
 const annotate = require('gulp-ng-annotate');
-const pump = require('pump');
 
 gulp.task('css', function(){
   gulp.src([

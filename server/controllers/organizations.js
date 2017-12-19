@@ -8,6 +8,9 @@ const distance = require('google-distance');
 
 distance.key = ('AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM');
 
+const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey('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');
 
 var googleOptions = {
   provider: 'google',
@@ -88,6 +91,14 @@ module.exports = (function(){
                   formattedAddress: newOrganization.formattedAddress,
                   organization: newOrganization.organization,
                 };
+                // Send Email to Admin
+                const msg = {
+                  to: 'helpinghoursadm@gmail.com',
+                  from: 'helpinghoursadm@gmail.com',
+                  subject: 'New User on Helping Hours',
+                  text: newOrganization.organization + ' just registered a location at: ' + newOrganization.formattedAddress + ' With the email account: ' + newOrganization.email,
+                };
+                sgMail.send(msg);
 
                 res.json({success: true, sentback: toSendBack})
               }
