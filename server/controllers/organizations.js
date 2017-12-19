@@ -10,7 +10,6 @@ distance.key = ('AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM');
 
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey('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');
 
 var googleOptions = {
   provider: 'google',
